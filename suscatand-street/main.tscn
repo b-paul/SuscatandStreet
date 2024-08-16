@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=3 uid="uid://cxr4dpn6vgley"]
+
+[ext_resource type="Script" path="res://scripts/sub_viewport_container.gd" id="1_84olt"]
+[ext_resource type="Texture2D" uid="uid://b4t3hqxsd0u16" path="res://assets/bg.png" id="1_c8sky"]
+[ext_resource type="PackedScene" uid="uid://cm425f8572v21" path="res://scenes/item.tscn" id="3_cufy3"]
+
+[node name="root" type="Node"]
+
+[node name="bg" type="TextureRect" parent="."]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_c8sky")
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+offset_right = 862.0
+offset_bottom = 600.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HSplitContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HSplitContainer/ScrollContainer"]
+custom_minimum_size = Vector2(150, 300)
+layout_mode = 2
+text = "Instructions go here"
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="HSplitContainer"]
+custom_minimum_size = Vector2(700, 600)
+layout_mode = 2
+script = ExtResource("1_84olt")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+custom_minimum_size = Vector2(250, 0)
+offset_left = 866.0
+offset_right = 1116.0
+offset_bottom = 600.0
+tab_alignment = 2
+
+[node name="Inventory 1" type="VBoxContainer" parent="TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="item" parent="TabContainer/Inventory 1" instance=ExtResource("3_cufy3")]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer"]
+visible = false
+layout_mode = 2
+text = "Tab 1"
+metadata/_tab_index = 1
+
+[node name="Label2" type="Label" parent="TabContainer"]
+visible = false
+layout_mode = 2
+text = "Tab 2"
+metadata/_tab_index = 2
+
+[node name="Label3" type="Label" parent="TabContainer"]
+visible = false
+layout_mode = 2
+text = "Tab 3"
+metadata/_tab_index = 3

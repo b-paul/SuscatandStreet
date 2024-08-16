@@ -1,7 +1,7 @@
 extends MarginContainer
 
 func make_drag_data():
-	return {item_id = "game_node", message = "test"}
+	return {item_id = "game_node", message = "test", path = "res://scenes/item.tscn"}
 
 func _get_drag_data(_position):
 	var text = Label.new()
@@ -11,4 +11,8 @@ func _get_drag_data(_position):
 	preview.add_child(text)
 	preview.z_index = 60
 	set_drag_preview(preview)
+	
+	# Add a reference to the original item
+	data.original_item = self
+	
 	return data
