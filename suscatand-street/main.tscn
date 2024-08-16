@@ -15,51 +15,67 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_c8sky")
 
-[node name="HSplitContainer" type="HSplitContainer" parent="."]
-offset_right = 862.0
-offset_bottom = 600.0
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="HSplitContainer"]
-custom_minimum_size = Vector2(150, 0)
+[node name="HSplitContainer" type="HSplitContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/HSplitContainer"]
+custom_minimum_size = Vector2(42, 2.08165e-12)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="HSplitContainer/ScrollContainer"]
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer/HSplitContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.0901961, 0.0901961, 0.0901961, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/HSplitContainer/ScrollContainer"]
 custom_minimum_size = Vector2(150, 300)
 layout_mode = 2
 text = "Instructions go here"
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="HSplitContainer"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="HBoxContainer/HSplitContainer"]
 custom_minimum_size = Vector2(700, 600)
 layout_mode = 2
 script = ExtResource("1_84olt")
 
-[node name="TabContainer" type="TabContainer" parent="."]
-custom_minimum_size = Vector2(250, 0)
-offset_left = 866.0
-offset_right = 1116.0
-offset_bottom = 600.0
+[node name="TabContainer" type="TabContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(420, 2.08165e-12)
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
 tab_alignment = 2
 
-[node name="Inventory 1" type="VBoxContainer" parent="TabContainer"]
+[node name="Inventory 1" type="VBoxContainer" parent="HBoxContainer/TabContainer"]
+custom_minimum_size = Vector2(420, 2.08165e-12)
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="item" parent="TabContainer/Inventory 1" instance=ExtResource("3_cufy3")]
+[node name="item1" parent="HBoxContainer/TabContainer/Inventory 1" instance=ExtResource("3_cufy3")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="TabContainer"]
+[node name="item2" parent="HBoxContainer/TabContainer/Inventory 1" instance=ExtResource("3_cufy3")]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
 text = "Tab 1"
 metadata/_tab_index = 1
 
-[node name="Label2" type="Label" parent="TabContainer"]
+[node name="Label2" type="Label" parent="HBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
 text = "Tab 2"
 metadata/_tab_index = 2
 
-[node name="Label3" type="Label" parent="TabContainer"]
+[node name="Label3" type="Label" parent="HBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
 text = "Tab 3"
