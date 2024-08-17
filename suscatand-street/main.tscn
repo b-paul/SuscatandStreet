@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bkn80kuw0dqs6"]
 
-[ext_resource type="Texture2D" uid="uid://b4t3hqxsd0u16" path="res://assets/bg.png" id="1_c8sky"]
+[ext_resource type="Texture2D" uid="uid://bg2u1xmifmkjm" path="res://assets/bg_tile.png" id="1_agkpv"]
 [ext_resource type="Script" path="res://scripts/workspace_drag.gd" id="2_ki1mc"]
 [ext_resource type="PackedScene" uid="uid://k8h2oxgl3dko" path="res://scenes/Input_Block.tscn" id="4_iqqm7"]
 [ext_resource type="PackedScene" uid="uid://dtt3oxnusask2" path="res://scenes/Goal_Block.tscn" id="5_stwd0"]
@@ -10,13 +10,14 @@
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="bg" type="TextureRect" parent="CanvasLayer"]
-texture_filter = 1
+texture_filter = 2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_c8sky")
+texture = ExtResource("1_agkpv")
+stretch_mode = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
 anchors_preset = 15
