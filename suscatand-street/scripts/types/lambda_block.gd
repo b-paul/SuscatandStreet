@@ -10,6 +10,6 @@ func _init(parentNamespace_: Namespace):
 	outputType = UnknownType.new()
 	lambdaNamespace = Namespace.new()
 	lambdaNamespace.parentBlock = self
-	lambdaNamespace.blocks.append(InputBlock.new(lambdaNamespace, "x", UnknownType.new()))
+	lambdaNamespace.blocks.append(InputBlock.new(lambdaNamespace, "x", UnknownType.new(), true))
 	lambdaNamespace.blocks.append(OutputBlock.new(lambdaNamespace, UnknownType.new()))
 	parentNamespace = parentNamespace_
