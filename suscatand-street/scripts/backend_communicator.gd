@@ -24,13 +24,18 @@ func get_game_state() -> void:
 		for connector in block_connectors:
 			connectors[i] = connector
 
+func get_connector_index(node: ConnectorNode) -> int:
+	var block: GenericBlock = node.get_parent().get_parent()
+	return block.connectors.find(node)
+
 func check_game_state() -> bool:
 	get_game_state()
 	var bigNameSpace: Namespace = Namespace.new()
 	for block in blocks:
 		match block.block_type:
 			"input":
-				pass
+				var type = PrimType.new(block.connectors[0].type_name)
+				var inputBlock = InputBlock.new(bigNameSpace, type, true)
 			"goal":
 				pass
 			"applicator":
