@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://r58wntd7d7jw"]
+[gd_scene load_steps=14 format=3 uid="uid://dlnht27yr4rm7"]
 
 [ext_resource type="Script" path="res://scripts/types/typetype.gd" id="1_uhotq"]
 [ext_resource type="Script" path="res://scripts/types/prim_type.gd" id="2_3ycht"]
@@ -11,6 +11,8 @@
 [ext_resource type="Script" path="res://scripts/types/input_block.gd" id="9_gxowl"]
 [ext_resource type="Script" path="res://scripts/types/output_block.gd" id="10_vx6j0"]
 [ext_resource type="Script" path="res://scripts/types/applicator_block.gd" id="11_km4v1"]
+[ext_resource type="Script" path="res://scripts/types/namespace.gd" id="12_6lvrv"]
+[ext_resource type="Script" path="res://scripts/types/lambda_block.gd" id="12_tycop"]
 
 [node name="Typecheck" type="Node"]
 
@@ -50,4 +52,8 @@ script = ExtResource("10_vx6j0")
 [node name="ApplicatorBlock" type="Node" parent="Block"]
 script = ExtResource("11_km4v1")
 
+[node name="LambdaBlock" type="Node" parent="Block"]
+script = ExtResource("12_tycop")
+
 [node name="Namespace" type="Node" parent="."]
+script = ExtResource("12_6lvrv")
