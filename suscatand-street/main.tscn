@@ -106,6 +106,8 @@ metadata/_tab_index = 0
 
 [node name="DraggableWorkspaceComponent" parent="CanvasLayer/HBoxContainer/TabContainer/Inventory 1" instance=ExtResource("6_ajwxe")]
 layout_mode = 2
+value_name = ""
+type_name = ""
 
 [node name="Inventory 2" type="VBoxContainer" parent="CanvasLayer/HBoxContainer/TabContainer"]
 visible = false
