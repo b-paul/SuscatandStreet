@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cg4llmlwcg4cf"]
 
-[ext_resource type="PackedScene" uid="uid://db8xskyl380ep" path="res://scenes/GenericBlock.tscn" id="1_4y1te"]
+[ext_resource type="PackedScene" uid="uid://db8xskyl380ep" path="res://scenes/blocks/GenericBlock.tscn" id="1_4y1te"]
 [ext_resource type="PackedScene" uid="uid://bgv3qn41l83pg" path="res://scenes/Connector.tscn" id="2_mog0f"]
 
 [node name="GenericBlock" instance=ExtResource("1_4y1te")]

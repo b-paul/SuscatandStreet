@@ -1,11 +1,11 @@
 [gd_scene load_steps=5 format=3 uid="uid://b2p2wnjkqxitw"]
 
-[ext_resource type="PackedScene" uid="uid://db8xskyl380ep" path="res://scenes/GenericBlock.tscn" id="1_d6fd7"]
+[ext_resource type="PackedScene" uid="uid://db8xskyl380ep" path="res://scenes/blocks/GenericBlock.tscn" id="1_cc1oq"]
 [ext_resource type="Texture2D" uid="uid://dmb574inmhpp2" path="res://assets/F.png" id="2_xgy1o"]
 [ext_resource type="Script" path="res://scripts/applicator_connectors.gd" id="3_m4jbf"]
 [ext_resource type="PackedScene" uid="uid://bgv3qn41l83pg" path="res://scenes/Connector.tscn" id="4_jh8ou"]
 
-[node name="GenericBlock" instance=ExtResource("1_d6fd7")]
+[node name="GenericBlock" instance=ExtResource("1_cc1oq")]
 custom_minimum_size = Vector2(200, 200)
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="0"]

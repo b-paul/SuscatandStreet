@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://bdjteonbibkwu"]
 
-[ext_resource type="PackedScene" uid="uid://db8xskyl380ep" path="res://scenes/GenericBlock.tscn" id="1_oit4w"]
+[ext_resource type="PackedScene" uid="uid://db8xskyl380ep" path="res://scenes/blocks/GenericBlock.tscn" id="1_0nnx1"]
 [ext_resource type="PackedScene" uid="uid://bgv3qn41l83pg" path="res://scenes/Connector.tscn" id="2_xy4vy"]
 
-[node name="GenericBlock" instance=ExtResource("1_oit4w")]
+[node name="GenericBlock" instance=ExtResource("1_0nnx1")]
 
 [node name="ColorRect" type="ColorRect" parent="." index="0"]
 custom_minimum_size = Vector2(100, 100)

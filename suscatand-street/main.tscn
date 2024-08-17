@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://bkn80kuw0dqs6"]
+[gd_scene load_steps=13 format=3 uid="uid://bkn80kuw0dqs6"]
 
 [ext_resource type="Texture2D" uid="uid://bg2u1xmifmkjm" path="res://assets/bg_tile.png" id="1_agkpv"]
 [ext_resource type="Script" path="res://scripts/hintbox.gd" id="2_4dedc"]
 [ext_resource type="Script" path="res://scripts/workspace_drag.gd" id="2_ki1mc"]
 [ext_resource type="Script" path="res://scripts/Instruction.gd" id="2_xwrj8"]
+[ext_resource type="Script" path="res://scripts/knowledge.gd" id="3_i7gla"]
 [ext_resource type="Script" path="res://scripts/connector_coordinator.gd" id="5_ugrpo"]
 [ext_resource type="PackedScene" uid="uid://c34gd6iom0l2t" path="res://scenes/blocks/BlockWithConnectorToLeft.tscn" id="6_grr7f"]
 [ext_resource type="PackedScene" uid="uid://bnxv4un0vcijb" path="res://scenes/blocks/ImplyBlock.tscn" id="6_rvr5x"]
@@ -42,14 +43,19 @@ size_flags_stretch_ratio = 6.9
 custom_minimum_size = Vector2(3, 2.08165e-12)
 layout_mode = 2
 
-[node name="Task" type="CenterContainer" parent="CanvasLayer/HBoxContainer/HSplitContainer/Info bar"]
+[node name="Task" type="VBoxContainer" parent="CanvasLayer/HBoxContainer/HSplitContainer/Info bar"]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 4.2
 script = ExtResource("2_xwrj8")
 
-[node name="Hint box" type="VBoxContainer" parent="CanvasLayer/HBoxContainer/HSplitContainer/Info bar"]
+[node name="Knowledge" type="VBoxContainer" parent="CanvasLayer/HBoxContainer/HSplitContainer/Info bar"]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("3_i7gla")
+
+[node name="HintBox" type="VBoxContainer" parent="CanvasLayer/HBoxContainer/HSplitContainer/Info bar"]
 layout_mode = 2
 size_flags_stretch_ratio = 6.9
 script = ExtResource("2_4dedc")

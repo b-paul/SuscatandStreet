@@ -33,6 +33,7 @@ func setup_hint_boxes():
 		hint_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		hint_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 		hint_label.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		hint_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		hint_box.add_child(hint_label)
 		
 		hint_block.modulate.a = .69
@@ -42,6 +43,8 @@ func setup_hint_boxes():
 		button.name = "HintButton"
 		button.flat = true
 		button.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		button.mouse_entered.connect(_on_HintBlock_hovered.bind(i))
+		button.mouse_exited.connect(_on_HintBlock_unhovered.bind(i))
 		button.pressed.connect(_on_HintBlock_pressed.bind(i))
 		hint_box.add_child(button)
 
@@ -54,6 +57,20 @@ func _on_HintBlock_pressed(hint_index: int):
 		
 		hint_label.text = hint_texts[hint_index]
 		hint_block.modulate.a = 1
+		
+func _on_HintBlock_hovered(hint_index: int):
+	if not hint_index in unlocked_hints:
+		var hint_box = get_node("HintBox" + str(hint_index))
+		var hint_block = hint_box.get_node("HintBlock")
+		
+		hint_block.modulate.a = .8
+
+func _on_HintBlock_unhovered(hint_index: int):
+	if not hint_index in unlocked_hints:
+		var hint_box = get_node("HintBox" + str(hint_index))
+		var hint_block = hint_box.get_node("HintBlock")
+		
+		hint_block.modulate.a = .69
 
 func _notification(what):
 	if what == NOTIFICATION_RESIZED:
