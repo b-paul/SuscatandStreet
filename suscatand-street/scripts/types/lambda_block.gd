@@ -1,13 +1,13 @@
 class_name LambdaBlock
 extends Block
 
-var inputType: Type
-var outputType: Type
+var inputTypeConnector: Connector
+var outputTypeConnector: Connector
 var lambdaNamespace: Namespace
 
 func _init(parentNamespace_: Namespace):
-	inputType = UnknownType.new()
-	outputType = UnknownType.new()
+	inputTypeConnector = Connector.new(self, true, UnknownType.new())
+	outputTypeConnector = Connector.new(self, true, UnknownType.new())
 	lambdaNamespace = Namespace.new()
 	lambdaNamespace.parentBlock = self
 	lambdaNamespace.blocks.append(InputBlock.new(lambdaNamespace, "x", UnknownType.new(), true))
