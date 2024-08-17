@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://k8h2oxgl3dko"]
+[gd_scene load_steps=5 format=3 uid="uid://k8h2oxgl3dko"]
 
-[ext_resource type="PackedScene" uid="uid://ckc1jjwurruiu" path="res://scenes/super_block.tscn" id="1_f2gvv"]
+[ext_resource type="PackedScene" path="res://scenes/super_block.tscn" id="1_f2gvv"]
 [ext_resource type="Script" path="res://scripts/input_block.gd" id="2_o07qc"]
+[ext_resource type="Texture2D" uid="uid://edynuhv4vgw5" path="res://assets/box.svg" id="3_e67ht"]
 [ext_resource type="PackedScene" uid="uid://qknhuqusj5av" path="res://scenes/Wire.tscn" id="3_k7w8t"]
 
 [node name="DraggableWorkspaceComponent" instance=ExtResource("1_f2gvv")]
@@ -24,16 +25,16 @@ offset_top = -50.0
 offset_right = 50.0
 offset_bottom = 53.0
 
-[node name="ColorRect" type="ColorRect" parent="Control/CenterContainer" index="0"]
-custom_minimum_size = Vector2(100, 100)
+[node name="Box" type="TextureRect" parent="Control/CenterContainer" index="0"]
+texture_filter = 1
 layout_mode = 2
-mouse_filter = 1
+texture = ExtResource("3_e67ht")
 
 [node name="Label" type="Label" parent="Control/CenterContainer" index="1"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 75
-text = "x"
+text = "A"
 
 [node name="ColorRect" type="ColorRect" parent="Control" index="1"]
 layout_mode = 0
