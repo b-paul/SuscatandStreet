@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dkl1m8bgbuon6" path="res://assets/out.png" id="3_phdym"]
 [ext_resource type="PackedScene" uid="uid://qknhuqusj5av" path="res://scenes/Wire.tscn" id="4_j1q2d"]
 
-[node name="DraggableWorkspaceComponent" instance=ExtResource("1_rsdrb")]
+[node name="applicate_block" instance=ExtResource("1_rsdrb")]
 custom_minimum_size = Vector2(150, 150)
 offset_left = 34.0
 offset_top = 15.0
@@ -15,6 +15,7 @@ offset_bottom = 165.0
 script = ExtResource("2_6jtcw")
 value_name = ""
 type_name = ""
+output = ""
 stickyNodes = []
 
 [node name="Node2D" type="Node2D" parent="Control" index="0"]
@@ -51,7 +52,7 @@ scale = Vector2(1.2, 1.2)
 color = Color(0.258824, 0.588235, 0.647059, 0.717647)
 polygon = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
 
-[node name="WireAcceptor2" parent="Control/Node2D" index="5" instance=ExtResource("2_2kbok")]
+[node name="WireAcceptorFunc" parent="Control/Node2D" index="5" instance=ExtResource("2_2kbok")]
 offset_left = 5.0
 offset_top = 53.0
 offset_right = 45.0

@@ -7,9 +7,10 @@ class_name WireAcceptor extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	connectedNodes = []
-
+	
 func accept(node: WireEnd):
 	connectedNodes.push_back(node)
+	#connectedDragStartPositions.push_back(node.global_position)
 	node.z_index = z_index + 1
 	node.isSticky = true
 	#createConnection(node,self)
