@@ -52,13 +52,11 @@ func setup_instruction():
 	
 	var knowledge_label = Label.new()
 	knowledge_label.name = "KnowledgeLabel"
-	knowledge_label.text = "New knowledge: \n"
+	knowledge_label.text = "\n   New knowledge: \n"
 	knowledge_label.add_theme_font_size_override("font_size", 36)
 	knowledge_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 	knowledge_label.vertical_alignment = VERTICAL_ALIGNMENT_TOP
 	knowledge_label.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	knowledge_label.offset_left = 30
-	knowledge_label.offset_top = 50
 	knowledge_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	knowledge_box.add_child(knowledge_label)
 	

@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://ow2gujx12ivf"]
+[gd_scene load_steps=2 format=3 uid="uid://db8xskyl380ep"]
 
 [ext_resource type="Script" path="res://scripts/generic_block.gd" id="1_xld4g"]
 
-[node name="GenericBlock" type="CenterContainer"]
+[node name="GenericBlock2" type="CenterContainer"]
 script = ExtResource("1_xld4g")
 
 [node name="Connectors" type="Control" parent="."]

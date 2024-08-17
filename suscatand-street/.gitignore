@@ -16,3 +16,6 @@ mono_crash.*.json
 
 *.DS_Store
 /addons
+/.direnv/
+/android/
+

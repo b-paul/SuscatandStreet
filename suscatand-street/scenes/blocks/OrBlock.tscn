@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://boiowunu68ysv"]
+[gd_scene load_steps=3 format=3 uid="uid://bdjteonbibkwu"]
 
-[ext_resource type="PackedScene" uid="uid://ow2gujx12ivf" path="res://scenes/blocks/GenericBlock.tscn" id="1_oit4w"]
+[ext_resource type="PackedScene" uid="uid://db8xskyl380ep" path="res://scenes/blocks/GenericBlock.tscn" id="1_oit4w"]
 [ext_resource type="PackedScene" uid="uid://bgv3qn41l83pg" path="res://scenes/Connector.tscn" id="2_xy4vy"]
 
-[node name="GenericBlock" instance=ExtResource("1_oit4w")]
+[node name="GenericBlock2" instance=ExtResource("1_oit4w")]
 block_type = "or"
 
 [node name="ColorRect" type="ColorRect" parent="." index="0"]
