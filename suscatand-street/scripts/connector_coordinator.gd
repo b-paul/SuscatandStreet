@@ -1,5 +1,7 @@
-extends Node2D
+class_name ConnectorCoordinator extends Node2D
 
+@export var dragging_wire: bool = false
+@export var just_dropped: bool = false
 
 # Called when the node enters the scene tree for the first time.
 
@@ -20,10 +22,8 @@ func find_connectors(root_node: Node) -> Array[ConnectorNode]:
 
 func _ready() -> void:
 	var connectors: Array[ConnectorNode] = find_connectors(get_node("."))
-	connectors[0].connect_node(connectors[1])
-	connectors[1].connect_node(connectors[3])
-	connectors[3].connect_node(connectors[2])
-	connectors[2].connect_node(connectors[0])
+	for c in connectors:
+		c.coordinator = self
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

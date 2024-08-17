@@ -78,39 +78,39 @@ func is_connectable():
 	return [false, null]
 	
 
-func _gui_input(event):
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			print("click on free wire end")
-			if not dragging and not just_dropped:
-				dragging = true
-				dragStartPos = get_global_mouse_position() - global_position
-				#originalPos = global_position
-				originalZIndex = z_index
-			if just_dropped:
-				just_dropped = false
+#func _gui_input(event):
+	#if event is InputEventMouseButton:
+		#if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			#print("click on free wire end")
+			#if not dragging and not just_dropped:
+				#dragging = true
+				#dragStartPos = get_global_mouse_position() - global_position
+				##originalPos = global_position
+				#originalZIndex = z_index
+			#if just_dropped:
+				#just_dropped = false
 				
 
 func _input(event: InputEvent):
 	if event is InputEventMouseMotion and dragging:
 		global_position = get_global_mouse_position() - dragStartPos
 		z_index = 60
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT:
-			if event.pressed and dragging:
-							dragging = false
-							z_index = originalZIndex
-							var connectable = is_connectable()
-							if connectable[0]:
-								just_dropped = true
-								var accepting_node: WireAcceptor = connectable[1]
-								purge_from_acceptors()
-								accepting_node.accept(self)
-
-							else:
-								purge_from_acceptors()
-								position = originalPos
-								z_index = originalZIndex
-								isSticky = false
+	#if event is InputEventMouseButton:
+		#if event.button_index == MOUSE_BUTTON_LEFT:
+			#if event.pressed and dragging:
+							#dragging = false
+							#z_index = originalZIndex
+							#var connectable = is_connectable()
+							#if connectable[0]:
+								#just_dropped = true
+								#var accepting_node: WireAcceptor = connectable[1]
+								#purge_from_acceptors()
+								#accepting_node.accept(self)
+#
+							#else:
+								#purge_from_acceptors()
+								#position = originalPos
+								#z_index = originalZIndex
+								#isSticky = false
 		
 		

@@ -1,4 +1,4 @@
-extends Node2D
+class_name Wire extends Node2D
 
 var start: Vector2
 var startNormal: Vector2 = Vector2.RIGHT
@@ -19,6 +19,7 @@ func _draw() -> void:
 	var control_distance = start.distance_to(end) / 2
 
 	var curve = Curve2D.new()
+	endNormal = (start - end).normalized()
 	curve.add_point(start, Vector2(0, 0), startNormal * control_distance)
 	curve.add_point(end, endNormal * control_distance)
 
