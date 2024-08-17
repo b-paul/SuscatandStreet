@@ -9,26 +9,29 @@ block_type = "or"
 
 [node name="Input 1" parent="Connectors" index="0" instance=ExtResource("2_xy4vy")]
 layout_mode = 0
-offset_left = -80.0
-offset_top = -50.0
-offset_right = -50.0
-offset_bottom = -20.0
+offset_left = -72.0
+offset_top = -56.0
+offset_right = -24.0
+offset_bottom = -8.0
+is_square = true
 wire_normal = Vector2(-1, 0)
 
 [node name="Input 2" parent="Connectors" index="1" instance=ExtResource("2_xy4vy")]
 layout_mode = 0
-offset_left = -80.0
-offset_top = 19.0
-offset_right = -50.0
-offset_bottom = 49.0
+offset_left = -72.0
+offset_top = 7.0
+offset_right = -24.0
+offset_bottom = 55.0
+is_square = true
 wire_normal = Vector2(-1, 0)
 
 [node name="Output" parent="Connectors" index="2" instance=ExtResource("2_xy4vy")]
 layout_mode = 0
-offset_left = 50.0
-offset_top = -16.0
-offset_right = 80.0
-offset_bottom = 14.0
+offset_left = 24.0
+offset_top = -24.0
+offset_right = 72.0
+offset_bottom = 24.0
+is_square = true
 wire_normal = Vector2(1, 0)
 
 [node name="Box" type="NinePatchRect" parent="." index="1"]

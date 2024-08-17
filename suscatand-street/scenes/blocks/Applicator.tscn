@@ -15,26 +15,27 @@ script = ExtResource("3_m4jbf")
 
 [node name="Input" parent="Connectors" index="0" instance=ExtResource("4_jh8ou")]
 layout_mode = 0
-offset_left = -59.0
-offset_top = -20.0
-offset_right = -29.0
-offset_bottom = 10.0
+offset_left = -61.0
+offset_top = -30.0
+offset_right = -13.0
+offset_bottom = 18.0
 
 [node name="Output" parent="Connectors" index="1" instance=ExtResource("4_jh8ou")]
 layout_mode = 0
-offset_left = 32.0
-offset_top = -21.0
-offset_right = 62.0
-offset_bottom = 9.0
+offset_left = 12.0
+offset_top = -30.0
+offset_right = 60.0
+offset_bottom = 18.0
 
 [node name="Function" parent="Connectors" index="2" instance=ExtResource("4_jh8ou")]
 layout_mode = 0
-offset_left = -16.0
-offset_top = 65.0
-offset_right = 14.0
-offset_bottom = 95.0
+offset_left = -24.0
+offset_top = 40.0
+offset_right = 24.0
+offset_bottom = 88.0
 
 [node name="Triangle" type="TextureRect" parent="." index="1"]
 texture_filter = 2
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("2_vyy01")

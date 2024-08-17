@@ -11,18 +11,20 @@ block_type = "implication"
 
 [node name="Input" parent="Connectors" index="0" instance=ExtResource("2_vep6d")]
 layout_mode = 0
-offset_left = -95.0
-offset_top = -16.0
-offset_right = -65.0
-offset_bottom = 14.0
+offset_left = -88.0
+offset_top = -24.0
+offset_right = -40.0
+offset_bottom = 24.0
+is_square = true
 wire_normal = Vector2(-1, 0)
 
 [node name="Output" parent="Connectors" index="1" instance=ExtResource("2_vep6d")]
 layout_mode = 0
-offset_left = 65.0
-offset_top = -16.0
-offset_right = 95.0
-offset_bottom = 14.0
+offset_left = 40.0
+offset_top = -24.0
+offset_right = 88.0
+offset_bottom = 24.0
+is_square = true
 wire_normal = Vector2(1, 0)
 
 [node name="Box" type="NinePatchRect" parent="." index="1"]

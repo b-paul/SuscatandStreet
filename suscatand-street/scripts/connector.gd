@@ -1,6 +1,7 @@
 class_name ConnectorNode extends CenterContainer
 
 @export var is_connector_node: bool = true
+@export var is_square: bool = false
 @export var connectedNodes: Array[ConnectorNode]
 @export var wire_normal: Vector2
 @export var type_name: String = "A"
@@ -13,6 +14,8 @@ var coordinator: ConnectorCoordinator
 func _ready() -> void:
 	connectedNodes = []
 	$Control/Label.text = type_name
+	$ConnectorCircle.visible = not is_square
+	$ConnectorSquare.visible = is_square
 
 func connect_node(node: ConnectorNode) -> void:
 	connectedNodes.push_back(node)
@@ -37,7 +40,7 @@ func _gui_input(event):
 			var wire = wire_scene.instantiate()
 			wire_dragged = wire
 			add_child(wire)
-			wire.position = Vector2(15,15)
+			wire.position = Vector2(24,24)
 			wire.startNormal = wire_normal
 			var wire_end: WireEnd = wire.get_child(1)
 			wire_end.dragging = true

@@ -26,10 +26,10 @@ func draw_curve(i: int, start: Vector2, end: Vector2, startNormal: Vector2, endN
 func _draw() -> void:
 	connections = get_parent().connectedNodes
 	baked_points.resize(connections.size())
-	var start: Vector2 = get_parent().global_position - global_position + Vector2(15,15)
+	var start: Vector2 = get_parent().global_position - global_position + Vector2(24,24)
 	var startNormal: Vector2 = get_parent().wire_normal
 	for i in len(connections):
-		var end: Vector2 = connections[i].global_position - global_position + Vector2(15,15)
+		var end: Vector2 = connections[i].global_position - global_position + Vector2(24,24)
 		var endNormal: Vector2 = connections[i].wire_normal
 		draw_curve(i, start,end,startNormal,endNormal)
 

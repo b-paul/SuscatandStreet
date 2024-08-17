@@ -21,7 +21,7 @@ func _draw() -> void:
 	var curve = Curve2D.new()
 	endNormal = (start - end).normalized()
 	curve.add_point(start, Vector2(0, 0), startNormal * control_distance)
-	curve.add_point(end, endNormal * control_distance)
+	curve.add_point(end)
 
 	var curve_points = curve.tessellate()
 	draw_polyline(curve.get_baked_points(), color, line_width, solid)
