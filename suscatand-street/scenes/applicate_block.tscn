@@ -27,32 +27,32 @@ polygon = PackedVector2Array(69, 69, 2.08165e-12, -42, -69, 69)
 
 [node name="in" type="Polygon2D" parent="Control/CenterContainer2/Node2D" index="1"]
 position = Vector2(-9, 15)
+scale = Vector2(1.2, 1.2)
 color = Color(0.258824, 0.588235, 0.647059, 0.717647)
 polygon = PackedVector2Array(-15, 2.08165e-12, -8, -12, 8, -12, 15, 2.08165e-12, 8, 12, -8, 12)
 
-[node name="WireAcceptor" parent="Control/CenterContainer2/Node2D/in" index="0" instance=ExtResource("2_2kbok")]
-offset_left = -16.0
-offset_top = -16.0
-offset_right = 24.0
-offset_bottom = 24.0
-scale = Vector2(0.8, 0.8)
+[node name="WireAcceptor" parent="Control/CenterContainer2/Node2D" index="2" instance=ExtResource("2_2kbok")]
+offset_left = -29.0
+offset_top = -5.0
+offset_right = 11.0
+offset_bottom = 35.0
 
-[node name="out" type="Sprite2D" parent="Control/CenterContainer2/Node2D" index="2"]
+[node name="out" type="Sprite2D" parent="Control/CenterContainer2/Node2D" index="3"]
 position = Vector2(59, 15)
-scale = Vector2(0.08, 0.08)
+scale = Vector2(0.09, 0.09)
 texture = ExtResource("3_phdym")
 
 [node name="Wire" parent="Control/CenterContainer2/Node2D/out" index="0" instance=ExtResource("4_j1q2d")]
 scale = Vector2(11, 11)
 
-[node name="F" type="Polygon2D" parent="Control/CenterContainer2/Node2D" index="3"]
+[node name="F" type="Polygon2D" parent="Control/CenterContainer2/Node2D" index="4"]
 position = Vector2(25, 73)
+scale = Vector2(1.2, 1.2)
 color = Color(0.258824, 0.588235, 0.647059, 0.717647)
 polygon = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
 
-[node name="WireAcceptor" parent="Control/CenterContainer2/Node2D/F" index="0" instance=ExtResource("2_2kbok")]
-offset_left = -16.0
-offset_top = -16.0
-offset_right = 24.0
-offset_bottom = 24.0
-scale = Vector2(0.8, 0.8)
+[node name="WireAcceptor2" parent="Control/CenterContainer2/Node2D" index="5" instance=ExtResource("2_2kbok")]
+offset_left = 5.0
+offset_top = 53.0
+offset_right = 45.0
+offset_bottom = 93.0
