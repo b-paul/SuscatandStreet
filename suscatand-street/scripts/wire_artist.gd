@@ -4,10 +4,6 @@ var connections: Array[ConnectorNode]
 var baked_points: Array[Curve2D]
 var intersecting: Array[int]
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
 func draw_curve(i: int, start: Vector2, end: Vector2, startNormal: Vector2, endNormal: Vector2) -> void:
 	var line_width = 10
 	var hover_color = Color.BLACK
@@ -38,6 +34,14 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		var new_intersecting: Array[int] = []
 		for curve in len(baked_points):
+			
+			var first = baked_points[curve].get_baked_points()[0] + global_position
+			var last = baked_points[curve].get_baked_points()[-1] + global_position
+			var dist_to_first = (event.position - first).length_squared()
+			var dist_to_last = (event.position - last).length_squared()
+			if dist_to_first < 400 or dist_to_last < 400:
+				continue
+			
 			for i in len(baked_points[curve].get_baked_points()) - 1:
 				var start = baked_points[curve].get_baked_points()[i] + global_position
 				var end = baked_points[curve].get_baked_points()[i + 1] + global_position
@@ -47,12 +51,18 @@ func _input(event):
 				var closest_point = start + (end - start) * t
 				# How far away is it?
 				var distance_squared = (event.position - closest_point).length_squared()
-				if distance_squared < 100:
+				if distance_squared < 400:
 					new_intersecting.append(curve)
 					break
 		if new_intersecting != intersecting:
 			intersecting = new_intersecting
 			queue_redraw()
+		
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			if event.pressed:
+				if intersecting.size() > 0:
+					get_parent().disconnect_node(connections[intersecting[0]])
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
