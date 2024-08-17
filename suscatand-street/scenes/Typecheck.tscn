@@ -34,6 +34,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 "
+[ext_resource type="Script" path="res://scripts/types/not_elim_block.gd" id="13_s4faj"]
 
 [node name="Typecheck" type="Node"]
 
@@ -99,6 +100,8 @@ script = ExtResource("18_boari")
 
 [node name="OrRightBlock" type="Node" parent="Block"]
 script = ExtResource("19_cw1sa")
+[node name="NotElimBlock" type="Node" parent="Block"]
+script = ExtResource("13_s4faj")
 
 [node name="Namespace" type="Node" parent="."]
 script = ExtResource("12_6lvrv")

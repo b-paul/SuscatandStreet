@@ -61,6 +61,11 @@ func typeCheck():
 			block.typeConnector.value = null
 			block.resultConnector.value = null
 			block.resultConnector.type = UnknownType.new()
+		elif block is NotElimBlock:
+			block.resultConnector.type = UnknownType.new()
+			block.falseConnector.value = null
+			block.typeConnector.value = null
+			block.resultConnector.value = null
 	
 	# Assert: we don't ever have two different wires going into an input
 
@@ -247,6 +252,26 @@ func typeCheck():
 					block.resultConnector.type = OrType.new(block.typeConnector.value, block.inputConnector.type)
 					checked[block.resultConnector] = true
 					stack.append(block.resultConnector)
+		elif block is NotElimBlock:
+			if cur == block.falseConnector:
+				if from.type is FalseType:
+					cur.value = from.value
+					if block.typeConnector.value != null:
+						if !checked.has(block.resultConnector):
+							block.resultConnector.value = true # can't return a type (no dependent types)
+							checked[block.resultConnector] = true
+							stack.append(block.resultConnector)
+			elif cur == block.typeConnector:
+				if from.type is TypeType:
+					cur.value = from.value
+					block.resultConnector.type = from.value
+					if block.falseConnector.value != null:
+						if !checked.has(block.resultConnector):
+							block.resultConnector.value = true # can't return a type (no dependent types)
+							checked[block.resultConnector] = true
+							stack.append(block.resultConnector)
+			else:
+				assert(false)
 		else:
 			assert(false)
 
@@ -280,6 +305,8 @@ func typeCheck():
 				return false
 		elif block is OrRightBlock:
 			if block.inputConnector.value == null or block.typeConnector.value == null or block.resultConnector.value == null:
+		elif block is NotElimBlock:
+			if block.falseConnector.value == null or block.typeConnector.value == null or block.resultConnector.value == null:
 				return false
 		else:
 			assert(false)
