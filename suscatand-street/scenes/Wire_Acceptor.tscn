@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnthhwq454h2j"]
+
+[ext_resource type="Script" path="res://scripts/wire_acceptor.gd" id="1_dfad7"]
+[ext_resource type="Texture2D" uid="uid://bguwpeky138tc" path="res://assets/black_circle.png" id="2_cmp00"]
+
+[node name="WireAcceptor" type="Node2D"]
+script = ExtResource("1_dfad7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("2_cmp00")

@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
 
 var dragging: bool = false
 var dragStartPos: Vector2
-var stickyNodes: Array 
+@export var stickyNodes: Array 
 var stickyNodeStartPositions: Array
 
 func _ready():
