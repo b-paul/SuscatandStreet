@@ -1,5 +1,5 @@
 extends Node2D
-var color = Color.DODGER_BLUE
+var color = Color(0.117647, 0.564706, 1, 1)
 var connections: Array[ConnectorNode]
 var baked_points: Array[Curve2D]
 var intersecting: Array[int]

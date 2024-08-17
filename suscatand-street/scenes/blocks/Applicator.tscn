@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b2p2wnjkqxitw"]
+[gd_scene load_steps=6 format=3 uid="uid://b2p2wnjkqxitw"]
 
 [ext_resource type="PackedScene" uid="uid://ow2gujx12ivf" path="res://scenes/blocks/GenericBlock.tscn" id="1_cc1oq"]
+[ext_resource type="Script" path="res://scripts/applicator_block_artist.gd" id="2_pusps"]
 [ext_resource type="Texture2D" uid="uid://dmb574inmhpp2" path="res://assets/F.png" id="2_xgy1o"]
 [ext_resource type="Script" path="res://scripts/applicator_connectors.gd" id="3_m4jbf"]
 [ext_resource type="PackedScene" uid="uid://bgv3qn41l83pg" path="res://scenes/Connector.tscn" id="4_jh8ou"]
@@ -9,28 +10,32 @@
 custom_minimum_size = Vector2(200, 200)
 block_type = "applicator"
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+[node name="Node2D" type="Node2D" parent="." index="0"]
+script = ExtResource("2_pusps")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
+visible = false
 position = Vector2(12, 6)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("2_xgy1o")
 offset = Vector2(150, 150)
 
-[node name="Connectors" parent="." index="1"]
+[node name="Connectors" parent="." index="2"]
 script = ExtResource("3_m4jbf")
 
 [node name="Input" parent="Connectors" index="0" instance=ExtResource("4_jh8ou")]
 layout_mode = 0
-offset_left = -89.0
-offset_top = -8.0
-offset_right = -59.0
-offset_bottom = 22.0
+offset_left = -81.0
+offset_top = -3.0
+offset_right = -51.0
+offset_bottom = 27.0
 
 [node name="Output" parent="Connectors" index="1" instance=ExtResource("4_jh8ou")]
 layout_mode = 0
-offset_left = 60.0
-offset_top = -8.0
-offset_right = 90.0
-offset_bottom = 22.0
+offset_left = 56.0
+offset_top = -4.0
+offset_right = 86.0
+offset_bottom = 26.0
 
 [node name="Function" parent="Connectors" index="2" instance=ExtResource("4_jh8ou")]
 layout_mode = 0

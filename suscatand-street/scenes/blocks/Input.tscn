@@ -1,24 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://cg4llmlwcg4cf"]
+[gd_scene load_steps=5 format=3 uid="uid://cg4llmlwcg4cf"]
 
 [ext_resource type="PackedScene" uid="uid://ow2gujx12ivf" path="res://scenes/blocks/GenericBlock.tscn" id="1_4y1te"]
 [ext_resource type="PackedScene" uid="uid://bgv3qn41l83pg" path="res://scenes/Connector.tscn" id="2_mog0f"]
 [ext_resource type="Script" path="res://scripts/input_block_artist.gd" id="2_wyc3m"]
+[ext_resource type="Script" path="res://scripts/input_block_namesetter.gd" id="3_84fa4"]
 
 [node name="GenericBlock" instance=ExtResource("1_4y1te")]
 offset_right = 100.0
 offset_bottom = 100.0
 block_type = "input"
 
-[node name="Node2D" type="Node2D" parent="." index="0"]
+[node name="Artist" type="Node2D" parent="." index="0"]
 script = ExtResource("2_wyc3m")
 
-[node name="ColorRect" type="ColorRect" parent="." index="1"]
+[node name="Namesetter" type="Node2D" parent="." index="1"]
+script = ExtResource("3_84fa4")
+
+[node name="ColorRect" type="ColorRect" parent="." index="2"]
 visible = false
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 mouse_filter = 1
 
-[node name="Label" type="Label" parent="." index="2"]
+[node name="Label" type="Label" parent="." index="3"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 70

@@ -10,4 +10,4 @@ func _process(delta: float) -> void:
 	
 func _draw():
 	draw_rect(Rect2(0, 0, 100, 100), Color(1, 1, 1))
-	draw_rect(Rect2(0, 0, 100, 100), Color(0, 0, 0), false)
+	draw_rect(Rect2(0, 0, 100, 100), Color(0, 0, 0), false, 10)

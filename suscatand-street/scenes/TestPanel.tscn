@@ -27,12 +27,20 @@ anchors_preset = 0
 offset_right = 4000.0
 offset_bottom = 2000.0
 
-[node name="Input" parent="BackendCommunicator/ConnectorCoordinator/Workspace" instance=ExtResource("4_uknk1")]
+[node name="Input A" parent="BackendCommunicator/ConnectorCoordinator/Workspace" instance=ExtResource("4_uknk1")]
 layout_mode = 0
 offset_left = 284.0
 offset_top = 496.0
 offset_right = 384.0
 offset_bottom = 596.0
+value_name = "x"
+
+[node name="Input A -> B" parent="BackendCommunicator/ConnectorCoordinator/Workspace" instance=ExtResource("4_uknk1")]
+layout_mode = 0
+value_name = "f"
+
+[node name="Connector" parent="BackendCommunicator/ConnectorCoordinator/Workspace/Input A -> B/Connectors" index="0"]
+type_name = "A -> B"
 
 [node name="Goal" parent="BackendCommunicator/ConnectorCoordinator/Workspace" instance=ExtResource("5_8mrxi")]
 layout_mode = 0
@@ -41,5 +49,19 @@ offset_top = 500.0
 offset_right = 1101.0
 offset_bottom = 600.0
 
+[node name="Connector" parent="BackendCommunicator/ConnectorCoordinator/Workspace/Goal/Connectors" index="0"]
+type_name = "B"
+
 [node name="GenericBlock" parent="BackendCommunicator/ConnectorCoordinator/Workspace" instance=ExtResource("7_et3dc")]
 layout_mode = 0
+
+[node name="Output" parent="BackendCommunicator/ConnectorCoordinator/Workspace/GenericBlock/Connectors" index="1"]
+type_name = "B"
+
+[node name="Function" parent="BackendCommunicator/ConnectorCoordinator/Workspace/GenericBlock/Connectors" index="2"]
+type_name = "A -> B"
+
+[editable path="BackendCommunicator/ConnectorCoordinator/Workspace/Input A"]
+[editable path="BackendCommunicator/ConnectorCoordinator/Workspace/Input A -> B"]
+[editable path="BackendCommunicator/ConnectorCoordinator/Workspace/Goal"]
+[editable path="BackendCommunicator/ConnectorCoordinator/Workspace/GenericBlock"]
