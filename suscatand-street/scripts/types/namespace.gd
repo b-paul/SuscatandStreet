@@ -93,8 +93,6 @@ func typeCheck():
 
 		# Else we are an input node
 
-
-		# TODO check we don't go outside of a namespace
 		assert(cur.isInput)
 		var from = cur.inConnections[0]
 		

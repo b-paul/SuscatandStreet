@@ -20,6 +20,7 @@
 [ext_resource type="Script" path="res://scripts/types/and_mk_block.gd" id="17_4ktn5"]
 [ext_resource type="Script" path="res://scripts/types/or_left_block.gd" id="18_boari"]
 [ext_resource type="Script" path="res://scripts/types/or_right_block.gd" id="19_cw1sa"]
+[ext_resource type="Script" path="res://scripts/types/not_elim_block.gd" id="13_s4faj"]
 
 [sub_resource type="GDScript" id="GDScript_ml3w8"]
 script/source = "extends Node
@@ -34,7 +35,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 "
-[ext_resource type="Script" path="res://scripts/types/not_elim_block.gd" id="13_s4faj"]
 
 [node name="Typecheck" type="Node"]
 
