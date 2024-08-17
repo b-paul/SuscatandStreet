@@ -1,15 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bdjteonbibkwu"]
+[gd_scene load_steps=4 format=3 uid="uid://bdjteonbibkwu"]
 
 [ext_resource type="PackedScene" uid="uid://db8xskyl380ep" path="res://scenes/blocks/GenericBlock.tscn" id="1_oit4w"]
+[ext_resource type="Texture2D" uid="uid://edynuhv4vgw5" path="res://assets/box.svg" id="2_r2axm"]
 [ext_resource type="PackedScene" uid="uid://bgv3qn41l83pg" path="res://scenes/Connector.tscn" id="2_xy4vy"]
 
 [node name="GenericBlock2" instance=ExtResource("1_oit4w")]
 block_type = "or"
-
-[node name="ColorRect" type="ColorRect" parent="." index="0"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-mouse_filter = 1
 
 [node name="Input 1" parent="Connectors" index="0" instance=ExtResource("2_xy4vy")]
 layout_mode = 0
@@ -34,6 +30,18 @@ offset_top = -16.0
 offset_right = 80.0
 offset_bottom = 14.0
 wire_normal = Vector2(1, 0)
+
+[node name="Box" type="NinePatchRect" parent="." index="1"]
+custom_minimum_size = Vector2(96, 128)
+layout_mode = 2
+texture = ExtResource("2_r2axm")
+region_rect = Rect2(0, 0, 96, 96)
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 
 [node name="Label" type="Label" parent="." index="2"]
 layout_mode = 2
