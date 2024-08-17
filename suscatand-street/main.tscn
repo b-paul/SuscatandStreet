@@ -73,10 +73,6 @@ offset_top = 333.0
 offset_right = 2100.0
 offset_bottom = 433.0
 
-[node name="applicate_block" parent="CanvasLayer/HBoxContainer/HSplitContainer/PanelContainer" instance=ExtResource("6_ajwxe")]
-layout_mode = 0
-outputReady = false
-
 [node name="TabContainer" type="TabContainer" parent="CanvasLayer/HBoxContainer"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
