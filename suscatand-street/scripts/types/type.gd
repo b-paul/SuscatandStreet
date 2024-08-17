@@ -3,7 +3,7 @@ extends Node
 
 func equalTo(other: Type):
 	if self is PrimType:
-		return (other is PrimType) and (self.name == other.name)
+		return (other is PrimType) and (self.typeName == other.typeName)
 	elif self is UnknownType:
 		return other is UnknownType
 	elif self is FalseType:

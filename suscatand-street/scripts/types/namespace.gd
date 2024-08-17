@@ -21,23 +21,26 @@ func typeCheck():
 			block.functionConnector.value = null
 			block.resultConnector.value = null
 		elif block is LambdaBlock:
-			block.innerInputBlock.value = UnknownType.new()
-			block.innerOutputBlock.value = UnknownType.new()
+			block.innerInputBlock.connector.type = UnknownType.new()
+			block.innerOutputBlock.connector.type = UnknownType.new()
+			block.inputTypeConnector.value = UnknownType.new()
+			block.outputTypeConnector.value = UnknownType.new()
 			block.outputConnector.type = UnknownType.new()
-			block.innerInputBlock.value = null
-			block.innerOutputBlock.value = null
 			block.outputConnector.value = null
 	
 	# Assert: we don't ever have two different wires going into an input
+
+	var failed = false
 
 	while !stack.is_empty():
 		var cur: Connector = stack.pop_back()
 		var block: Block = cur.parentBlock
 		
-		assert(cur.value != null) # don't want this ever lol
+		#assert(cur.value != null) # don't want this ever lol
 
 		# If we have two or more inputs to this connector, be sad
 		if (cur.isInput and cur.inConnections.size() != 1) or (!cur.isInput and !cur.inConnections.is_empty()):
+			failed = true
 			continue
 		
 		# If we are an output connector, add the target to the stack
@@ -45,9 +48,11 @@ func typeCheck():
 		if !cur.isInput:
 			for target in cur.outConnections:
 				if !checked.has(target):
-					checked[block.resultConnector] = true
-					stack.append(block.resultConnector)
+					checked[target] = true
+					stack.append(target)
 			continue
+
+		# TODO check we don't go outside of a namespace
 
 		# Else we are an input node
 		assert(cur.isInput)
@@ -63,13 +68,15 @@ func typeCheck():
 				if block.functionConnector.type is UnknownType:
 					# If we are checking the argument first, infer the argument type
 					cur.type = from.type
+					cur.value = from.value
 				else:
 					# We have a function annotation already.
 					# This will type check only if the domain of the function is of the same type as the input.
 					assert(block.functionConnector.type is FunctionType)
-					if cur.type.equalTo(block.functionConnector.type.domain):
+					if from.type.equalTo(block.functionConnector.type.domain):
+						cur.value = from.value
 						if !checked.has(block.resultConnector):
-							block.resultConnector.value = cur.value
+							block.resultConnector.value = true # no types allowed. types bad
 							checked[block.resultConnector] = true
 							stack.append(block.resultConnector)
 			elif cur == block.functionConnector:
@@ -84,11 +91,15 @@ func typeCheck():
 						# We have not yet checked the argument.
 						block.argConnector.type = from.type.domain
 						block.resultConnector.type = from.type.codomain
+						block.functionConnector.type = from.type
+						block.functionConnector.value = true # bad type no supper
 					else:
 						# If we have checked the argument connector, it would have annotated its type
-						# We have to update the result connector type, and check that 
-						block.resultConnector.type = from.type.codomain
+						# We have to update the result connector type, and check that
 						if from.type.domain.equalTo(block.argConnector.type):
+							block.resultConnector.type = from.type.codomain
+							cur.value = from.value
+							cur.type = from.type
 							if !checked.has(block.resultConnector):
 								assert(!(from.type.codomain is TypeType)) # No dependent types lol
 								block.resultConnector.value = true # can't return a type
@@ -106,19 +117,21 @@ func typeCheck():
 				cur.value = from.value
 				block.innerInputBlock.connector.type = from.value
 				if !(block.outputTypeConnector.type is UnknownType):
-					if block.lambdaNamespace.typeCheck() and !checked.has(block.resultConnector):
-						block.resultConnector.value = true # can't return a type (no dependent types)
-						checked[block.resultConnector] = true
-						stack.append(block.resultConnector)
+					block.outputConnector.type = FunctionType.new(block.inputTypeConnector.value, block.outputTypeConnector.value)
+					if block.lambdaNamespace.typeCheck() and !checked.has(block.outputConnector):
+						block.outputConnector.value = true # can't return a type (no dependent types)
+						checked[block.outputConnector] = true
+						stack.append(block.outputConnector)
 			elif cur == block.outputTypeConnector:
 				cur.value = from.value
 				block.innerOutputBlock.connector.type = from.value
 				block.outputConnector.type = from.value
 				if !(block.inputTypeConnector.type is UnknownType):
-					if block.lambdaNamespace.typeCheck() and !checked.has(block.resultConnector):
-						block.resultConnector.value = true # can't return a type (no dependent types)
-						checked[block.resultConnector] = true
-						stack.append(block.resultConnector)
+					block.outputConnector.type = FunctionType.new(block.inputTypeConnector.value, block.outputTypeConnector.value)
+					if block.lambdaNamespace.typeCheck() and !checked.has(block.outputConnector):
+						block.outputConnector.value = true # can't return a type (no dependent types)
+						checked[block.outputConnector] = true
+						stack.append(block.outputConnector)
 			else:
 				assert(false)
 		else:
@@ -139,4 +152,4 @@ func typeCheck():
 				return false
 		else:
 			assert(false)
-	return true
+	return !failed
