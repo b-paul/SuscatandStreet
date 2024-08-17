@@ -56,7 +56,7 @@ color = Color(0.0901961, 0.0901961, 0.0901961, 1)
 layout_mode = 2
 script = ExtResource("2_ki1mc")
 
-[node name="DraggableWorkspaceComponent" parent="CanvasLayer/HBoxContainer/HSplitContainer/PanelContainer" instance=ExtResource("4_pm2km")]
+[node name="DraggableWorkspaceBlock" parent="CanvasLayer/HBoxContainer/HSplitContainer/PanelContainer" instance=ExtResource("4_pm2km")]
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
 offset_left = 1218.0
@@ -64,12 +64,12 @@ offset_top = 876.0
 offset_right = 1468.0
 offset_bottom = 926.0
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/HBoxContainer/HSplitContainer/PanelContainer/DraggableWorkspaceComponent"]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/HBoxContainer/HSplitContainer/PanelContainer/DraggableWorkspaceBlock"]
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
 mouse_filter = 1
 
-[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer/HSplitContainer/PanelContainer/DraggableWorkspaceComponent/ColorRect"]
+[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer/HSplitContainer/PanelContainer/DraggableWorkspaceBlock/ColorRect"]
 layout_mode = 0
 offset_left = 78.0
 offset_top = 12.0
@@ -79,7 +79,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Drag me!"
 
 [node name="TabContainer" type="TabContainer" parent="CanvasLayer/HBoxContainer"]
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 current_tab = 0
 
