@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bkn80kuw0dqs6"]
+[gd_scene load_steps=4 format=3 uid="uid://bkn80kuw0dqs6"]
 
-[ext_resource type="Script" path="res://scripts/sub_viewport_container.gd" id="1_84olt"]
 [ext_resource type="Texture2D" uid="uid://b4t3hqxsd0u16" path="res://assets/bg.png" id="1_c8sky"]
-[ext_resource type="PackedScene" uid="uid://cm425f8572v21" path="res://scenes/item.tscn" id="3_cufy3"]
+[ext_resource type="Script" path="res://scripts/workspace_drag.gd" id="2_ki1mc"]
 [ext_resource type="PackedScene" uid="uid://c3s7hqmndov1e" path="res://scenes/DraggableWorkspaceComponent.tscn" id="4_pm2km"]
 
 [node name="root" type="Node"]
@@ -31,11 +30,10 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 6.9
 
 [node name="Info bar" type="VBoxContainer" parent="CanvasLayer/HBoxContainer/HSplitContainer"]
-custom_minimum_size = Vector2(150, 2.08165e-12)
 layout_mode = 2
 
 [node name="Instruction" type="ScrollContainer" parent="CanvasLayer/HBoxContainer/HSplitContainer/Info bar"]
-custom_minimum_size = Vector2(150, 200)
+custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 size_flags_stretch_ratio = 3.1
 
@@ -54,88 +52,42 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0901961, 0.0901961, 0.0901961, 1)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/HSplitContainer/ScrollContainer"]
-custom_minimum_size = Vector2(150, 300)
+[node name="PanelContainer" type="Panel" parent="CanvasLayer/HBoxContainer/HSplitContainer"]
 layout_mode = 2
-text = "Instructions go here"
+script = ExtResource("2_ki1mc")
 
-[node name="Workspace" type="Panel" parent="HBoxContainer/HSplitContainer"]
-custom_minimum_size = Vector2(700, 600)
+[node name="DraggableWorkspaceComponent" parent="CanvasLayer/HBoxContainer/HSplitContainer/PanelContainer" instance=ExtResource("4_pm2km")]
+custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
-size_flags_stretch_ratio = 6.9
-script = ExtResource("1_84olt")
+offset_left = 1218.0
+offset_top = 876.0
+offset_right = 1468.0
+offset_bottom = 926.0
 
-[node name="DraggableWorkspaceComponent" parent="HBoxContainer/HSplitContainer/Workspace" instance=ExtResource("4_pm2km")]
-layout_mode = 2
-offset_left = 1170.0
-offset_top = 780.0
-offset_right = 1420.0
-offset_bottom = 830.0
-
-[node name="ColorRect" type="ColorRect" parent="HBoxContainer/HSplitContainer/Workspace/DraggableWorkspaceComponent"]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/HBoxContainer/HSplitContainer/PanelContainer/DraggableWorkspaceComponent"]
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
 mouse_filter = 1
 
-[node name="Label" type="Label" parent="HBoxContainer/HSplitContainer/Workspace/DraggableWorkspaceComponent/ColorRect"]
-layout_mode = 2
-offset_left = 19.0
-offset_top = 13.0
-offset_right = 230.0
-offset_bottom = 36.0
+[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer/HSplitContainer/PanelContainer/DraggableWorkspaceComponent/ColorRect"]
+layout_mode = 0
+offset_left = 78.0
+offset_top = 12.0
+offset_right = 148.0
+offset_bottom = 35.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Draggable Component Test"
+text = "Drag me!"
 
-[node name="DraggableWorkspaceComponent2" parent="HBoxContainer/HSplitContainer/Workspace" instance=ExtResource("4_pm2km")]
-layout_mode = 0
-
-[node name="ColorRect" type="ColorRect" parent="HBoxContainer/HSplitContainer/Workspace/DraggableWorkspaceComponent2"]
-custom_minimum_size = Vector2(400, 400)
+[node name="TabContainer" type="TabContainer" parent="CanvasLayer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-mouse_filter = 1
-color = Color(1, 0, 1, 1)
-
-[node name="Label" type="Label" parent="HBoxContainer/HSplitContainer/Workspace/DraggableWorkspaceComponent2/ColorRect"]
-layout_mode = 0
-offset_left = 66.0
-offset_top = 79.0
-offset_right = 262.0
-offset_bottom = 102.0
-text = "Another draggable object"
-
-[node name="TabContainer" type="TabContainer" parent="HBoxContainer"]
-custom_minimum_size = Vector2(420, 2.08165e-12)
-layout_mode = 2
-size_flags_stretch_ratio = 3.1
-theme_override_font_sizes/font_size = 42
-tab_alignment = 2
 current_tab = 0
 
 [node name="Inventory 1" type="VBoxContainer" parent="CanvasLayer/HBoxContainer/TabContainer"]
-custom_minimum_size = Vector2(420, 2.08165e-12)
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="item1" parent="CanvasLayer/HBoxContainer/TabContainer/Inventory 1" instance=ExtResource("3_cufy3")]
-layout_mode = 2
-
-[node name="item2" parent="CanvasLayer/HBoxContainer/TabContainer/Inventory 1" instance=ExtResource("3_cufy3")]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer/TabContainer"]
+[node name="Inventory 2" type="VBoxContainer" parent="CanvasLayer/HBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
-text = "Tab 1"
 metadata/_tab_index = 1
-
-[node name="Label2" type="Label" parent="CanvasLayer/HBoxContainer/TabContainer"]
-visible = false
-layout_mode = 2
-text = "Tab 2"
-metadata/_tab_index = 2
-
-[node name="Label3" type="Label" parent="CanvasLayer/HBoxContainer/TabContainer"]
-visible = false
-layout_mode = 2
-text = "Tab 3"
-metadata/_tab_index = 3
