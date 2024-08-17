@@ -27,8 +27,8 @@ func _process(delta: float) -> void:
 	queue_redraw()
 
 func _gui_input(event):
-	if coordinator.dragging_wire:
-		return
+	#if coordinator.dragging_wire:
+		#return
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			var wire_scene = load("res://scenes/Wire.tscn")
@@ -40,7 +40,7 @@ func _gui_input(event):
 			var wire_end: WireEnd = wire.get_child(1)
 			wire_end.dragging = true
 			dragging_wire = true
-			coordinator.dragging_wire = true
+			#coordinator.dragging_wire = true
 			wire_end.originalZIndex = z_index + 1
 			wire_end.dragStartPos = Vector2(25,25)
 
@@ -77,7 +77,7 @@ func _input(event: InputEvent):
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed and dragging_wire:
 				dragging_wire = false
-				coordinator.dragging_wire = false
+				#coordinator.dragging_wire = false
 				wire_dragged.queue_free()
 				attempt_connection_at_mouse()
 				accept_event()

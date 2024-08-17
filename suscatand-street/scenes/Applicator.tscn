@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://dtv0ckls4pjk2"]
+
+[ext_resource type="PackedScene" uid="uid://db8xskyl380ep" path="res://scenes/GenericBlock.tscn" id="1_d6fd7"]
+[ext_resource type="Texture2D" uid="uid://dmb574inmhpp2" path="res://assets/F.png" id="2_xgy1o"]
+[ext_resource type="Script" path="res://applicator_connectors.gd" id="3_856ba"]
+[ext_resource type="PackedScene" uid="uid://bgv3qn41l83pg" path="res://scenes/Connector.tscn" id="4_jh8ou"]
+
+[node name="GenericBlock" instance=ExtResource("1_d6fd7")]
+custom_minimum_size = Vector2(200, 200)
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+position = Vector2(12, 6)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_xgy1o")
+offset = Vector2(150, 150)
+
+[node name="Connectors" parent="." index="1"]
+script = ExtResource("3_856ba")
+
+[node name="Input" parent="Connectors" index="0" instance=ExtResource("4_jh8ou")]
+layout_mode = 0
+offset_left = -89.0
+offset_top = -8.0
+offset_right = -59.0
+offset_bottom = 22.0
+
+[node name="Output" parent="Connectors" index="1" instance=ExtResource("4_jh8ou")]
+layout_mode = 0
+offset_left = 60.0
+offset_top = -8.0
+offset_right = 90.0
+offset_bottom = 22.0
+
+[node name="Function" parent="Connectors" index="2" instance=ExtResource("4_jh8ou")]
+layout_mode = 0
+offset_left = -14.0
+offset_top = 89.0
+offset_right = 16.0
+offset_bottom = 119.0

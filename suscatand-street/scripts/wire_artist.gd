@@ -4,6 +4,9 @@ var connections: Array[ConnectorNode]
 var baked_points: Array[Curve2D]
 var intersecting: Array[int]
 
+func _ready():
+	z_index = 0
+
 func draw_curve(i: int, start: Vector2, end: Vector2, startNormal: Vector2, endNormal: Vector2) -> void:
 	var line_width = 10
 	var hover_color = Color.BLACK
