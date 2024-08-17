@@ -27,6 +27,40 @@ func typeCheck():
 			block.outputTypeConnector.value = UnknownType.new()
 			block.outputConnector.type = UnknownType.new()
 			block.outputConnector.value = null
+		elif block is FunctionBlock:
+			block.arg1Connector.value = null
+			block.arg2Connector.value = null
+			block.resultConnector.value = null
+			block.resultConnector.type = UnknownType.new()
+		elif block is AndBlock:
+			block.arg1Connector.value = null
+			block.arg2Connector.value = null
+			block.resultConnector.value = null
+			block.resultConnector.type = UnknownType.new()
+		elif block is OrBlock:
+			block.arg1Connector.value = null
+			block.arg2Connector.value = null
+			block.resultConnector.value = null
+			block.resultConnector.type = UnknownType.new()
+		elif block is AndMkBlock:
+			block.input1Connector.value = null
+			block.input1Connector.type = UnknownType.new()
+			block.input2Connector.value = null
+			block.input2Connector.type = UnknownType.new()
+			block.resultConnector.value = null
+			block.resultConnector.type = UnknownType.new()
+		elif block is OrLeftBlock:
+			block.inputConnector.value = null
+			block.inputConnector.type = UnknownType.new()
+			block.typeConnector.value = null
+			block.resultConnector.value = null
+			block.resultConnector.type = UnknownType.new()
+		elif block is OrRightBlock:
+			block.inputConnector.value = null
+			block.inputConnector.type = UnknownType.new()
+			block.typeConnector.value = null
+			block.resultConnector.value = null
+			block.resultConnector.type = UnknownType.new()
 	
 	# Assert: we don't ever have two different wires going into an input
 
@@ -149,6 +183,70 @@ func typeCheck():
 						stack.append(block.outputConnector)
 			else:
 				assert(false)
+		elif block is FunctionBlock:
+			assert(cur.type is TypeType)
+			if (!from.type is TypeType):
+				continue
+			cur.value = from.value
+			if (block.arg1Connector.value != null and block.arg2Connector.value != null):
+				if !checked.has(block.resultConnector):
+					block.resultConnector.value = FunctionType.new(block.arg1Connector.value, block.arg2Connector.value)
+					block.resultConnector.type = TypeType.new()
+					checked[block.resultConnector] = true
+					stack.append(block.resultConnector)
+		elif block is AndBlock:
+			assert(cur.type is TypeType)
+			if (!from.type is TypeType):
+				continue
+			cur.value = from.value
+			if (block.arg1Connector.value != null and block.arg2Connector.value != null):
+				if !checked.has(block.resultConnector):
+					block.resultConnector.value = AndType.new(block.arg1Connector.value, block.arg2Connector.value)
+					block.resultConnector.type = TypeType.new()
+					checked[block.resultConnector] = true
+					stack.append(block.resultConnector)
+		elif block is OrBlock:
+			assert(cur.type is TypeType)
+			if (!from.type is TypeType):
+				continue
+			cur.value = from.value
+			if (block.arg1Connector.value != null and block.arg2Connector.value != null):
+				if !checked.has(block.resultConnector):
+					block.resultConnector.value = OrType.new(block.arg1Connector.value, block.arg2Connector.value)
+					block.resultConnector.type = TypeType.new()
+					checked[block.resultConnector] = true
+					stack.append(block.resultConnector)
+		elif block is AndMkBlock:
+			cur.value = from.value
+			cur.type = from.type
+			if (block.input1Connector.value != null and block.input2Connector.value != null):
+				if !checked.has(block.resultConnector):
+					block.resultConnector.value = true
+					block.resultConnector.type = AndType.new(block.input1Connector.type, block.input2Connector.type)
+					checked[block.resultConnector] = true
+					stack.append(block.resultConnector)
+		elif block is OrLeftBlock:
+			if cur == block.typeConnector and !(from.type is TypeType):
+				continue
+			cur.value = from.value
+			cur.type = from.type
+			if (block.inputConnector.value != null and block.typeConnector.value != null):
+				if !checked.has(block.resultConnector):
+					block.resultConnector.value = true
+					block.resultConnector.type = OrType.new(block.inputConnector.type, block.typeConnector.value)
+					checked[block.resultConnector] = true
+					stack.append(block.resultConnector)
+		elif block is OrRightBlock:
+			if cur == block.typeConnector and !(from.type is TypeType):
+				continue
+			cur.value = from.value
+			cur.type = from.type
+			if (block.inputConnector.value != null and block.typeConnector.value != null):
+				if !checked.has(block.resultConnector):
+					block.resultConnector.value = true
+					block.resultConnector.type = OrType.new(block.typeConnector.value, block.inputConnector.type)
+					checked[block.resultConnector] = true
+					stack.append(block.resultConnector)
 		else:
 			assert(false)
 
@@ -164,6 +262,24 @@ func typeCheck():
 				return false
 		elif block is LambdaBlock:
 			if block.inputTypeConnector.value == null or block.outputTypeConnector.value == null or block.outputConnector.value == null:
+				return false
+		elif block is FunctionBlock:
+			if block.arg1Connector.value == null or block.arg2Connector.value == null or block.resultConnector.value == null:
+				return false
+		elif block is AndBlock:
+			if block.arg1Connector.value == null or block.arg2Connector.value == null or block.resultConnector.value == null:
+				return false
+		elif block is OrBlock:
+			if block.arg1Connector.value == null or block.arg2Connector.value == null or block.resultConnector.value == null:
+				return false
+		elif block is AndMkBlock:
+			if block.input1Connector.value == null or block.input2Connector.value == null or block.resultConnector.value == null:
+				return false
+		elif block is OrLeftBlock:
+			if block.inputConnector.value == null or block.typeConnector.value == null or block.resultConnector.value == null:
+				return false
+		elif block is OrRightBlock:
+			if block.inputConnector.value == null or block.typeConnector.value == null or block.resultConnector.value == null:
 				return false
 		else:
 			assert(false)

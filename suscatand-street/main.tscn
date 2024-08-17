@@ -7,6 +7,10 @@
 [ext_resource type="Script" path="res://scripts/knowledge.gd" id="3_i7gla"]
 [ext_resource type="Script" path="res://scripts/connector_coordinator.gd" id="5_ugrpo"]
 [ext_resource type="PackedScene" uid="uid://c34gd6iom0l2t" path="res://scenes/blocks/Goal.tscn" id="6_grr7f"]
+<<<<<<< HEAD
+=======
+[ext_resource type="PackedScene" uid="uid://bnxv4un0vcijb" path="res://scenes/blocks/ImplyBlock.tscn" id="6_rvr5x"]
+>>>>>>> 4bac669 (and and or)
 [ext_resource type="PackedScene" uid="uid://c0uo6afj7i45f" path="res://scenes/blocks/AndBlock.tscn" id="7_80w73"]
 [ext_resource type="PackedScene" uid="uid://cg4llmlwcg4cf" path="res://scenes/blocks/Input.tscn" id="7_exlit"]
 [ext_resource type="PackedScene" uid="uid://b2p2wnjkqxitw" path="res://scenes/blocks/Applicator.tscn" id="8_cd7rh"]
