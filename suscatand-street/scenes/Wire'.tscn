@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://qknhuqusj5av"]
+[gd_scene load_steps=6 format=3 uid="uid://cyk3v6a3pflpp"]
 
 [ext_resource type="Script" path="res://scripts/wire.gd" id="1_twlc2"]
 [ext_resource type="PackedScene" uid="uid://dkby2pm00k5ln" path="res://scenes/DraggableWorkspaceComponent.tscn" id="2_ikgdd"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/free_wire_end.gd" id="5_w62xp"]
 
 [node name="Wire" type="Node2D"]
+scale = Vector2(10, 10)
 script = ExtResource("1_twlc2")
 
 [node name="StartBox" parent="." instance=ExtResource("2_ikgdd")]

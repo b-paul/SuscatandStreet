@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bkn80kuw0dqs6"]
+[gd_scene load_steps=7 format=3 uid="uid://bkn80kuw0dqs6"]
 
 [ext_resource type="Texture2D" uid="uid://b4t3hqxsd0u16" path="res://assets/bg.png" id="1_c8sky"]
 [ext_resource type="Script" path="res://scripts/workspace_drag.gd" id="2_ki1mc"]
 [ext_resource type="PackedScene" uid="uid://k8h2oxgl3dko" path="res://scenes/Input_Block.tscn" id="4_iqqm7"]
+[ext_resource type="PackedScene" uid="uid://dkby2pm00k5ln" path="res://scenes/DraggableWorkspaceComponent.tscn" id="4_pm2km"]
 [ext_resource type="PackedScene" uid="uid://dtt3oxnusask2" path="res://scenes/Goal_Block.tscn" id="5_stwd0"]
+[ext_resource type="PackedScene" uid="uid://d3438bd1nueq7" path="res://scenes/applicate_block.tscn" id="6_ajwxe"]
 
 [node name="root" type="Node"]
 
@@ -74,11 +76,15 @@ offset_bottom = 433.0
 [node name="TabContainer" type="TabContainer" parent="CanvasLayer/HBoxContainer"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
-current_tab = 0
 
 [node name="Inventory 1" type="VBoxContainer" parent="CanvasLayer/HBoxContainer/TabContainer"]
 layout_mode = 2
 metadata/_tab_index = 0
+
+[node name="DraggableWorkspaceComponent" parent="CanvasLayer/HBoxContainer/TabContainer/Inventory 1" instance=ExtResource("6_ajwxe")]
+layout_mode = 2
+value_name = ""
+type_name = ""
 
 [node name="Inventory 2" type="VBoxContainer" parent="CanvasLayer/HBoxContainer/TabContainer"]
 visible = false
