@@ -55,7 +55,5 @@ script = ExtResource("11_km4v1")
 [node name="LambdaBlock" type="Node" parent="Block"]
 script = ExtResource("12_tycop")
 
-[node name="TypeBlock" type="Node" parent="Block"]
-
 [node name="Namespace" type="Node" parent="."]
 script = ExtResource("12_6lvrv")

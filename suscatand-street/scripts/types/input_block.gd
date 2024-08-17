@@ -1,11 +1,9 @@
 class_name InputBlock
 extends Block
 
-var inputName: String
 var connector: Connector
 
-func _init(parentNamespace_: Namespace, inputName_: String, type_: Type, value_):
-	inputName = inputName_
-	connector = Connector.new(self, true, type_)
+func _init(parentNamespace_: Namespace, type_: Type, value_):
+	connector = Connector.new(self, false, false, type_)
 	parentNamespace = parentNamespace_
 	connector.value = value_
