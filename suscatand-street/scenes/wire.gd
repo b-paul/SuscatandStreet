@@ -1,13 +1,22 @@
 extends Node2D
 
-@export var start: Vector2
-@export var end: Vector2
+var start: Vector2
+var end: Vector2
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	# Initialize start and end points in _ready
+	start = $StartBox.position + Vector2(25,25)
+	end = $EndBox.position + Vector2(25,25)
+	queue_redraw()  # Request an initial draw
 
+func _draw() -> void:
+	# Define the line color and width
+	var line_color = Color.WHITE
+	var line_width = 2
+	draw_line(start, end, line_color, line_width)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	# Update start and end points dynamically
+	start = $StartBox.position + Vector2(25,25)
+	end = $EndBox.position + Vector2(25,25)
+	queue_redraw()  # Request a redraw whenever the points change

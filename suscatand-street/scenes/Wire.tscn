@@ -7,22 +7,22 @@
 [node name="Wire" type="Node2D"]
 script = ExtResource("1_twlc2")
 
-[node name="DraggableWorkspaceComponent" parent="." instance=ExtResource("2_ikgdd")]
+[node name="StartBox" parent="." instance=ExtResource("2_ikgdd")]
 custom_minimum_size = Vector2(50, 50)
 offset_left = 402.0
 offset_top = 185.0
 offset_right = 502.0
 offset_bottom = 285.0
 
-[node name="WireStart" type="Node2D" parent="DraggableWorkspaceComponent"]
+[node name="WireStart" type="Node2D" parent="StartBox"]
 script = ExtResource("3_ir6ah")
 
-[node name="DraggableWorkspaceComponent2" parent="." instance=ExtResource("2_ikgdd")]
+[node name="EndBox" parent="." instance=ExtResource("2_ikgdd")]
 custom_minimum_size = Vector2(50, 50)
 offset_left = 584.0
 offset_top = 434.0
 offset_right = 634.0
 offset_bottom = 484.0
 
-[node name="WireEnd" type="Node2D" parent="DraggableWorkspaceComponent2"]
+[node name="WireEnd" type="Node2D" parent="EndBox"]
 script = ExtResource("3_ir6ah")
