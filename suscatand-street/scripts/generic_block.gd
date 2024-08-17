@@ -1,11 +1,16 @@
 class_name GenericBlock extends CenterContainer
 
 @export var value_name: String
+@export var block_type: String
+@export var i_am_a_block: bool = true 
+@export var connectors: Array[ConnectorNode]
 
 func _ready():
 	#$Control/Label.text = value_name
 	focus_mode = FocusMode.FOCUS_ALL
 	connect("gui_input", Callable(self, "_on_gui_input"))
+	for connector in $Connectors.get_children():
+		connectors.push_back(connector)
 	
 
 #drag variables
