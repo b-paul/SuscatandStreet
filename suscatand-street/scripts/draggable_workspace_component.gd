@@ -24,7 +24,11 @@ extends Control
 var dragging: bool = false
 var dragStartPos: Vector2
 
-func _input(event):
+func _ready():
+	focus_mode = FocusMode.FOCUS_ALL
+	connect("gui_input", Callable(self, "_on_gui_input"))
+
+func _gui_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
