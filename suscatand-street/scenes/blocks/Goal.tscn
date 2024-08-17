@@ -1,24 +1,16 @@
 [gd_scene load_steps=6 format=3 uid="uid://c34gd6iom0l2t"]
 
-[ext_resource type="PackedScene" uid="uid://db8xskyl380ep" path="res://scenes/blocks/GenericBlock.tscn" id="1_mcfml"]
+[ext_resource type="PackedScene" uid="uid://ow2gujx12ivf" path="res://scenes/blocks/GenericBlock.tscn" id="1_mcfml"]
 [ext_resource type="Texture2D" uid="uid://da1pifgaqh3rq" path="res://assets/happy.svg" id="2_orno0"]
 [ext_resource type="Texture2D" uid="uid://edynuhv4vgw5" path="res://assets/box.svg" id="2_p3g7p"]
 [ext_resource type="PackedScene" uid="uid://bgv3qn41l83pg" path="res://scenes/Connector.tscn" id="3_66eq6"]
 [ext_resource type="Texture2D" uid="uid://bdl5jxataryyg" path="res://assets/sad.svg" id="4_eypdw"]
 
-[node name="GenericBlock" instance=ExtResource("1_mcfml")]
+[node name="GenericBlock2" instance=ExtResource("1_mcfml")]
 custom_minimum_size = Vector2(100, 100)
 block_type = "goal"
 
-[node name="Connector" parent="Connectors" index="0" instance=ExtResource("3_66eq6")]
-layout_mode = 2
-offset_left = -72.0
-offset_top = -24.0
-offset_right = -24.0
-offset_bottom = 24.0
-wire_normal = Vector2(-1, 0)
-
-[node name="Box" type="NinePatchRect" parent="." index="1"]
+[node name="Box" type="NinePatchRect" parent="." index="0"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 texture = ExtResource("2_p3g7p")
@@ -50,3 +42,11 @@ offset_right = 102.0
 offset_bottom = 102.0
 scale = Vector2(0.815, 0.815)
 texture = ExtResource("2_orno0")
+
+[node name="Connector" parent="Connectors" index="0" instance=ExtResource("3_66eq6")]
+layout_mode = 2
+offset_left = -72.0
+offset_top = -24.0
+offset_right = -24.0
+offset_bottom = 24.0
+wire_normal = Vector2(-1, 0)

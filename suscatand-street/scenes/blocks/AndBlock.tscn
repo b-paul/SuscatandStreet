@@ -1,13 +1,25 @@
 [gd_scene load_steps=4 format=3 uid="uid://c0uo6afj7i45f"]
 
-[ext_resource type="PackedScene" uid="uid://db8xskyl380ep" path="res://scenes/blocks/GenericBlock.tscn" id="1_ohm51"]
+[ext_resource type="PackedScene" uid="uid://ow2gujx12ivf" path="res://scenes/blocks/GenericBlock.tscn" id="1_ohm51"]
 [ext_resource type="PackedScene" uid="uid://bgv3qn41l83pg" path="res://scenes/Connector.tscn" id="2_7xeo1"]
 [ext_resource type="Texture2D" uid="uid://edynuhv4vgw5" path="res://assets/box.svg" id="2_ki8eb"]
 
-[node name="GenericBlock" instance=ExtResource("1_ohm51")]
+[node name="GenericBlock2" instance=ExtResource("1_ohm51")]
 offset_right = 96.0
 offset_bottom = 128.0
 block_type = "and"
+
+[node name="Box" type="NinePatchRect" parent="." index="0"]
+custom_minimum_size = Vector2(96, 128)
+layout_mode = 2
+texture = ExtResource("2_ki8eb")
+region_rect = Rect2(0, 0, 96, 96)
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 
 [node name="Input 1" parent="Connectors" index="0" instance=ExtResource("2_7xeo1")]
 layout_mode = 0
@@ -35,18 +47,6 @@ offset_right = 72.0
 offset_bottom = 24.0
 is_square = true
 wire_normal = Vector2(1, 0)
-
-[node name="Box" type="NinePatchRect" parent="." index="1"]
-custom_minimum_size = Vector2(96, 128)
-layout_mode = 2
-texture = ExtResource("2_ki8eb")
-region_rect = Rect2(0, 0, 96, 96)
-patch_margin_left = 10
-patch_margin_top = 10
-patch_margin_right = 10
-patch_margin_bottom = 10
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
 
 [node name="Label" type="Label" parent="." index="2"]
 layout_mode = 2

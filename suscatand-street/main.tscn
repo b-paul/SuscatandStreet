@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bkn80kuw0dqs6"]
+[gd_scene load_steps=13 format=3 uid="uid://bkn80kuw0dqs6"]
 
 [ext_resource type="Texture2D" uid="uid://bg2u1xmifmkjm" path="res://assets/bg_tile.png" id="1_agkpv"]
 [ext_resource type="Script" path="res://scripts/hintbox.gd" id="2_4dedc"]
@@ -7,11 +7,10 @@
 [ext_resource type="Script" path="res://scripts/knowledge.gd" id="3_i7gla"]
 [ext_resource type="Script" path="res://scripts/connector_coordinator.gd" id="5_ugrpo"]
 [ext_resource type="PackedScene" uid="uid://c34gd6iom0l2t" path="res://scenes/blocks/Goal.tscn" id="6_grr7f"]
-[ext_resource type="PackedScene" uid="uid://bnxv4un0vcijb" path="res://scenes/blocks/ImplyBlock.tscn" id="6_rvr5x"]
 [ext_resource type="PackedScene" uid="uid://c0uo6afj7i45f" path="res://scenes/blocks/AndBlock.tscn" id="7_80w73"]
 [ext_resource type="PackedScene" uid="uid://cg4llmlwcg4cf" path="res://scenes/blocks/Input.tscn" id="7_exlit"]
 [ext_resource type="PackedScene" uid="uid://b2p2wnjkqxitw" path="res://scenes/blocks/Applicator.tscn" id="8_cd7rh"]
-[ext_resource type="PackedScene" uid="uid://bdjteonbibkwu" path="res://scenes/blocks/OrBlock.tscn" id="10_p2s1v"]
+[ext_resource type="PackedScene" uid="uid://boiowunu68ysv" path="res://scenes/blocks/OrBlock.tscn" id="10_p2s1v"]
 [ext_resource type="Script" path="res://scripts/inventory.gd" id="13_584x7"]
 
 [node name="root" type="Node"]
@@ -70,9 +69,6 @@ script = ExtResource("2_ki1mc")
 position = Vector2(-15, 0)
 script = ExtResource("5_ugrpo")
 
-[node name="GenericBlock7" parent="CanvasLayer/HBoxContainer/HSplitContainer/PanelContainer/ConnectorCoordinator" instance=ExtResource("6_rvr5x")]
-offset_right = 130.0
-
 [node name="GenericBlock" parent="CanvasLayer/HBoxContainer/HSplitContainer/PanelContainer/ConnectorCoordinator" instance=ExtResource("7_exlit")]
 offset_left = 434.0
 offset_top = 361.0
@@ -110,6 +106,10 @@ offset_right = 1051.0
 offset_bottom = 1104.0
 
 [node name="GenericBlock5" parent="CanvasLayer/HBoxContainer/HSplitContainer/PanelContainer/ConnectorCoordinator" instance=ExtResource("10_p2s1v")]
+offset_left = 177.0
+offset_top = 707.0
+offset_right = 273.0
+offset_bottom = 835.0
 
 [node name="InventoryContainer" type="TabContainer" parent="CanvasLayer/HBoxContainer"]
 custom_minimum_size = Vector2(500, 2.08165e-12)
