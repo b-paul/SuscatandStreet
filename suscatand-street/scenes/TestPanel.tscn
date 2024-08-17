@@ -3,15 +3,15 @@
 [ext_resource type="Texture2D" uid="uid://bg2u1xmifmkjm" path="res://assets/bg_tile.png" id="1_1oakn"]
 [ext_resource type="PackedScene" uid="uid://uktmlq1bys4t" path="res://scenes/BackendCommunicator.tscn" id="2_bsvjo"]
 [ext_resource type="Script" path="res://scripts/connector_coordinator.gd" id="3_cu3bq"]
-[ext_resource type="PackedScene" uid="uid://cg4llmlwcg4cf" path="res://scenes/blocks/BlockWithConnectorToRight.tscn" id="4_uknk1"]
-[ext_resource type="PackedScene" uid="uid://c34gd6iom0l2t" path="res://scenes/blocks/BlockWithConnectorToLeft.tscn" id="5_8mrxi"]
+[ext_resource type="PackedScene" uid="uid://cg4llmlwcg4cf" path="res://scenes/blocks/Input.tscn" id="4_uknk1"]
+[ext_resource type="PackedScene" uid="uid://c34gd6iom0l2t" path="res://scenes/blocks/Goal.tscn" id="5_8mrxi"]
 [ext_resource type="PackedScene" uid="uid://c0uo6afj7i45f" path="res://scenes/blocks/AndBlock.tscn" id="6_yturd"]
 [ext_resource type="PackedScene" uid="uid://b2p2wnjkqxitw" path="res://scenes/blocks/Applicator.tscn" id="7_et3dc"]
 
 [node name="TestPanel" type="CanvasLayer"]
 
 [node name="TextureRect" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(3000, 2000)
+custom_minimum_size = Vector2(4000, 2000)
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_1oakn")
@@ -22,32 +22,32 @@ stretch_mode = 1
 [node name="ConnectorCoordinator" type="Node2D" parent="BackendCommunicator"]
 script = ExtResource("3_cu3bq")
 
-[node name="Panel" type="Panel" parent="BackendCommunicator/ConnectorCoordinator"]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Workspace" type="Control" parent="BackendCommunicator/ConnectorCoordinator"]
+layout_mode = 3
+anchors_preset = 0
 
-[node name="Input" parent="BackendCommunicator/ConnectorCoordinator/Panel" instance=ExtResource("4_uknk1")]
+[node name="Input" parent="BackendCommunicator/ConnectorCoordinator/Workspace" instance=ExtResource("4_uknk1")]
 layout_mode = 0
 offset_left = 378.0
 offset_top = 323.0
 offset_right = 478.0
 offset_bottom = 423.0
 
-[node name="Goal" parent="BackendCommunicator/ConnectorCoordinator/Panel" instance=ExtResource("5_8mrxi")]
+[node name="Goal" parent="BackendCommunicator/ConnectorCoordinator/Workspace" instance=ExtResource("5_8mrxi")]
 layout_mode = 0
 offset_left = 1979.0
 offset_top = 346.0
 offset_right = 2079.0
 offset_bottom = 446.0
 
-[node name="And" parent="BackendCommunicator/ConnectorCoordinator/Panel" instance=ExtResource("6_yturd")]
+[node name="And" parent="BackendCommunicator/ConnectorCoordinator/Workspace" instance=ExtResource("6_yturd")]
 layout_mode = 0
 offset_left = 802.0
 offset_top = 775.0
 offset_right = 902.0
 offset_bottom = 878.0
 
-[node name="Applicator" parent="BackendCommunicator/ConnectorCoordinator/Panel" instance=ExtResource("7_et3dc")]
+[node name="Applicator" parent="BackendCommunicator/ConnectorCoordinator/Workspace" instance=ExtResource("7_et3dc")]
 layout_mode = 0
 offset_left = 1203.0
 offset_top = 399.0

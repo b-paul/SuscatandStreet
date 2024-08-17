@@ -20,3 +20,17 @@ script = ExtResource("2_81vmd")
 position = Vector2(15, 15)
 scale = Vector2(0.02, 0.02)
 texture = ExtResource("3_fwjkr")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 2
+offset_left = -7.0
+offset_top = -40.0
+offset_right = 7.0
+offset_bottom = -12.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "A"

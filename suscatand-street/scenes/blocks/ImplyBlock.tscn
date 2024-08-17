@@ -6,6 +6,7 @@
 [node name="GenericBlock" instance=ExtResource("1_l8kwl")]
 offset_right = 189.0
 offset_bottom = 103.0
+block_type = "implication"
 
 [node name="ColorRect" type="ColorRect" parent="." index="0"]
 custom_minimum_size = Vector2(130, 100)
@@ -13,6 +14,7 @@ layout_mode = 2
 mouse_filter = 1
 
 [node name="Input" parent="Connectors" index="0" instance=ExtResource("2_vep6d")]
+layout_mode = 0
 offset_left = -95.0
 offset_top = -16.0
 offset_right = -65.0
@@ -20,6 +22,7 @@ offset_bottom = 14.0
 wire_normal = Vector2(-1, 0)
 
 [node name="Output" parent="Connectors" index="1" instance=ExtResource("2_vep6d")]
+layout_mode = 0
 offset_left = 65.0
 offset_top = -16.0
 offset_right = 95.0
