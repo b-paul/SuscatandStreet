@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3s7hqmndov1e"]
+
+[ext_resource type="Script" path="res://scripts/draggable_workspace_component.gd" id="1_avn8g"]
+
+[node name="DraggableWorkspaceComponent" type="CenterContainer"]
+script = ExtResource("1_avn8g")
