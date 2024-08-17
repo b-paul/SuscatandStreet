@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c0uo6afj7i45f" path="res://scenes/blocks/AndBlock.tscn" id="7_80w73"]
 [ext_resource type="PackedScene" uid="uid://cg4llmlwcg4cf" path="res://scenes/blocks/Input.tscn" id="7_exlit"]
 [ext_resource type="PackedScene" uid="uid://b2p2wnjkqxitw" path="res://scenes/blocks/Applicator.tscn" id="8_cd7rh"]
-[ext_resource type="PackedScene" uid="uid://bdjteonbibkwu" path="res://scenes/blocks/OrBlock.tscn" id="10_p2s1v"]
+[ext_resource type="PackedScene" uid="uid://boiowunu68ysv" path="res://scenes/blocks/OrBlock.tscn" id="10_p2s1v"]
 
 [node name="root" type="Node"]
 
@@ -113,6 +113,7 @@ offset_bottom = 1104.0
 [node name="TabContainer" type="TabContainer" parent="CanvasLayer/HBoxContainer"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
+current_tab = 0
 
 [node name="Inventory 1" type="VBoxContainer" parent="CanvasLayer/HBoxContainer/TabContainer"]
 layout_mode = 2

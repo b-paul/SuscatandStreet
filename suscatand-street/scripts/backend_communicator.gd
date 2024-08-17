@@ -41,10 +41,12 @@ func check_game_state() -> bool:
 	 
 	
 func _ready():
-	get_game_state()
-	for block in blocks:
-		print(block.block_type)
-	print(connectors)
+	print($ConnectorCoordinator/Workspace.get_children())
+	#get_game_state()
+	#print("blocks:")
+	#for block in blocks:
+		#print(block.block_type)
+	#print(connectors)
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
