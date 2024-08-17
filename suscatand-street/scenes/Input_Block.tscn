@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://k8h2oxgl3dko"]
+
+[ext_resource type="PackedScene" uid="uid://cre063akjjpbe" path="res://scenes/super_block.tscn" id="1_f2gvv"]
+[ext_resource type="Script" path="res://scripts/input_block.gd" id="2_o07qc"]
+[ext_resource type="PackedScene" uid="uid://qknhuqusj5av" path="res://scenes/Wire.tscn" id="3_k7w8t"]
+
+[node name="DraggableWorkspaceComponent" instance=ExtResource("1_f2gvv")]
+custom_minimum_size = Vector2(100, 100)
+script = ExtResource("2_o07qc")
+value_name = ""
+type_name = ""
+
+[node name="Control2" parent="." index="0"]
+mouse_filter = 1
+
+[node name="Control" parent="." index="1"]
+mouse_filter = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="Control" index="0"]
+layout_mode = 0
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 53.0
+
+[node name="ColorRect" type="ColorRect" parent="Control/CenterContainer" index="0"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Label" type="Label" parent="Control/CenterContainer" index="1"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 75
+text = "x"
+
+[node name="ColorRect" type="ColorRect" parent="Control" index="1"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = -13.0
+offset_right = 80.0
+offset_bottom = 17.0
+color = Color(1, 0, 0, 1)
+
+[node name="Wire" parent="Control" index="2" instance=ExtResource("3_k7w8t")]
+position = Vector2(65, 2)
+
+[node name="StartBox" parent="Control/Wire" index="0"]
+mouse_filter = 2
+
+[node name="EndBox" parent="Control/Wire" index="1"]
+isSticky = false
+
+[editable path="Control/Wire"]

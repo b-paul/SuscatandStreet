@@ -23,20 +23,34 @@ extends Control
 	
 var dragging: bool = false
 var dragStartPos: Vector2
+var originalPos: Vector2
+@export var isSticky: bool
 
 func _ready():
 	focus_mode = FocusMode.FOCUS_ALL
 	connect("gui_input", Callable(self, "_on_gui_input"))
+	isSticky = false
 	
+
+func is_connectable():
+	return false
 
 func _gui_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			if event.pressed:
+			if event.pressed and not dragging:
 				dragging = true
 				dragStartPos = get_global_mouse_position() - global_position
+				originalPos = global_position
 			else:
-				dragging = false
-	elif event is InputEventMouseMotion and dragging:
+				if event.pressed and dragging:
+					dragging = false
+					if is_connectable():
+						pass
+					else:
+						global_position = originalPos
+
+func _input(event: InputEvent):
+	if event is InputEventMouseMotion and dragging:
 		global_position = get_global_mouse_position() - dragStartPos
 		
