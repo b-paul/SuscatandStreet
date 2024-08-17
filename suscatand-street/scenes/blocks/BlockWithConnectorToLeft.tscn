@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://c34gd6iom0l2t"]
+[gd_scene load_steps=3 format=3 uid="uid://c34gd6iom0l2t"]
 
 [ext_resource type="PackedScene" uid="uid://db8xskyl380ep" path="res://scenes/GenericBlock.tscn" id="1_mcfml"]
-[ext_resource type="Script" path="res://scenes/one_connector_to_left.gd" id="2_3vwma"]
 [ext_resource type="PackedScene" uid="uid://bgv3qn41l83pg" path="res://scenes/Connector.tscn" id="3_66eq6"]
 
 [node name="GenericBlock" instance=ExtResource("1_mcfml")]
@@ -11,13 +10,10 @@ custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 mouse_filter = 1
 
-[node name="Connectors" type="Control" parent="." index="1"]
-layout_mode = 2
-script = ExtResource("2_3vwma")
-
 [node name="Connector" parent="Connectors" index="0" instance=ExtResource("3_66eq6")]
 layout_mode = 2
 offset_left = -80.0
 offset_top = -16.0
 offset_right = -50.0
 offset_bottom = 14.0
+wire_normal = Vector2(2.08165e-12, 1)

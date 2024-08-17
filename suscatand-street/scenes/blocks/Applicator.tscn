@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://db8xskyl380ep" path="res://scenes/GenericBlock.tscn" id="1_d6fd7"]
 [ext_resource type="Texture2D" uid="uid://dmb574inmhpp2" path="res://assets/F.png" id="2_xgy1o"]
-[ext_resource type="Script" path="res://applicator_connectors.gd" id="3_856ba"]
+[ext_resource type="Script" path="res://scripts/applicator_connectors.gd" id="3_m4jbf"]
 [ext_resource type="PackedScene" uid="uid://bgv3qn41l83pg" path="res://scenes/Connector.tscn" id="4_jh8ou"]
 
 [node name="GenericBlock" instance=ExtResource("1_d6fd7")]
@@ -15,7 +15,7 @@ texture = ExtResource("2_xgy1o")
 offset = Vector2(150, 150)
 
 [node name="Connectors" parent="." index="1"]
-script = ExtResource("3_856ba")
+script = ExtResource("3_m4jbf")
 
 [node name="Input" parent="Connectors" index="0" instance=ExtResource("4_jh8ou")]
 layout_mode = 0

@@ -1,6 +1,6 @@
 extends VBoxContainer
 
-@export var hint_texts: Array[String] = ["Hint 1", "Hint 2", "Hint 3"]
+@export var hint_texts: Array[String] = ["Hint 0", "Hint 1", "Hint 2", "Hint 3"]
 var unlocked_hints = []
 
 func _ready():
@@ -14,12 +14,13 @@ func setup_hint_boxes():
 		var hint_box = Control.new()
 		hint_box.name = "HintBox" + str(i)
 		hint_box.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-		hint_box.custom_minimum_size = Vector2(0, 50) 
+		hint_box.custom_minimum_size = Vector2(0, 200) 
 		add_child(hint_box)
 		
 		var hint_block = TextureRect.new()
 		hint_block.name = "HintBlock"
 		hint_block.texture = load("res://assets/hint.jpg")
+		hint_block.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 		hint_block.expand = true
 		hint_block.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 		hint_block.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -27,7 +28,8 @@ func setup_hint_boxes():
 		
 		var hint_label = Label.new()
 		hint_label.name = "HintLabel"
-		hint_label.text = "Click to reveal hint"
+		hint_label.text = "Click to reveal hint" + str(i)
+		hint_label.add_theme_font_size_override("font_size", 28)
 		hint_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		hint_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 		hint_label.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)

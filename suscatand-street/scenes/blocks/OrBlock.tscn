@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdjteonbibkwu"]
+
+[ext_resource type="PackedScene" uid="uid://db8xskyl380ep" path="res://scenes/GenericBlock.tscn" id="1_oit4w"]
+[ext_resource type="PackedScene" uid="uid://bgv3qn41l83pg" path="res://scenes/Connector.tscn" id="2_xy4vy"]
+
+[node name="GenericBlock" instance=ExtResource("1_oit4w")]
+
+[node name="ColorRect" type="ColorRect" parent="." index="0"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Input 1" parent="Connectors" index="0" instance=ExtResource("2_xy4vy")]
+offset_left = -80.0
+offset_top = -50.0
+offset_right = -50.0
+offset_bottom = -20.0
+wire_normal = Vector2(-1, 0)
+
+[node name="Input 2" parent="Connectors" index="1" instance=ExtResource("2_xy4vy")]
+offset_left = -80.0
+offset_top = 19.0
+offset_right = -50.0
+offset_bottom = 49.0
+wire_normal = Vector2(-1, 0)
+
+[node name="Output" parent="Connectors" index="2" instance=ExtResource("2_xy4vy")]
+offset_left = 50.0
+offset_top = -16.0
+offset_right = 80.0
+offset_bottom = 14.0
+wire_normal = Vector2(1, 0)
+
+[node name="Label" type="Label" parent="." index="2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 75
+text = "v"

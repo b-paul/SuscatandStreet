@@ -1,10 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://bkn80kuw0dqs6"]
+[gd_scene load_steps=12 format=3 uid="uid://bkn80kuw0dqs6"]
 
 [ext_resource type="Texture2D" uid="uid://bg2u1xmifmkjm" path="res://assets/bg_tile.png" id="1_agkpv"]
 [ext_resource type="Script" path="res://scripts/hintbox.gd" id="2_4dedc"]
 [ext_resource type="Script" path="res://scripts/workspace_drag.gd" id="2_ki1mc"]
-[ext_resource type="PackedScene" uid="uid://k8h2oxgl3dko" path="res://scenes/Input_Block.tscn" id="4_iqqm7"]
-[ext_resource type="PackedScene" uid="uid://dtt3oxnusask2" path="res://scenes/Goal_Block.tscn" id="5_stwd0"]
+[ext_resource type="Script" path="res://scripts/Instruction.gd" id="2_xwrj8"]
+[ext_resource type="Script" path="res://scripts/connector_coordinator.gd" id="5_ugrpo"]
+[ext_resource type="PackedScene" uid="uid://c34gd6iom0l2t" path="res://scenes/blocks/BlockWithConnectorToLeft.tscn" id="6_grr7f"]
+[ext_resource type="PackedScene" uid="uid://bnxv4un0vcijb" path="res://scenes/blocks/ImplyBlock.tscn" id="6_rvr5x"]
+[ext_resource type="PackedScene" uid="uid://c0uo6afj7i45f" path="res://scenes/blocks/AndBlock.tscn" id="7_80w73"]
+[ext_resource type="PackedScene" uid="uid://cg4llmlwcg4cf" path="res://scenes/blocks/BlockWithConnectorToRight.tscn" id="7_exlit"]
+[ext_resource type="PackedScene" uid="uid://b2p2wnjkqxitw" path="res://scenes/blocks/Applicator.tscn" id="8_cd7rh"]
+[ext_resource type="PackedScene" uid="uid://bdjteonbibkwu" path="res://scenes/blocks/OrBlock.tscn" id="10_p2s1v"]
 
 [node name="root" type="Node"]
 
@@ -33,48 +39,70 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 6.9
 
 [node name="Info bar" type="VBoxContainer" parent="CanvasLayer/HBoxContainer/HSplitContainer"]
+custom_minimum_size = Vector2(3, 2.08165e-12)
 layout_mode = 2
 
-[node name="Instruction" type="ScrollContainer" parent="CanvasLayer/HBoxContainer/HSplitContainer/Info bar"]
+[node name="Task" type="CenterContainer" parent="CanvasLayer/HBoxContainer/HSplitContainer/Info bar"]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
-size_flags_stretch_ratio = 3.1
-
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/HBoxContainer/HSplitContainer/Info bar/Instruction"]
-custom_minimum_size = Vector2(150, 300)
-layout_mode = 2
 size_flags_vertical = 3
-text = "Instructions go here"
+size_flags_stretch_ratio = 4.2
+script = ExtResource("2_xwrj8")
 
 [node name="Hint box" type="VBoxContainer" parent="CanvasLayer/HBoxContainer/HSplitContainer/Info bar"]
 layout_mode = 2
+size_flags_stretch_ratio = 6.9
 script = ExtResource("2_4dedc")
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/HBoxContainer/HSplitContainer/Info bar"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-color = Color(0.0901961, 0.0901961, 0.0901961, 1)
 
 [node name="PanelContainer" type="Panel" parent="CanvasLayer/HBoxContainer/HSplitContainer"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 script = ExtResource("2_ki1mc")
 
-[node name="DraggableWorkspaceComponent" parent="CanvasLayer/HBoxContainer/HSplitContainer/PanelContainer" instance=ExtResource("4_iqqm7")]
-layout_mode = 0
-offset_left = 521.0
-offset_top = 500.0
-offset_right = 621.0
-offset_bottom = 600.0
+[node name="ConnectorCoordinator" type="Node2D" parent="CanvasLayer/HBoxContainer/HSplitContainer/PanelContainer"]
+position = Vector2(-15, 0)
+script = ExtResource("5_ugrpo")
 
-[node name="DraggableWorkspaceComponent2" parent="CanvasLayer/HBoxContainer/HSplitContainer/PanelContainer" instance=ExtResource("5_stwd0")]
-layout_mode = 0
-offset_left = 2000.0
-offset_top = 333.0
-offset_right = 2100.0
-offset_bottom = 433.0
+[node name="GenericBlock7" parent="CanvasLayer/HBoxContainer/HSplitContainer/PanelContainer/ConnectorCoordinator" instance=ExtResource("6_rvr5x")]
+offset_right = 130.0
+
+[node name="GenericBlock" parent="CanvasLayer/HBoxContainer/HSplitContainer/PanelContainer/ConnectorCoordinator" instance=ExtResource("7_exlit")]
+offset_left = 434.0
+offset_top = 361.0
+offset_right = 534.0
+offset_bottom = 461.0
+
+[node name="GenericBlock2" parent="CanvasLayer/HBoxContainer/HSplitContainer/PanelContainer/ConnectorCoordinator" instance=ExtResource("6_grr7f")]
+offset_left = 1053.0
+offset_top = 357.0
+offset_right = 1153.0
+offset_bottom = 457.0
+
+[node name="GenericBlock3" parent="CanvasLayer/HBoxContainer/HSplitContainer/PanelContainer/ConnectorCoordinator" instance=ExtResource("6_grr7f")]
+offset_left = 1259.0
+offset_top = 893.0
+offset_right = 1359.0
+offset_bottom = 993.0
+
+[node name="GenericBlock4" parent="CanvasLayer/HBoxContainer/HSplitContainer/PanelContainer/ConnectorCoordinator" instance=ExtResource("7_exlit")]
+offset_left = 550.0
+offset_top = 943.0
+offset_right = 650.0
+offset_bottom = 1043.0
+
+[node name="Applicator" parent="CanvasLayer/HBoxContainer/HSplitContainer/PanelContainer/ConnectorCoordinator" instance=ExtResource("8_cd7rh")]
+offset_left = 1150.0
+offset_top = 1261.0
+offset_right = 1350.0
+offset_bottom = 1461.0
+
+[node name="GenericBlock6" parent="CanvasLayer/HBoxContainer/HSplitContainer/PanelContainer/ConnectorCoordinator" instance=ExtResource("7_80w73")]
+offset_left = 951.0
+offset_top = 1001.0
+offset_right = 1051.0
+offset_bottom = 1104.0
+
+[node name="GenericBlock5" parent="CanvasLayer/HBoxContainer/HSplitContainer/PanelContainer/ConnectorCoordinator" instance=ExtResource("10_p2s1v")]
 
 [node name="TabContainer" type="TabContainer" parent="CanvasLayer/HBoxContainer"]
 custom_minimum_size = Vector2(400, 0)
