@@ -17,8 +17,6 @@ func _init(parentBlock_: Block, isInput_: bool, takesType_: bool, type_: Type):
 
 # Returns -1 if connecting output to output
 func make_connection(target: Connector):
-	if !isInput and !target.isInput:
-		return -1
 	if outConnections.has(target):
 		return 0
 	outConnections.append(target)
