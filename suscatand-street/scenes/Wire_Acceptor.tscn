@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://dop18t1kbn321"]
+[gd_scene load_steps=3 format=3 uid="uid://cnthhwq454h2j"]
 
 [ext_resource type="Script" path="res://scripts/wire_acceptor.gd" id="1_dfad7"]
 [ext_resource type="Texture2D" uid="uid://bguwpeky138tc" path="res://assets/black_circle.png" id="2_cmp00"]

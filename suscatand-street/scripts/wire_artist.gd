@@ -19,10 +19,10 @@ func draw_curve(start: Vector2, end: Vector2, startNormal: Vector2, endNormal: V
 
 func _draw() -> void:
 	var connections: Array[ConnectorNode] = get_parent().connectedNodes
-	var start: Vector2 = get_parent().position
+	var start: Vector2 = get_parent().global_position - global_position + Vector2(15,15)
 	var startNormal: Vector2 = get_parent().wire_normal
 	for node in connections:
-		var end: Vector2 = node.position
+		var end: Vector2 = node.global_position - global_position + Vector2(15,15)
 		var endNormal: Vector2 = node.wire_normal
 		draw_curve(start,end,startNormal,endNormal)
 

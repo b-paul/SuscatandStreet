@@ -1,6 +1,6 @@
 class_name ConnectorNode extends CenterContainer
 
-@export var isConnectorNode: bool = true
+@export var is_connector_node: bool = true
 @export var connectedNodes: Array[ConnectorNode]
 @export var wire_normal: Vector2
 

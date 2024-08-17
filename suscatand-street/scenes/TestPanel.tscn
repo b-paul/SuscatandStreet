@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbqcc2n5emp63"]
+
+[ext_resource type="Texture2D" uid="uid://bg2u1xmifmkjm" path="res://assets/bg_tile.png" id="1_1oakn"]
+[ext_resource type="PackedScene" uid="uid://cg4llmlwcg4cf" path="res://scenes/BlockWithConnectorToRight.tscn" id="2_e3yum"]
+[ext_resource type="Script" path="res://scripts/connector_coordinator.gd" id="3_cu3bq"]
+[ext_resource type="PackedScene" uid="uid://c34gd6iom0l2t" path="res://scenes/BlockWithConnectorToLeft.tscn" id="4_bsauj"]
+
+[node name="TestPanel" type="CanvasLayer"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(3000, 2000)
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_1oakn")
+stretch_mode = 1
+
+[node name="ConnectorCoordinator" type="Node2D" parent="."]
+script = ExtResource("3_cu3bq")
+
+[node name="Panel" type="Panel" parent="ConnectorCoordinator"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GenericBlock" parent="ConnectorCoordinator/Panel" instance=ExtResource("2_e3yum")]
+layout_mode = 0
+offset_left = 434.0
+offset_top = 361.0
+offset_right = 534.0
+offset_bottom = 461.0
+
+[node name="GenericBlock2" parent="ConnectorCoordinator/Panel" instance=ExtResource("4_bsauj")]
+layout_mode = 0
+offset_left = 1053.0
+offset_top = 357.0
+offset_right = 1153.0
+offset_bottom = 457.0
+
+[node name="GenericBlock3" parent="ConnectorCoordinator/Panel" instance=ExtResource("4_bsauj")]
+layout_mode = 0
+offset_left = 1279.0
+offset_top = 727.0
+offset_right = 1379.0
+offset_bottom = 827.0
+
+[node name="GenericBlock4" parent="ConnectorCoordinator/Panel" instance=ExtResource("2_e3yum")]
+layout_mode = 0
+offset_left = 550.0
+offset_top = 943.0
+offset_right = 650.0
+offset_bottom = 1043.0
