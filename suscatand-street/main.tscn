@@ -55,6 +55,7 @@ size_flags_vertical = 3
 color = Color(0.0901961, 0.0901961, 0.0901961, 1)
 
 [node name="PanelContainer" type="Panel" parent="CanvasLayer/HBoxContainer/HSplitContainer"]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 script = ExtResource("2_ki1mc")
 
