@@ -305,6 +305,7 @@ func typeCheck():
 				return false
 		elif block is OrRightBlock:
 			if block.inputConnector.value == null or block.typeConnector.value == null or block.resultConnector.value == null:
+				return false
 		elif block is NotElimBlock:
 			if block.falseConnector.value == null or block.typeConnector.value == null or block.resultConnector.value == null:
 				return false
