@@ -1,7 +1,7 @@
 class_name PrimType
 extends Type
 
-var name: String
+var typeName: String
 
 func _init(name_: String):
-	name = name_
+	typeName = name_
