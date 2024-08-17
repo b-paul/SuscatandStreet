@@ -2,6 +2,7 @@ class_name ConnectorCoordinator extends Node2D
 
 @export var dragging_wire: bool = false
 @export var just_dropped: bool = false
+@export var connectors: Array[ConnectorNode]
 
 # Called when the node enters the scene tree for the first time.
 
@@ -21,7 +22,7 @@ func find_connectors(root_node: Node) -> Array[ConnectorNode]:
 	return nodes_of_type
 
 func _ready() -> void:
-	var connectors: Array[ConnectorNode] = find_connectors(get_node("."))
+	connectors = find_connectors(get_node("."))
 	for c in connectors:
 		c.coordinator = self
 

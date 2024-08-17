@@ -4,3 +4,6 @@
 
 [node name="GenericBlock" type="CenterContainer"]
 script = ExtResource("1_xld4g")
+
+[node name="Connectors" type="Control" parent="."]
+layout_mode = 2

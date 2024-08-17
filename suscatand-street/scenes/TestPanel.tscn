@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbqcc2n5emp63"]
+[gd_scene load_steps=7 format=3 uid="uid://cbqcc2n5emp63"]
 
 [ext_resource type="Texture2D" uid="uid://bg2u1xmifmkjm" path="res://assets/bg_tile.png" id="1_1oakn"]
 [ext_resource type="PackedScene" uid="uid://cg4llmlwcg4cf" path="res://scenes/BlockWithConnectorToRight.tscn" id="2_e3yum"]
 [ext_resource type="Script" path="res://scripts/connector_coordinator.gd" id="3_cu3bq"]
 [ext_resource type="PackedScene" uid="uid://c34gd6iom0l2t" path="res://scenes/BlockWithConnectorToLeft.tscn" id="4_bsauj"]
+[ext_resource type="PackedScene" uid="uid://b2p2wnjkqxitw" path="res://Applicator.tscn" id="5_r0oqk"]
+[ext_resource type="PackedScene" uid="uid://c0uo6afj7i45f" path="res://AndBlock.tscn" id="6_6rm4j"]
 
 [node name="TestPanel" type="CanvasLayer"]
 
@@ -48,3 +50,17 @@ offset_left = 550.0
 offset_top = 943.0
 offset_right = 650.0
 offset_bottom = 1043.0
+
+[node name="GenericBlock5" parent="ConnectorCoordinator/Panel" instance=ExtResource("5_r0oqk")]
+layout_mode = 0
+offset_left = 1150.0
+offset_top = 1261.0
+offset_right = 1150.0
+offset_bottom = 1261.0
+
+[node name="GenericBlock6" parent="ConnectorCoordinator/Panel" instance=ExtResource("6_6rm4j")]
+layout_mode = 0
+offset_left = 951.0
+offset_top = 1001.0
+offset_right = 1051.0
+offset_bottom = 1104.0
