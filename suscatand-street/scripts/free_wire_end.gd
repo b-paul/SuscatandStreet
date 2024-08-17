@@ -22,6 +22,7 @@ class_name WireEnd extends Control
 	#return data
 	
 var dragging: bool = false
+var just_dropped: bool = false
 var dragStartPos: Vector2
 var originalPos: Vector2
 var originalZIndex
@@ -34,6 +35,7 @@ func _ready():
 	focus_mode = FocusMode.FOCUS_ALL
 	connect("gui_input", Callable(self, "_on_gui_input"))
 	isSticky = false
+	originalPos = position
 	
 func find_wire_acceptors(root_node: Node) -> Array[WireAcceptor]:
 	var nodes_of_type: Array[WireAcceptor] = []
@@ -49,12 +51,16 @@ func find_wire_acceptors(root_node: Node) -> Array[WireAcceptor]:
 	traverse.call(root_node, traverse)
 	
 	return nodes_of_type
+	
+func purge_from_acceptors() -> void:
+	var workspace = get_node(workspace_path)
+	var candidates: Array[WireAcceptor] = find_wire_acceptors(workspace)
+	for candidate in candidates:
+		candidate.connectedNodes.erase(self)
 
 func is_connectable():
 	var workspace = get_node(workspace_path)
-	print(workspace)
 	var candidates: Array[WireAcceptor] = find_wire_acceptors(workspace)
-	print(candidates)
 	for candidate in candidates:
 		#check if the mouse is within the node
 		var mouse_pos = candidate.get_local_mouse_position()
@@ -72,13 +78,16 @@ func is_connectable():
 
 func _gui_input(event):
 	if event is InputEventMouseButton:
+		print("input!")
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			print("click on free wire end")
-			if event.pressed and not dragging:
+			if event.pressed and not dragging and not just_dropped:
 				dragging = true
 				dragStartPos = get_global_mouse_position() - global_position
-				originalPos = global_position
+				#originalPos = global_position
 				originalZIndex = z_index
+			if event.pressed and just_dropped:
+				just_dropped = false
 				
 
 func _input(event: InputEvent):
@@ -87,14 +96,21 @@ func _input(event: InputEvent):
 		z_index = 60
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
+			print("global click!")
 			if event.pressed and dragging:
 							dragging = false
+							just_dropped = true
 							z_index = originalZIndex
 							var connectable = is_connectable()
 							if connectable[0]:
 								var accepting_node: WireAcceptor = connectable[1]
+								purge_from_acceptors()
 								accepting_node.accept(self)
+
 							else:
-								global_position = originalPos
+								purge_from_acceptors()
+								position = originalPos
+								z_index = originalZIndex
+								isSticky = false
 		
 		

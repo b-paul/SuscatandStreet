@@ -1,13 +1,15 @@
 class_name WireAcceptor extends Control
 
 @export var is_wire_acceptor: bool = true
+@export var connectedNodes: Array[WireEnd]
+@export var connectedDragStartPositions: Array[Vector2]
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	connectedNodes = []
 
 func accept(node: WireEnd):
-	var goal_block: GoalBlock = get_parent().get_parent().get_parent()
-	goal_block.connectedNodes.push_back(node)
+	connectedNodes.push_back(node)
 	node.z_index = z_index + 1
 	node.isSticky = true
 
