@@ -6,7 +6,9 @@
 
 [node name="root" type="Node"]
 
-[node name="bg" type="TextureRect" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="bg" type="TextureRect" parent="CanvasLayer"]
 texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,67 +17,79 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_c8sky")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HSplitContainer" type="HSplitContainer" parent="HBoxContainer"]
+[node name="HSplitContainer" type="HSplitContainer" parent="CanvasLayer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 6.9
 
-[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/HSplitContainer"]
-custom_minimum_size = Vector2(42, 2.08165e-12)
+[node name="Info bar" type="VBoxContainer" parent="CanvasLayer/HBoxContainer/HSplitContainer"]
+custom_minimum_size = Vector2(150, 2.08165e-12)
 layout_mode = 2
 
-[node name="ColorRect" type="ColorRect" parent="HBoxContainer/HSplitContainer/ScrollContainer"]
+[node name="Instruction" type="ScrollContainer" parent="CanvasLayer/HBoxContainer/HSplitContainer/Info bar"]
+custom_minimum_size = Vector2(150, 200)
+layout_mode = 2
+size_flags_stretch_ratio = 3.1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/HBoxContainer/HSplitContainer/Info bar/Instruction"]
+custom_minimum_size = Vector2(150, 300)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Instructions go here"
+
+[node name="Hint box" type="VBoxContainer" parent="CanvasLayer/HBoxContainer/HSplitContainer/Info bar"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/HBoxContainer/HSplitContainer/Info bar"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0901961, 0.0901961, 0.0901961, 1)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/HSplitContainer/ScrollContainer"]
-custom_minimum_size = Vector2(150, 300)
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/HBoxContainer/HSplitContainer"]
+custom_minimum_size = Vector2(400, 600)
 layout_mode = 2
-text = "Instructions go here"
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="HBoxContainer/HSplitContainer"]
-custom_minimum_size = Vector2(700, 600)
-layout_mode = 2
+size_flags_stretch_ratio = 6.9
 script = ExtResource("1_84olt")
 
-[node name="TabContainer" type="TabContainer" parent="HBoxContainer"]
+[node name="TabContainer" type="TabContainer" parent="CanvasLayer/HBoxContainer"]
 custom_minimum_size = Vector2(420, 2.08165e-12)
 layout_mode = 2
+size_flags_stretch_ratio = 3.1
 theme_override_font_sizes/font_size = 42
 tab_alignment = 2
 
-[node name="Inventory 1" type="VBoxContainer" parent="HBoxContainer/TabContainer"]
+[node name="Inventory 1" type="VBoxContainer" parent="CanvasLayer/HBoxContainer/TabContainer"]
 custom_minimum_size = Vector2(420, 2.08165e-12)
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="item1" parent="HBoxContainer/TabContainer/Inventory 1" instance=ExtResource("3_cufy3")]
+[node name="item1" parent="CanvasLayer/HBoxContainer/TabContainer/Inventory 1" instance=ExtResource("3_cufy3")]
 layout_mode = 2
 
-[node name="item2" parent="HBoxContainer/TabContainer/Inventory 1" instance=ExtResource("3_cufy3")]
+[node name="item2" parent="CanvasLayer/HBoxContainer/TabContainer/Inventory 1" instance=ExtResource("3_cufy3")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer/TabContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
 text = "Tab 1"
 metadata/_tab_index = 1
 
-[node name="Label2" type="Label" parent="HBoxContainer/TabContainer"]
+[node name="Label2" type="Label" parent="CanvasLayer/HBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
 text = "Tab 2"
 metadata/_tab_index = 2
 
-[node name="Label3" type="Label" parent="HBoxContainer/TabContainer"]
+[node name="Label3" type="Label" parent="CanvasLayer/HBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
 text = "Tab 3"

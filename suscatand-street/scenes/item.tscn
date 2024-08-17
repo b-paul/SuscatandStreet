@@ -1,11 +1,9 @@
 [gd_scene load_steps=4 format=3 uid="uid://cm425f8572v21"]
 
 [ext_resource type="Script" path="res://scripts/margin_container.gd" id="1_q3ot3"]
+[ext_resource type="Script" path="res://scripts/node2D.gd" id="2_uu5mp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qylmc"]
-
-[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_d57dt"]
-points = PackedVector2Array(69, 69, 2.08165e-12, -42, -69, 69)
 
 [node name="MarginContainer" type="MarginContainer"]
 custom_minimum_size = Vector2(2.08165e-12, 130)
@@ -15,25 +13,40 @@ script = ExtResource("1_q3ot3")
 layout_mode = 2
 theme_override_font_sizes/font_size = 69
 text = "F"
-horizontal_alignment = 1
+horizontal_alignment = 3
 metadata/_edit_use_anchors_ = true
 
 [node name="Node2D" type="Node2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(54, 47)
+script = ExtResource("2_uu5mp")
 
-[node name="in" type="CollisionShape2D" parent="Node2D"]
+[node name="tri area" type="Area2D" parent="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="Node2D/tri area"]
+offset_left = 25.0
+offset_top = 3.0
+offset_right = 65.0
+offset_bottom = 43.0
+
+[node name="tri" type="CollisionPolygon2D" parent="Node2D/tri area"]
+position = Vector2(25, 3)
+polygon = PackedVector2Array(69, 69, 2.08165e-12, -42, -69, 69)
+
+[node name="in area" type="Area2D" parent="Node2D"]
+
+[node name="in" type="CollisionShape2D" parent="Node2D/in area"]
 position = Vector2(-9, 15)
 shape = SubResource("CircleShape2D_qylmc")
 
-[node name="out" type="CollisionShape2D" parent="Node2D"]
+[node name="out area" type="Area2D" parent="Node2D"]
+
+[node name="out" type="CollisionShape2D" parent="Node2D/out area"]
 position = Vector2(59, 15)
 shape = SubResource("CircleShape2D_qylmc")
 
-[node name="F" type="CollisionShape2D" parent="Node2D"]
+[node name="F area" type="Area2D" parent="Node2D"]
+
+[node name="F" type="CollisionShape2D" parent="Node2D/F area"]
 position = Vector2(25, 73)
 shape = SubResource("CircleShape2D_qylmc")
-
-[node name="tri" type="CollisionShape2D" parent="Node2D"]
-position = Vector2(25, 3)
-shape = SubResource("ConvexPolygonShape2D_d57dt")
-debug_color = Color(0, 0.531755, 0.621336, 0.42)
