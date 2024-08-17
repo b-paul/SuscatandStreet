@@ -3,6 +3,7 @@ extends CenterContainer
 @export var value_name: String
 @export var type_name: String
 @export var output: String
+@export var outputReady : bool = false
 
 	
 # Called when the node enters the scene tree for the first time.
@@ -26,7 +27,7 @@ var stickyNodeStartPositions: Array
 func _process(delta: float) -> void:
 	if inputs.functionInput.provided and inputs.regularInput.provided:
 		# output = function apply to input
-		pass
+		outputReady = true
 
 func _ready():
 	#$Control/Label.text = value_name
@@ -35,7 +36,6 @@ func _ready():
 	stickyNodes = [$Control/Node2D/out/Wire/EndBox]
 	stickyNodeStartPositions = [$Control/Node2D/out/Wire/EndBox.global_position]
 
-	
 	# init input type
 	inputs.functionInput.type = "function"
 	inputs.functionInput.node = $Control/Node2D/WireAcceptorFunc
