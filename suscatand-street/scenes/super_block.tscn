@@ -1,10 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cre063akjjpbe"]
+[gd_scene load_steps=2 format=3 uid="uid://ckc1jjwurruiu"]
 
-[ext_resource type="PackedScene" uid="uid://c3s7hqmndov1e" path="res://scenes/DraggableWorkspaceComponent.tscn" id="1_dwboi"]
-[ext_resource type="Script" path="res://scripts/super_block.gd" id="2_mg04b"]
+[ext_resource type="PackedScene" uid="uid://dkby2pm00k5ln" path="res://scenes/DraggableWorkspaceComponent.tscn" id="1_dwboi"]
 
 [node name="DraggableWorkspaceComponent" instance=ExtResource("1_dwboi")]
-script = ExtResource("2_mg04b")
 
-[node name="Control" type="Control" parent="." index="0"]
+[node name="Control2" type="Control" parent="." index="0"]
 layout_mode = 2

@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3438bd1nueq7"]
+
+[ext_resource type="PackedScene" uid="uid://ckc1jjwurruiu" path="res://scenes/super_block.tscn" id="1_rsdrb"]
+[ext_resource type="PackedScene" uid="uid://dop18t1kbn321" path="res://scenes/Wire_Acceptor.tscn" id="2_2kbok"]
+[ext_resource type="Texture2D" uid="uid://dkl1m8bgbuon6" path="res://assets/out.png" id="3_phdym"]
+[ext_resource type="PackedScene" uid="uid://qknhuqusj5av" path="res://scenes/Wire.tscn" id="4_j1q2d"]
+
+[node name="DraggableWorkspaceComponent" instance=ExtResource("1_rsdrb")]
+custom_minimum_size = Vector2(150, 150)
+offset_left = 34.0
+offset_top = 15.0
+offset_right = 184.0
+offset_bottom = 165.0
+
+[node name="CenterContainer2" type="CenterContainer" parent="Control" index="0"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Node2D" type="Node2D" parent="Control/CenterContainer2" index="0"]
+unique_name_in_owner = true
+position = Vector2(-25, -27)
+
+[node name="tri" type="Polygon2D" parent="Control/CenterContainer2/Node2D" index="0"]
+position = Vector2(25, 3)
+polygon = PackedVector2Array(69, 69, 2.08165e-12, -42, -69, 69)
+
+[node name="in" type="Polygon2D" parent="Control/CenterContainer2/Node2D" index="1"]
+position = Vector2(-9, 15)
+color = Color(0.258824, 0.588235, 0.647059, 0.717647)
+polygon = PackedVector2Array(-15, 2.08165e-12, -8, -12, 8, -12, 15, 2.08165e-12, 8, 12, -8, 12)
+
+[node name="WireAcceptor" parent="Control/CenterContainer2/Node2D/in" index="0" instance=ExtResource("2_2kbok")]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 24.0
+offset_bottom = 24.0
+scale = Vector2(0.8, 0.8)
+
+[node name="out" type="Sprite2D" parent="Control/CenterContainer2/Node2D" index="2"]
+position = Vector2(59, 15)
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("3_phdym")
+
+[node name="Wire" parent="Control/CenterContainer2/Node2D/out" index="0" instance=ExtResource("4_j1q2d")]
+scale = Vector2(11, 11)
+
+[node name="F" type="Polygon2D" parent="Control/CenterContainer2/Node2D" index="3"]
+position = Vector2(25, 73)
+color = Color(0.258824, 0.588235, 0.647059, 0.717647)
+polygon = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
+
+[node name="WireAcceptor" parent="Control/CenterContainer2/Node2D/F" index="0" instance=ExtResource("2_2kbok")]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 24.0
+offset_bottom = 24.0
+scale = Vector2(0.8, 0.8)
