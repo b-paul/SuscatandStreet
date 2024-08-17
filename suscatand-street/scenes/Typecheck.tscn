@@ -1,0 +1,59 @@
+[gd_scene load_steps=14 format=3 uid="uid://dlnht27yr4rm7"]
+
+[ext_resource type="Script" path="res://scripts/types/typetype.gd" id="1_uhotq"]
+[ext_resource type="Script" path="res://scripts/types/prim_type.gd" id="2_3ycht"]
+[ext_resource type="Script" path="res://scripts/types/unknown_type.gd" id="3_1vuxi"]
+[ext_resource type="Script" path="res://scripts/types/false_type.gd" id="4_mahch"]
+[ext_resource type="Script" path="res://scripts/types/true_type.gd" id="5_qvd14"]
+[ext_resource type="Script" path="res://scripts/types/function_type.gd" id="6_1ainw"]
+[ext_resource type="Script" path="res://scripts/types/block.gd" id="7_o7of4"]
+[ext_resource type="Script" path="res://scripts/types/connector.gd" id="7_td2yo"]
+[ext_resource type="Script" path="res://scripts/types/input_block.gd" id="9_gxowl"]
+[ext_resource type="Script" path="res://scripts/types/output_block.gd" id="10_vx6j0"]
+[ext_resource type="Script" path="res://scripts/types/applicator_block.gd" id="11_km4v1"]
+[ext_resource type="Script" path="res://scripts/types/namespace.gd" id="12_6lvrv"]
+[ext_resource type="Script" path="res://scripts/types/lambda_block.gd" id="12_tycop"]
+
+[node name="Typecheck" type="Node"]
+
+[node name="Type" type="Node" parent="."]
+script = ExtResource("1_uhotq")
+
+[node name="PrimType" type="Node" parent="Type"]
+script = ExtResource("2_3ycht")
+
+[node name="UnknownType" type="Node" parent="Type"]
+script = ExtResource("3_1vuxi")
+
+[node name="FalseType" type="Node" parent="Type"]
+script = ExtResource("4_mahch")
+
+[node name="TrueType" type="Node" parent="Type"]
+script = ExtResource("5_qvd14")
+
+[node name="FunctionType" type="Node" parent="Type"]
+script = ExtResource("6_1ainw")
+
+[node name="TypeType" type="Node" parent="Type"]
+script = ExtResource("1_uhotq")
+
+[node name="Connector" type="Node" parent="."]
+script = ExtResource("7_td2yo")
+
+[node name="Block" type="Node" parent="."]
+script = ExtResource("7_o7of4")
+
+[node name="InputBlock" type="Node" parent="Block"]
+script = ExtResource("9_gxowl")
+
+[node name="OutputBlock" type="Node" parent="Block"]
+script = ExtResource("10_vx6j0")
+
+[node name="ApplicatorBlock" type="Node" parent="Block"]
+script = ExtResource("11_km4v1")
+
+[node name="LambdaBlock" type="Node" parent="Block"]
+script = ExtResource("12_tycop")
+
+[node name="Namespace" type="Node" parent="."]
+script = ExtResource("12_6lvrv")
