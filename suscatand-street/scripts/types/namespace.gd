@@ -52,11 +52,26 @@ func typeCheck():
 					stack.append(target)
 			continue
 
-		# TODO check we don't go outside of a namespace
-
 		# Else we are an input node
+
+
+		# TODO check we don't go outside of a namespace
 		assert(cur.isInput)
 		var from = cur.inConnections[0]
+		
+		var namespaceLegal = false
+		var curNamespace = cur.parentBlock.parentNamespace
+		while curNamespace != null:
+			if curNamespace == from.parentBlock.parentNamespace:
+				namespaceLegal = true
+				break
+			if curNamespace.parentBlock == null:
+				break
+			curNamespace = curNamespace.parentBlock.parentNamespace
+		if !namespaceLegal:
+			failed = true
+			continue
+
 		if block is InputBlock:
 			assert(false) # We only have output nodes in this case
 		elif block is OutputBlock:
