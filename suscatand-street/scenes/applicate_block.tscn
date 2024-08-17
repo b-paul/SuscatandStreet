@@ -16,6 +16,7 @@ script = ExtResource("2_6jtcw")
 value_name = ""
 type_name = ""
 output = ""
+outputReady = false
 stickyNodes = []
 
 [node name="Node2D" type="Node2D" parent="Control" index="0"]
