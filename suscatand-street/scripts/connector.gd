@@ -17,8 +17,6 @@ func disconnect_node(node: ConnectorNode) -> void:
 		return
 	connectedNodes.erase(node)
 	#communicate with backend
-	
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
