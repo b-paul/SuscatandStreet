@@ -56,7 +56,9 @@ func purge_from_acceptors() -> void:
 	var workspace = get_node(workspace_path)
 	var candidates: Array[WireAcceptor] = find_wire_acceptors(workspace)
 	for candidate in candidates:
-		candidate.connectedNodes.erase(self)
+		if self in candidate.connectedNodes:
+			#destroyConnection(self, candidate)
+			candidate.connectedNodes.erase(self)
 
 func is_connectable():
 	var workspace = get_node(workspace_path)
@@ -78,15 +80,14 @@ func is_connectable():
 
 func _gui_input(event):
 	if event is InputEventMouseButton:
-		print("input!")
-		if event.button_index == MOUSE_BUTTON_LEFT:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			print("click on free wire end")
-			if event.pressed and not dragging and not just_dropped:
+			if not dragging and not just_dropped:
 				dragging = true
 				dragStartPos = get_global_mouse_position() - global_position
 				#originalPos = global_position
 				originalZIndex = z_index
-			if event.pressed and just_dropped:
+			if just_dropped:
 				just_dropped = false
 				
 
@@ -96,13 +97,12 @@ func _input(event: InputEvent):
 		z_index = 60
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			print("global click!")
 			if event.pressed and dragging:
 							dragging = false
-							just_dropped = true
 							z_index = originalZIndex
 							var connectable = is_connectable()
 							if connectable[0]:
+								just_dropped = true
 								var accepting_node: WireAcceptor = connectable[1]
 								purge_from_acceptors()
 								accepting_node.accept(self)
