@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgv3qn41l83pg"]
+
+[ext_resource type="Script" path="res://scripts/connector.gd" id="1_rltil"]
+[ext_resource type="Script" path="res://scripts/wire_artist.gd" id="2_81vmd"]
+
+[node name="Connector" type="CenterContainer"]
+script = ExtResource("1_rltil")
+
+[node name="Background" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+color = Color(1, 0, 0, 1)
+
+[node name="WireArtist" type="Node2D" parent="."]
+script = ExtResource("2_81vmd")
