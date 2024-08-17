@@ -26,7 +26,6 @@ func _ready() -> void:
 	for c in connectors:
 		c.coordinator = self
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
