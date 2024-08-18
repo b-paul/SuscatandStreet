@@ -2,21 +2,37 @@ extends VBoxContainer
 
 @export var slot_size: Vector2 = Vector2(200, 200)
 @export var slot_spacing: float = 69
-@export var block_UIDs: Array[String] = ["uid://hg2qkq7cb6uc","uid://b2p2wnjkqxitw", "uid://c34gd6iom0l2t", "uid://bdjteonbibkwu"]  
+@export var block_UIDs: Array[String] = ["uid://dmcxo8mf0s5fr","uid://b2p2wnjkqxitw", "uid://c0uo6afj7i45f", "uid://bdjteonbibkwu"]  
 @export var num_slots: int = block_UIDs.size() + 1
-var drag_data = null
+@export var target_container: NodePath = "../../HSplitContainer/PanelContainer"
+
+var drag_preview: Node = null
+var dragged_uid: String = ""
+var target: Node
 
 func _ready():
 	setup_slots()
+	setup_target()
 	
+func setup_target():
+	if target_container.is_empty():
+		push_warning("Target container path is not set.")
+	else:
+		target = get_node_or_null(target_container)
+		if not target:
+			push_error("Target container not found.")
+
 func load_blocks(container):
 	for UID in block_UIDs:
 		var id: int = ResourceUID.text_to_id(UID)
 		if ResourceUID.has_id(id):
 			var path = load(ResourceUID.get_id_path(id))
 			var block = path.instantiate()
+			disable_block_drag(block)		
 			container.add_child(block)
-
+			block.gui_input.connect(_on_block_gui_input.bind(UID))
+			print("Connected gui_input for block with UID:", UID)
+			
 func setup_slots():
 	var scroll_container = ScrollContainer.new()
 	scroll_container.size_flags_horizontal = SIZE_EXPAND_FILL
@@ -31,15 +47,18 @@ func setup_slots():
 	load_blocks(slot_container)
 		
 	if num_slots > block_UIDs.size():
-		slot_container.add_child(create_slot(block_UIDs.size()))
+		slot_container.add_child(create_slot(false))
 		
 
-func create_slot(index: int) -> Panel:
+func create_slot(trans: bool) -> Panel:
 	var slot = Panel.new()
 	slot.custom_minimum_size = slot_size
 	slot.size_flags_horizontal = SIZE_SHRINK_CENTER
 	
-	slot.gui_input.connect(_on_slot_gui_input.bind(slot))
+	if trans:
+		var style_box = StyleBoxFlat.new()
+		style_box.set_bg_color(Color(0, 0, 0, 0))
+		slot.add_theme_stylebox_override("panel", style_box)
 	
 	return slot
 
@@ -48,50 +67,52 @@ func add_block_to_slot(block: Node, slot: Panel):
 		slot.get_child(0).queue_free()
 	
 	slot.add_child(block)
-	
-	# Adjust the size of the block to fit the slot
-	block.scale = Vector2.ONE * min(slot_size.x / block.size.x, slot_size.y / block.size.y)
+	block.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
+	block.size_flags_horizontal = SIZE_SHRINK_CENTER
+	#block.scale = Vector2.ONE * min(slot_size.x / block.size.x, slot_size.y / block.size.y)
 
-func _on_slot_gui_input(event: InputEvent, slot: Panel):
+func disable_block_drag(block: Node):
+	block.dragging_enabled = false
+	block.dragging = false
+	block.dragStartPos = Vector2.ZERO
+
+func _on_block_gui_input(event: InputEvent, uid: String):
+	print("_on_block_gui_input called with UID:", uid)
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
-				# Start drag
-				drag_data = {"origin": slot, "content": slot.get_child(0) if slot.get_child_count() > 0 else null}
+				# start drag
+				dragged_uid = uid
+				create_drag_preview(uid)
 			else:
-				# End drag
-				if drag_data:
-					if drag_data["origin"] != slot:
-						# Swap content
-						var temp = slot.get_child(0) if slot.get_child_count() > 0 else null
-						if drag_data["content"]:
-							drag_data["origin"].remove_child(drag_data["content"])
-							add_block_to_slot(drag_data["content"], slot)
-						if temp:
-							slot.remove_child(temp)
-							add_block_to_slot(temp, drag_data["origin"])
-						
-					drag_data = null
+				# end drag
+				if dragged_uid != "":
+					if target and is_instance_valid(target) and target.get_global_rect().has_point(get_global_mouse_position()):
+						var id: int = ResourceUID.text_to_id(dragged_uid)
+						if ResourceUID.has_id(id):
+							var path = load(ResourceUID.get_id_path(id))
+							var new_block = path.instantiate()
+							target.add_child(new_block)
+							new_block.global_position = get_global_mouse_position() - new_block.size / 2
+					
+					remove_drag_preview()
+					dragged_uid = ""
+
+func create_drag_preview(uid: String):
+	var id: int = ResourceUID.text_to_id(uid)
+	if ResourceUID.has_id(id):
+		var path = load(ResourceUID.get_id_path(id))
+		drag_preview = path.instantiate()
+		drag_preview.modulate.a = 0.69
+		get_tree().root.add_child(drag_preview)
+		drag_preview.global_position = get_global_mouse_position() - drag_preview.size / 2
+
+func remove_drag_preview():
+	if drag_preview:
+		drag_preview.queue_free()
+		drag_preview = null
 
 func _input(event: InputEvent):
 	if event is InputEventMouseMotion:
-		if drag_data:
-			# Update drag visual TODO
-			pass
-
-#func update_blocks_array():
-	#block_UIDs.clear()
-	#var slot_container = get_node("ScrollContainer/VBoxContainer")
-	#for slot in slot_container.get_children():
-		#if slot.get_child_count() > 0:
-			#block_UIDs.append(slot.get_child(0))
-
-
-#func add_new_block(block: String):
-	#block_UIDs.append(block)
-	#var slot_container = get_node("ScrollContainer/VBoxContainer")
-	#for slot in slot_container.get_children():
-		#if slot.get_child_count() == 0:
-			#add_block_to_slot(block, slot)
-			#return
-	#print("No empty slots available")
+		if drag_preview:
+			drag_preview.global_position = get_global_mouse_position() - drag_preview.size / 2
