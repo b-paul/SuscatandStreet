@@ -2,6 +2,11 @@ class_name BackendCommunicator extends Node2D
 
 @export var blocks: Array[GenericBlock]
 @export var connectors: Dictionary
+var bigNameSpace: Namespace = Namespace.new()
+var blockMappings: Dictionary = {}
+var reverseBlockMappings: Dictionary = {}
+var connectorMappings: Dictionary = {}
+var reverseConnectorMappings: Dictionary = {}
 
 func enumerate_blocks(root_node: Node) -> Array[GenericBlock]:
 	var nodes_of_type: Array[GenericBlock] = []
@@ -28,18 +33,47 @@ func get_connector_index(node: ConnectorNode) -> int:
 	var block: GenericBlock = node.get_parent().get_parent()
 	return block.connectors.find(node)
 
+func render_game_state() -> void:
+	var isWon: bool = check_game_state()
+	for connector: ConnectorNode in reverseConnectorMappings.keys():
+		var modelConnector: Connector = reverseConnectorMappings[connector]
+		#print("Updating the following connector:")
+		#print(connector)
+		#print(modelConnector)
+		connector.type = modelConnector.type
+		connector.display_type_name()
+		if modelConnector.value == null:
+			#sad
+			connector.set_color(Color.RED)
+		else:
+			#happy
+			connector.set_color(Color.BLUE)
+	for block: GenericBlock in reverseBlockMappings.keys():
+		if block.block_type != "goal":
+			continue
+		var connector: ConnectorNode = block.connectors[0]
+		var happinessHandler: GoalHappinessHandler = block.get_child(2)
+		if reverseConnectorMappings[connector].value != null:
+			happinessHandler.make_happy()
+		else:
+			happinessHandler.make_sad()
+			
+	if isWon:
+		#win condition
+		pass
+
 func check_game_state() -> bool:
 	get_game_state()
-	var bigNameSpace: Namespace = Namespace.new()
-	var blockMappings: Dictionary = {}
-	var reverseBlockMappings: Dictionary = {}
-	var connectorMappings: Dictionary = {}
-	var reverseConnectorMappings: Dictionary = {}
+	bigNameSpace = Namespace.new()
+	blockMappings = {}
+	reverseBlockMappings = {}
+	connectorMappings = {}
+	reverseConnectorMappings = {}
 	for block in blocks:
 		match block.block_type:
 			"input":
 				var connector: ConnectorNode = block.connectors[0]
-				var type = PrimType.new(connector.type_name)
+				var type = connector.type
 				var inputBlock = InputBlock.new(bigNameSpace, type, true)
 				blockMappings[inputBlock] = block
 				reverseBlockMappings[block] = inputBlock
@@ -48,7 +82,7 @@ func check_game_state() -> bool:
 				bigNameSpace.blocks.append(inputBlock)
 			"goal":
 				var connector: ConnectorNode = block.connectors[0]
-				var type = PrimType.new(connector.type_name)
+				var type = connector.type
 				var goalBlock = OutputBlock.new(bigNameSpace, type)
 				blockMappings[goalBlock] = block
 				reverseBlockMappings[block] = goalBlock
@@ -80,7 +114,7 @@ func check_game_state() -> bool:
 	 
 	
 func _ready():
-	print($ConnectorCoordinator/Workspace.get_children())
+	render_game_state()
 	#get_game_state()
 	#print("blocks:")
 	#for block in blocks:

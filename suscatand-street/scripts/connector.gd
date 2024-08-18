@@ -17,6 +17,11 @@ func get_type_name() -> String:
 func display_type_name() -> void:
 	$Control/Label.text = get_type_name()
 
+func set_color(color: Color) -> void:
+	$ConnectorLight.modulate = color
+	print("Setting color:")
+	print(color)
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	connectedNodes = []
@@ -24,16 +29,17 @@ func _ready() -> void:
 	$ConnectorSquare.visible = is_square
 
 func connect_node(node: ConnectorNode) -> void:
+	print("making a connection from" + self.to_string() + "to " + node.to_string())
 	connectedNodes.push_back(node)
 	print("Checking...")
-	print(controller.check_game_state())
+	controller.render_game_state()
 
 func disconnect_node(node: ConnectorNode) -> void:
 	if not node in connectedNodes:
 		return
 	connectedNodes.erase(node)
 	print("Checking...")
-	print(controller.check_game_state())
+	controller.render_game_state()
 	#communicate with backend
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://c34gd6iom0l2t"]
+[gd_scene load_steps=7 format=3 uid="uid://c34gd6iom0l2t"]
 
 [ext_resource type="PackedScene" uid="uid://ow2gujx12ivf" path="res://scenes/blocks/GenericBlock.tscn" id="1_mcfml"]
 [ext_resource type="Texture2D" uid="uid://da1pifgaqh3rq" path="res://assets/happy.svg" id="2_orno0"]
 [ext_resource type="Texture2D" uid="uid://edynuhv4vgw5" path="res://assets/box.svg" id="2_p3g7p"]
 [ext_resource type="PackedScene" uid="uid://bgv3qn41l83pg" path="res://scenes/Connector.tscn" id="3_66eq6"]
 [ext_resource type="Texture2D" uid="uid://bdl5jxataryyg" path="res://assets/sad.svg" id="4_eypdw"]
+[ext_resource type="Script" path="res://scripts/goal_happiness_handler.gd" id="6_qhmtj"]
 
 [node name="GenericBlock2" instance=ExtResource("1_mcfml")]
 custom_minimum_size = Vector2(100, 100)
@@ -50,3 +51,6 @@ offset_top = -24.0
 offset_right = -24.0
 offset_bottom = 24.0
 wire_normal = Vector2(-1, 0)
+
+[node name="HappinessHandler" type="Node2D" parent="." index="2"]
+script = ExtResource("6_qhmtj")

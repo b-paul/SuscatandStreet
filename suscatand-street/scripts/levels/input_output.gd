@@ -15,7 +15,7 @@ func _ready() -> void:
 	input1.position = Vector2(400,400)
 	input2.position = Vector2(400,800)
 	goal.position = Vector2(1200,600)
-	var typeA = PrimType.new("A")
+	var typeA = FunctionType.new(PrimType.new("A"), PrimType.new("A"))
 	var typeB = PrimType.new("B")
 	input1.connectors[0].type = typeA
 	input1.connectors[0].display_type_name()
