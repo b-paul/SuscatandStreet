@@ -23,6 +23,11 @@ func _ready() -> void:
 	$ConnectorCircle.visible = not is_square
 	$ConnectorSquare.visible = is_square
 
+func set_type_name(new_type_name: String) -> void:
+	type_name = new_type_name
+	$Control/Label.set_text(type_name)
+	$Control/Label.reposition()
+
 func connect_node(node: ConnectorNode) -> void:
 	connectedNodes.push_back(node)
 	print("Checking...")

@@ -10,7 +10,15 @@
 custom_minimum_size = Vector2(100, 100)
 block_type = "goal"
 
-[node name="Box" type="NinePatchRect" parent="." index="0"]
+[node name="Connector" parent="Connectors" index="0" instance=ExtResource("3_66eq6")]
+layout_mode = 2
+offset_left = -72.0
+offset_top = -24.0
+offset_right = -24.0
+offset_bottom = 24.0
+wire_normal = Vector2(-1, 0)
+
+[node name="Box" type="NinePatchRect" parent="." index="1"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 texture = ExtResource("2_p3g7p")
@@ -42,11 +50,3 @@ offset_right = 102.0
 offset_bottom = 102.0
 scale = Vector2(0.815, 0.815)
 texture = ExtResource("2_orno0")
-
-[node name="Connector" parent="Connectors" index="0" instance=ExtResource("3_66eq6")]
-layout_mode = 2
-offset_left = -72.0
-offset_top = -24.0
-offset_right = -24.0
-offset_bottom = 24.0
-wire_normal = Vector2(-1, 0)
