@@ -8,7 +8,6 @@ extends VBoxContainer
 @export var target_container: NodePath = "../../HSplitContainer/PanelContainer"
 
 var drag_preview: Node = null
-var dragged_uid: String = ""
 var target: Node
 var dragging: bool = false
 
@@ -88,12 +87,9 @@ func _on_block_gui_input(event: InputEvent, uid: String):
 			if event.pressed:
 				# start drag
 				dragging = true
-				dragged_uid = uid
 				create_drag_preview(uid)
-			else:
-				# end drag
+			else: # end drag
 				dragging = false
-				dragged_uid = ""
 
 func create_drag_preview(uid: String):
 	var id: int = ResourceUID.text_to_id(uid)
