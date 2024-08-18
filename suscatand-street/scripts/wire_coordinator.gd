@@ -77,7 +77,7 @@ func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
-				for i in len(hovering):
+				for i in range(len(hovering)):
 					if hovering[i].size() > 0:
 						get_parent().connectors[i].disconnect_node(
 							connections[i][hovering[i][0]])

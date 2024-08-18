@@ -97,6 +97,7 @@ func _on_block_gui_input(event: InputEvent, uid: String):
 							print(new_block)
 							target.get_child(0).get_child(0).get_child(1).get_child(0).add_child(new_block)
 							target.get_child(0).get_child(0).init_connectors()
+							target.get_child(0).render_game_state()
 							new_block.global_position = get_global_mouse_position() - new_block.size / 2
 					
 					remove_drag_preview()
