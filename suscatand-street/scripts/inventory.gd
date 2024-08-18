@@ -3,7 +3,7 @@ extends VBoxContainer
 @export var slot_size: Vector2 = Vector2(200, 200)
 @export var slot_spacing: float = 69
 #@export var block_UIDs: Array[String] = ["uid://dmcxo8mf0s5fr","uid://b2p2wnjkqxitw", "uid://c0uo6afj7i45f", "uid://bdjteonbibkwu"]
-@export var block_UIDs: Array[String] = ["uid://b2p2wnjkqxitw"]  
+@export var block_UIDs: Array[String] = ["uid://b2p2wnjkqxitw", "uid://h0luygec5mwn"]  
 @export var num_slots: int = block_UIDs.size()
 @export var target_container: NodePath = "../../HSplitContainer/PanelContainer"
 
@@ -51,6 +51,18 @@ func setup_slots():
 		slot_container.add_child(create_slot(false))
 		
 
+
+func deepest_lambda_at_mouse(node : Node):
+	for child in node.get_children():
+		var res = deepest_lambda_at_mouse(child)
+		if res:
+			return res
+	if "i_am_a_block" in node:
+		if node.block_type == "lambda":
+			if node.get_global_rect().has_point(get_global_mouse_position()):
+				return node
+	return null
+
 func create_slot(trans: bool) -> Panel:
 	var slot = Panel.new()
 	slot.custom_minimum_size = slot_size
@@ -95,7 +107,12 @@ func _on_block_gui_input(event: InputEvent, uid: String):
 							var new_block = path.instantiate()
 							print("Just created a block:")
 							print(new_block)
-							target.get_child(0).get_child(0).get_child(1).get_child(0).add_child(new_block)
+							var workspace = target.get_child(0).get_child(0).get_child(1).get_child(0)
+							var possibleLambda = deepest_lambda_at_mouse(workspace)
+							if possibleLambda:
+								possibleLambda.get_node("Workspace").add_child(new_block)
+							else:
+								workspace.add_child(new_block)
 							target.get_child(0).get_child(0).init_connectors()
 							target.get_child(0).render_game_state()
 							new_block.global_position = get_global_mouse_position() - new_block.size / 2

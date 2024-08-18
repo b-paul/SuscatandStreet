@@ -31,7 +31,7 @@ func toString():
 	elif self is TrueType:
 		return "⊤"
 	elif self is TypeType:
-		return ""
+		return "Type"
 	elif self is FunctionType:
 		var domString = self.domain.toString()
 		var codString = self.codomain.toString()

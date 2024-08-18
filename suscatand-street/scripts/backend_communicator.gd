@@ -41,6 +41,9 @@ func render_game_state() -> void:
 		#print(connector)
 		#print(modelConnector)
 		connector.type = modelConnector.type
+		print("About to display type:")
+		print(connector.get_parent().get_parent().block_type)
+		print(connector.type)
 		connector.display_type_name()
 		if modelConnector.value == null:
 			#sad
@@ -62,38 +65,47 @@ func render_game_state() -> void:
 		#win condition
 		pass
 
-func check_game_state() -> bool:
-	get_game_state()
-	bigNameSpace = Namespace.new()
-	blockMappings = {}
-	reverseBlockMappings = {}
-	connectorMappings = {}
-	reverseConnectorMappings = {}
-	for block in blocks:
+func get_parent_namespace(block: GenericBlock) -> Namespace:
+	var currentNode: Node = block.get_parent()
+	while true:
+		if "i_am_a_block" in currentNode:
+			if currentNode.block_type == "lambda":
+				return currentNode.get_node("LambdaHandler").lambda_namespace
+		if currentNode == get_tree().get_root():
+			return bigNameSpace
+		currentNode = currentNode.get_parent()
+	return bigNameSpace
+	
+func construct_model_namespace(node: Node, parentNamespace: Namespace) -> Namespace:
+	if "i_am_a_block" in node:
+		var block: GenericBlock = node
+		#add the block to the namespace
+		if block in reverseBlockMappings:
+			return
 		match block.block_type:
 			"input":
 				var connector: ConnectorNode = block.connectors[0]
 				var type = connector.type
-				var inputBlock = InputBlock.new(bigNameSpace, type, true)
+				var inputBlock = InputBlock.new(parentNamespace, type, connector.value)
 				blockMappings[inputBlock] = block
 				reverseBlockMappings[block] = inputBlock
 				connectorMappings[inputBlock.connector] = connector
 				reverseConnectorMappings[connector] = inputBlock.connector
-				bigNameSpace.blocks.append(inputBlock)
+				parentNamespace.blocks.append(inputBlock)
 			"goal":
 				var connector: ConnectorNode = block.connectors[0]
 				var type = connector.type
-				var goalBlock = OutputBlock.new(bigNameSpace, type)
+				var goalBlock = OutputBlock.new(parentNamespace, type)
 				blockMappings[goalBlock] = block
 				reverseBlockMappings[block] = goalBlock
 				connectorMappings[goalBlock.connector] = connector
 				reverseConnectorMappings[connector] = goalBlock.connector
-				bigNameSpace.blocks.append(goalBlock)
+				parentNamespace.blocks.append(goalBlock)
 			"applicator":
 				var inConnector: ConnectorNode = block.connectors[0]
 				var outConnector: ConnectorNode = block.connectors[1]
 				var funcConnector: ConnectorNode = block.connectors[2]
-				var applicator = ApplicatorBlock.new(bigNameSpace)
+				var applicator = ApplicatorBlock.new(parentNamespace)
 				blockMappings[applicator] = block
 				reverseBlockMappings[block] = applicator
 				connectorMappings[applicator.argConnector] = inConnector
@@ -102,11 +114,57 @@ func check_game_state() -> bool:
 				reverseConnectorMappings[inConnector] = applicator.argConnector
 				reverseConnectorMappings[outConnector] = applicator.resultConnector
 				reverseConnectorMappings[funcConnector] = applicator.functionConnector
-				bigNameSpace.blocks.append(applicator)
+				parentNamespace.blocks.append(applicator)
 			"lambda":
-				pass
+				var inTypeConnector: ConnectorNode = block.connectors[0]
+				var outTypeConnector: ConnectorNode = block.connectors[1]
+				var funcConnector: ConnectorNode = block.connectors[2]
+				var lambdaHandler: LambdaHandler = block.get_node("LambdaHandler")
+				var modelLambda: LambdaBlock = LambdaBlock.new(parentNamespace)
+				
+				blockMappings[modelLambda] = block
+				reverseBlockMappings[block] = modelLambda
+				
+				connectorMappings[modelLambda.inputTypeConnector] = inTypeConnector
+				connectorMappings[modelLambda.outputTypeConnector] = outTypeConnector
+				connectorMappings[modelLambda.outputConnector] = funcConnector
+				reverseConnectorMappings[inTypeConnector] = modelLambda.inputTypeConnector
+				reverseConnectorMappings[outTypeConnector] = modelLambda.outputTypeConnector
+				reverseConnectorMappings[funcConnector] = modelLambda.outputConnector
+				
+				var lambda_namespace: Namespace = modelLambda.lambdaNamespace
+				
+				blockMappings[modelLambda.innerInputBlock] = lambdaHandler.innerInputBlock
+				reverseBlockMappings[lambdaHandler.innerInputBlock] = modelLambda.innerInputBlock
+				connectorMappings[modelLambda.innerInputBlock.connector] = lambdaHandler.innerInputBlock.connectors[0]
+				reverseConnectorMappings[lambdaHandler.innerInputBlock.connectors[0]] = modelLambda.innerInputBlock.connector
+				
+				blockMappings[modelLambda.innerOutputBlock] = lambdaHandler.innerOutputBlock
+				reverseBlockMappings[lambdaHandler.innerOutputBlock] = modelLambda.innerOutputBlock
+				connectorMappings[modelLambda.innerOutputBlock.connector] = lambdaHandler.innerOutputBlock.connectors[0]
+				reverseConnectorMappings[lambdaHandler.innerOutputBlock.connectors[0]] = modelLambda.innerOutputBlock.connector
+				
+				lambdaHandler.lambda_namespace = lambda_namespace
+				for child_node in block.get_node("Workspace").get_children():
+					construct_model_namespace(child_node,lambda_namespace)
 			_:
 				assert(false)
+	else:
+		for child_node in node.get_children():
+			construct_model_namespace(child_node,parentNamespace)
+	
+	return parentNamespace
+		
+		
+
+func check_game_state() -> bool:
+	get_game_state()
+	blockMappings = {}
+	reverseBlockMappings = {}
+	connectorMappings = {}
+	reverseConnectorMappings = {}
+	bigNameSpace = Namespace.new()
+	construct_model_namespace($ConnectorCoordinator/LevelBuilder/Workspace, bigNameSpace)
 	for connector: ConnectorNode in reverseConnectorMappings.keys():
 		for otherConnector in connector.connectedNodes:
 			var modelConnector: Connector = reverseConnectorMappings[connector]

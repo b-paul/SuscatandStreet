@@ -4,7 +4,8 @@ class_name ConnectorNode extends CenterContainer
 @export var is_square: bool = false
 @export var connectedNodes: Array[ConnectorNode]
 @export var wire_normal: Vector2
-var type: Type
+var type: Type = UnknownType.new()
+var value
 
 var dragging_wire: bool = false
 var wire_dragged: Wire
@@ -15,7 +16,7 @@ func get_type_name() -> String:
 	return type.toString()
 
 func display_type_name() -> void:
-	$Control/Label.text = get_type_name()
+	set_type_name(get_type_name())
 
 func set_color(color: Color) -> void:
 	$ConnectorCircle.modulate = color

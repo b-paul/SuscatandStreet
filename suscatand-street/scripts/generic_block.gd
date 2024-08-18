@@ -6,6 +6,8 @@ class_name GenericBlock extends CenterContainer
 @export var connectors: Array[ConnectorNode]
 @export var dragging_enabled: bool = true
 
+var name_space: Namespace
+
 var dragging: bool = false
 var dragStartPos: Vector2
 var originalPos: Vector2
