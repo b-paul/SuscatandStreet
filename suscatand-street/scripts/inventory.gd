@@ -63,19 +63,13 @@ func create_slot(trans: bool) -> Panel:
 	
 	return slot
 
-func add_block_to_slot(block: Node, slot: Panel):
-	if slot.get_child_count() > 0:
-		slot.get_child(0).queue_free()
-	
-	slot.add_child(block)
-	block.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
-	block.size_flags_horizontal = SIZE_SHRINK_CENTER
-	#block.scale = Vector2.ONE * min(slot_size.x / block.size.x, slot_size.y / block.size.y)
 
 func disable_block_drag(block: Node):
 	block.dragging_enabled = false
 	block.dragging = false
 	block.dragStartPos = Vector2.ZERO
+	for c in block.get_child(0).get_children():
+		c.wire_enabled = false
 
 func _on_block_gui_input(event: InputEvent, uid: String):
 	print("_on_block_gui_input called with UID:", uid)

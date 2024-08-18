@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://b2p2wnjkqxitw"]
 
-[ext_resource type="PackedScene" uid="uid://ow2gujx12ivf" path="res://scenes/blocks/GenericBlock.tscn" id="1_cc1oq"]
+[ext_resource type="PackedScene" uid="uid://db8xskyl380ep" path="res://scenes/blocks/GenericBlock.tscn" id="1_cc1oq"]
 [ext_resource type="Texture2D" uid="uid://c0ph7hxgycifh" path="res://assets/triangle.svg" id="2_vyy01"]
 [ext_resource type="PackedScene" uid="uid://bgv3qn41l83pg" path="res://scenes/Connector.tscn" id="4_jh8ou"]
 
-[node name="GenericBlock2" instance=ExtResource("1_cc1oq")]
+[node name="GenericBlock4" instance=ExtResource("1_cc1oq")]
 offset_right = 110.0
 offset_bottom = 96.0
 block_type = "applicator"
