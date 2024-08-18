@@ -24,6 +24,10 @@ func draw_curve(connector: int, connection: int, start: Vector2, end: Vector2, s
 	draw_polyline(curve.get_baked_points(), Color(0.117647, 0.564706, 1, 1), line_width, true)
 
 func _draw() -> void:
+	#print("drawing:")
+	#print(self.get_path())
+	#print(get_parent())
+	#print(get_parent().connectors)
 	var connector_len = len(get_parent().connectors)
 	connections.resize(connector_len)
 	baked_points.resize(connector_len)

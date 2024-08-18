@@ -30,3 +30,4 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 4000.0
 offset_bottom = 2000.0
+metadata/_edit_use_anchors_ = true
