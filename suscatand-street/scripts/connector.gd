@@ -18,7 +18,7 @@ func display_type_name() -> void:
 	$Control/Label.text = get_type_name()
 
 func set_color(color: Color) -> void:
-	$ConnectorLight.modulate = color
+	$ConnectorCircle.modulate = color
 	print("Setting color:")
 	print(color)
 

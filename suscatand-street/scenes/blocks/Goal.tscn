@@ -11,15 +11,7 @@
 custom_minimum_size = Vector2(100, 100)
 block_type = "goal"
 
-[node name="Connector2" parent="Connectors" index="0" instance=ExtResource("3_66eq6")]
-layout_mode = 2
-offset_left = -72.0
-offset_top = -24.0
-offset_right = -24.0
-offset_bottom = 24.0
-wire_normal = Vector2(-1, 0)
-
-[node name="Connector" parent="Connectors" index="1" instance=ExtResource("3_66eq6")]
+[node name="Connector" parent="Connectors" index="0" instance=ExtResource("3_66eq6")]
 layout_mode = 2
 offset_left = -72.0
 offset_top = -24.0
