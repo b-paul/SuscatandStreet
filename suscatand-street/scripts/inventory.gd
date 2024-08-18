@@ -3,14 +3,14 @@ extends VBoxContainer
 @export var slot_size: Vector2 = Vector2(200, 200)
 @export var slot_spacing: float = 69
 #@export var block_UIDs: Array[String] = ["uid://dmcxo8mf0s5fr","uid://b2p2wnjkqxitw", "uid://c0uo6afj7i45f", "uid://bdjteonbibkwu"]
-@export var block_UIDs: Array[String] = ["uid://b2p2wnjkqxitw", "uid://h0luygec5mwn"]  
+@export var block_UIDs: Array[String] = ["uid://b2p2wnjkqxitw", "uid://d0qpaelqhw304"]  
 @export var num_slots: int = block_UIDs.size()
 @export var target_container: NodePath = "../../HSplitContainer/PanelContainer"
 
 var drag_preview: Node = null
 var target: Node
 var dragging: bool = false
-
+var dragged_uid: String = ""
 func _ready():
 	setup_slots()
 	setup_target()
@@ -99,7 +99,8 @@ func _on_block_gui_input(event: InputEvent, uid: String):
 			if event.pressed:
 				# start drag
 				dragging = true
-				create_drag_preview(uid)
+				dragged_uid = uid
+				#create_drag_preview(uid)
 			else:
 				# end drag
 				if dragged_uid != "":
@@ -120,7 +121,7 @@ func _on_block_gui_input(event: InputEvent, uid: String):
 							target.get_child(0).render_game_state()
 							new_block.global_position = get_global_mouse_position() - new_block.size / 2
 					
-					remove_drag_preview()
+					#remove_drag_preview()
 					dragged_uid = ""
 
 func create_drag_preview(uid: String):
@@ -136,5 +137,5 @@ func create_drag_preview(uid: String):
 
 func _input(event: InputEvent):
 	if event is InputEventMouseMotion:
-		if drag_preview and dragging:
+		if drag_preview:
 			drag_preview.global_position = get_global_mouse_position() - drag_preview.size / 2

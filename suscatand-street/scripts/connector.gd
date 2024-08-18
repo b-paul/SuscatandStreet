@@ -4,6 +4,7 @@ class_name ConnectorNode extends CenterContainer
 @export var is_square: bool = false
 @export var connectedNodes: Array[ConnectorNode]
 @export var wire_normal: Vector2
+@export var wire_enabled = true
 var type: Type = UnknownType.new()
 var value
 
