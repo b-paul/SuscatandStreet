@@ -27,7 +27,6 @@ func _ready() -> void:
 		c.coordinator = self
 		c.controller = self.get_parent()
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass

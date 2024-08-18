@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://b2p2wnjkqxitw" path="res://scenes/blocks/Applicator.tscn" id="8_cd7rh"]
 [ext_resource type="PackedScene" uid="uid://boiowunu68ysv" path="res://scenes/blocks/OrBlock.tscn" id="10_p2s1v"]
 [ext_resource type="Script" path="res://scripts/inventory.gd" id="13_584x7"]
+[ext_resource type="Script" path="res://scripts/wire_coordinator.gd" id="13_mfgqx"]
 
 [node name="root" type="Node"]
 
@@ -72,7 +73,10 @@ script = ExtResource("2_ki1mc")
 position = Vector2(-15, 0)
 script = ExtResource("5_ugrpo")
 
-[node name="GenericBlock" parent="CanvasLayer/HBoxContainer/HSplitContainer/PanelContainer/BackendCommunicator/ConnectorCoordinator" instance=ExtResource("7_exlit")]
+[node name="WireCoordinator" type="Node2D" parent="CanvasLayer/HBoxContainer/HSplitContainer/PanelContainer/ConnectorCoordinator"]
+script = ExtResource("13_mfgqx")
+
+[node name="GenericBlock" parent="CanvasLayer/HBoxContainer/HSplitContainer/PanelContainer/ConnectorCoordinator" instance=ExtResource("7_exlit")]
 offset_left = 434.0
 offset_top = 361.0
 offset_right = 534.0

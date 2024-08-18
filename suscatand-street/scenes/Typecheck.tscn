@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dlnht27yr4rm7"]
+[gd_scene load_steps=22 format=3 uid="uid://dlnht27yr4rm7"]
 
 [ext_resource type="Script" path="res://scripts/types/typetype.gd" id="1_uhotq"]
 [ext_resource type="Script" path="res://scripts/types/prim_type.gd" id="2_3ycht"]
@@ -7,12 +7,34 @@
 [ext_resource type="Script" path="res://scripts/types/true_type.gd" id="5_qvd14"]
 [ext_resource type="Script" path="res://scripts/types/function_type.gd" id="6_1ainw"]
 [ext_resource type="Script" path="res://scripts/types/block.gd" id="7_o7of4"]
+[ext_resource type="Script" path="res://scripts/types/and_type.gd" id="7_py6q7"]
 [ext_resource type="Script" path="res://scripts/types/connector.gd" id="7_td2yo"]
+[ext_resource type="Script" path="res://scripts/types/or_type.gd" id="8_2mitf"]
 [ext_resource type="Script" path="res://scripts/types/input_block.gd" id="9_gxowl"]
 [ext_resource type="Script" path="res://scripts/types/output_block.gd" id="10_vx6j0"]
-[ext_resource type="Script" path="res://scripts/types/applicator_block.gd" id="11_km4v1"]
 [ext_resource type="Script" path="res://scripts/types/namespace.gd" id="12_6lvrv"]
+[ext_resource type="Script" path="res://scripts/types/function_block.gd" id="12_rkit3"]
 [ext_resource type="Script" path="res://scripts/types/lambda_block.gd" id="12_tycop"]
+[ext_resource type="Script" path="res://scripts/types/and_block.gd" id="15_sbg3m"]
+[ext_resource type="Script" path="res://scripts/types/or_block.gd" id="16_n3xap"]
+[ext_resource type="Script" path="res://scripts/types/and_mk_block.gd" id="17_4ktn5"]
+[ext_resource type="Script" path="res://scripts/types/or_left_block.gd" id="18_boari"]
+[ext_resource type="Script" path="res://scripts/types/or_right_block.gd" id="19_cw1sa"]
+[ext_resource type="Script" path="res://scripts/types/not_elim_block.gd" id="13_s4faj"]
+
+[sub_resource type="GDScript" id="GDScript_ml3w8"]
+script/source = "extends Node
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
 
 [node name="Typecheck" type="Node"]
 
@@ -37,6 +59,12 @@ script = ExtResource("6_1ainw")
 [node name="TypeType" type="Node" parent="Type"]
 script = ExtResource("1_uhotq")
 
+[node name="AndType" type="Node" parent="Type"]
+script = ExtResource("7_py6q7")
+
+[node name="OrType" type="Node" parent="Type"]
+script = ExtResource("8_2mitf")
+
 [node name="Connector" type="Node" parent="."]
 script = ExtResource("7_td2yo")
 
@@ -50,10 +78,30 @@ script = ExtResource("9_gxowl")
 script = ExtResource("10_vx6j0")
 
 [node name="ApplicatorBlock" type="Node" parent="Block"]
-script = ExtResource("11_km4v1")
+script = SubResource("GDScript_ml3w8")
 
 [node name="LambdaBlock" type="Node" parent="Block"]
 script = ExtResource("12_tycop")
+
+[node name="FunctionBlock" type="Node" parent="Block"]
+script = ExtResource("12_rkit3")
+
+[node name="AndBlock" type="Node" parent="Block"]
+script = ExtResource("15_sbg3m")
+
+[node name="OrBlock" type="Node" parent="Block"]
+script = ExtResource("16_n3xap")
+
+[node name="AndMkBlock" type="Node" parent="Block"]
+script = ExtResource("17_4ktn5")
+
+[node name="OrLeftBlock" type="Node" parent="Block"]
+script = ExtResource("18_boari")
+
+[node name="OrRightBlock" type="Node" parent="Block"]
+script = ExtResource("19_cw1sa")
+[node name="NotElimBlock" type="Node" parent="Block"]
+script = ExtResource("13_s4faj")
 
 [node name="Namespace" type="Node" parent="."]
 script = ExtResource("12_6lvrv")
