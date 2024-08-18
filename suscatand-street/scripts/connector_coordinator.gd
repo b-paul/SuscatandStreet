@@ -25,6 +25,7 @@ func _ready() -> void:
 	connectors = find_connectors(get_node("."))
 	for c in connectors:
 		c.coordinator = self
+		c.controller = self.get_parent()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

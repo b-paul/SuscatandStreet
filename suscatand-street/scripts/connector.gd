@@ -4,27 +4,36 @@ class_name ConnectorNode extends CenterContainer
 @export var is_square: bool = false
 @export var connectedNodes: Array[ConnectorNode]
 @export var wire_normal: Vector2
-@export var type_name: String = "A"
+var type: Type
 
 var dragging_wire: bool = false
 var wire_dragged: Wire
 var coordinator: ConnectorCoordinator
+var controller: BackendCommunicator
+
+func get_type_name() -> String:
+	return type.toString()
+
+func display_type_name() -> void:
+	$Control/Label.text = get_type_name()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	connectedNodes = []
-	$Control/Label.text = type_name
 	$ConnectorCircle.visible = not is_square
 	$ConnectorSquare.visible = is_square
 
 func connect_node(node: ConnectorNode) -> void:
 	connectedNodes.push_back(node)
-	#communicate with backend
+	print("Checking...")
+	print(controller.check_game_state())
 
 func disconnect_node(node: ConnectorNode) -> void:
 	if not node in connectedNodes:
 		return
 	connectedNodes.erase(node)
+	print("Checking...")
+	print(controller.check_game_state())
 	#communicate with backend
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
