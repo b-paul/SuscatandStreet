@@ -2,8 +2,8 @@ extends VBoxContainer
 
 @export var slot_size: Vector2 = Vector2(200, 200)
 @export var slot_spacing: float = 69
-#@export var block_UIDs: Array[String] = ["uid://dmcxo8mf0s5fr","uid://b2p2wnjkqxitw", "uid://c0uo6afj7i45f", "uid://bdjteonbibkwu"]
-@export var block_UIDs: Array[String] = ["uid://b2p2wnjkqxitw"]  
+@export var block_UIDs: Array[String] = ["uid://dmcxo8mf0s5fr","uid://b2p2wnjkqxitw", "uid://c0uo6afj7i45f", "uid://bdjteonbibkwu", "uid://d0qpaelqhw304"]
+#@export var block_UIDs: Array[String] = ["uid://b2p2wnjkqxitw", "uid://d0qpaelqhw304"]  
 @export var num_slots: int = block_UIDs.size()
 @export var target_container: NodePath = "../../HSplitContainer/PanelContainer"
 
@@ -29,16 +29,26 @@ func load_blocks(container):
 		if ResourceUID.has_id(id):
 			var path = load(ResourceUID.get_id_path(id))
 			var block = path.instantiate()
+			
 			disable_block_drag(block)		
 			container.add_child(block)
 			block.gui_input.connect(_on_block_gui_input.bind(UID))
-			print("Connected gui_input for block with UID:", UID)
 			
 func setup_slots():
+		
 	var scroll_container = ScrollContainer.new()
 	scroll_container.size_flags_horizontal = SIZE_EXPAND_FILL
 	scroll_container.size_flags_vertical = SIZE_EXPAND_FILL
 	add_child(scroll_container)
+	
+	var texture = TextureRect.new()
+	texture.name = "HintBlock"
+	texture.texture = load("texture")
+	texture.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	texture.expand = true
+	texture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	texture.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	scroll_container.add_child(texture)
 
 	var slot_container = VBoxContainer.new()
 	slot_container.size_flags_horizontal = SIZE_EXPAND_FILL
@@ -72,7 +82,6 @@ func disable_block_drag(block: Node):
 		c.wire_enabled = false
 
 func _on_block_gui_input(event: InputEvent, uid: String):
-	print("_on_block_gui_input called with UID:", uid)
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:

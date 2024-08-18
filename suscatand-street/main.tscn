@@ -86,19 +86,15 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 0
 
 [node name="InventoryContainer" type="TabContainer" parent="CanvasLayer/HBoxContainer"]
-custom_minimum_size = Vector2(500, 2.08165e-12)
+custom_minimum_size = Vector2(900, 2.08165e-12)
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
 
 [node name="Inventory" type="VBoxContainer" parent="CanvasLayer/HBoxContainer/InventoryContainer"]
+custom_minimum_size = Vector2(850, 2.08165e-12)
 layout_mode = 2
 script = ExtResource("13_584x7")
 metadata/_tab_index = 0
-
-[node name="Graveyard" type="VBoxContainer" parent="CanvasLayer/HBoxContainer/InventoryContainer"]
-visible = false
-layout_mode = 2
-metadata/_tab_index = 1
 
 [node name="CanvasLayer_HBoxContainer_HSplitContainer_PanelContainer_ConnectorCoordinator#GenericBlock" parent="." instance=ExtResource("7_exlit")]
 offset_left = 434.0

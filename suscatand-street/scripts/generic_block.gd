@@ -45,14 +45,23 @@ func _process(_delta):
 func find_landing_spot() -> Node:
 	var mouse_pos = get_global_mouse_position()
 	var panel_container = get_tree().get_root().get_node("root/CanvasLayer/HBoxContainer/HSplitContainer/PanelContainer")
-	var graveyard = get_tree().get_root().get_node("root/CanvasLayer/HBoxContainer/InventoryContainer/Graveyard")
-	
+	var graveyard = get_tree().get_root().get_node("root/CanvasLayer/HBoxContainer/InventoryContainer/Inventory")
+	var connector_coordinator = get_tree().get_root().get_node("root/CanvasLayer/HBoxContainer/HSplitContainer/PanelContainer/BackendCommunicator/ConnectorCoordinator")
 	#var panel_container = get_node_or_null("/root/CanvasLayer/HBoxContainer/HSplitContainer/PanelContainer")
 	#var graveyard = get_node_or_null("/root/CanvasLayer/HBoxContainer/InventoryContainer/Graveyard")
 	
+	if graveyard and graveyard.get_global_rect().has_point(mouse_pos):
+		
+		# clean connectors
+		for connector in connectors:
+			for c in connector_coordinator.connectors:
+				c.connectedNodes.erase(connector)
+				
+		self.get_parent().remove_child(self)
+		connector_coordinator.init_connectors()
+		
+		queue_free()
+		return null
 	if panel_container and panel_container.get_global_rect().has_point(mouse_pos):
 		return panel_container
-	elif graveyard and graveyard.get_global_rect().has_point(mouse_pos):
-		queue_free()  
-		return null
 	return null
