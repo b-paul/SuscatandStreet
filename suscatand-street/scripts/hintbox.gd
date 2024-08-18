@@ -72,6 +72,9 @@ func _on_HintBlock_unhovered(hint_index: int):
 		
 		hint_block.modulate.a = .69
 
+func update_hints(new_hints: Array[String]):
+	hint_texts = new_hints as Array[String]
+	
 func _notification(what):
 	if what == NOTIFICATION_RESIZED:
 		#custom_minimum_size.x = get_parent().size.x

@@ -147,6 +147,40 @@ func construct_model_namespace(node: Node, parentNamespace: Namespace) -> Namesp
 				lambdaHandler.lambda_namespace = lambda_namespace
 				for child_node in block.get_node("Workspace").get_children():
 					construct_model_namespace(child_node,lambda_namespace)
+			"and":
+				var inConnecter1: ConnectorNode = block.connectors[0]
+				var inConnecter2: ConnectorNode = block.connectors[1]
+				var andOut: ConnectorNode = block.connectors[2]
+				var andBlock = AndBlock.new(parentNamespace)
+				
+				blockMappings[andBlock] = block
+				reverseBlockMappings[block] = andBlock
+				
+				connectorMappings[andBlock.arg1Connector] = inConnecter1
+				connectorMappings[andBlock.arg2Connector] = inConnecter2
+				connectorMappings[andBlock.resultConnector] = andOut
+
+				reverseConnectorMappings[inConnecter1] = andBlock.arg1Connector
+				reverseConnectorMappings[inConnecter2] = andBlock.arg2Connector
+				reverseConnectorMappings[andOut] = andBlock.resultConnector
+				parentNamespace.blocks.append(andBlock)
+			"or":
+				var inConnecter1: ConnectorNode = block.connectors[0]
+				var inConnecter2: ConnectorNode = block.connectors[1]
+				var orOut: ConnectorNode = block.connectors[2]
+				var orBlock = AndBlock.new(parentNamespace)
+				
+				blockMappings[orBlock] = block
+				reverseBlockMappings[block] = orBlock
+				
+				connectorMappings[orBlock.arg1Connector] = inConnecter1
+				connectorMappings[orBlock.arg2Connector] = inConnecter2
+				connectorMappings[orBlock.resultConnector] = orBlock
+
+				reverseConnectorMappings[inConnecter1] = orBlock.arg1Connector
+				reverseConnectorMappings[inConnecter2] = orBlock.arg2Connector
+				reverseConnectorMappings[orOut] = orBlock.resultConnector
+				parentNamespace.blocks.append(orBlock)
 			_:
 				assert(false)
 	else:

@@ -3,7 +3,7 @@ extends VBoxContainer
 @export var slot_size: Vector2 = Vector2(200, 200)
 @export var slot_spacing: float = 69
 #@export var block_UIDs: Array[String] = ["uid://dmcxo8mf0s5fr","uid://b2p2wnjkqxitw", "uid://c0uo6afj7i45f", "uid://bdjteonbibkwu"]
-@export var block_UIDs: Array[String] = ["uid://b2p2wnjkqxitw", "uid://d0qpaelqhw304"]  
+@export var block_UIDs: Array[String] = ["uid://b2p2wnjkqxitw", "uid://d0qpaelqhw304", "uid://c0uo6afj7i45f", "uid://bdjteonbibkwu"]  
 @export var num_slots: int = block_UIDs.size()
 @export var target_container: NodePath = "../../HSplitContainer/PanelContainer"
 
@@ -40,15 +40,6 @@ func setup_slots():
 	scroll_container.size_flags_horizontal = SIZE_EXPAND_FILL
 	scroll_container.size_flags_vertical = SIZE_EXPAND_FILL
 	add_child(scroll_container)
-	
-	var texture = TextureRect.new()
-	texture.name = "HintBlock"
-	texture.texture = load("texture")
-	texture.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-	texture.expand = true
-	texture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
-	texture.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	scroll_container.add_child(texture)
 
 	var slot_container = VBoxContainer.new()
 	slot_container.size_flags_horizontal = SIZE_EXPAND_FILL
@@ -60,7 +51,6 @@ func setup_slots():
 	if num_slots > block_UIDs.size():
 		slot_container.add_child(create_slot(false))
 		
-
 
 func deepest_lambda_at_mouse(node : Node):
 	for child in node.get_children():
@@ -102,6 +92,7 @@ func _on_block_gui_input(event: InputEvent, uid: String):
 				dragged_uid = uid
 				#create_drag_preview(uid)
 			else:
+				dragging = false
 				# end drag
 				if dragged_uid != "":
 					if target and is_instance_valid(target) and target.get_global_rect().has_point(get_global_mouse_position()):

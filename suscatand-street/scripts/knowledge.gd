@@ -1,34 +1,39 @@
 extends VBoxContainer
 
-@export var instruction_text: String = "Monday is a rainy day\n
-And I stay inside, letting time pass away\n
-Tuesday it is quite the same\n
-So I daydream about moments of shame\n
-Life goes around and 'round\n
-I've stumbled and stopped moving on\n
-Turn around and I realized\n
-That I have been left behind\n
-In a tiny tiny, tiny, tiny cubicle\n
-There lives a whiny, whiny, whiny cowardly turtle\n
-In 20, 30, 40, 50, 60 years\n
-My heart won't die, no matter how hard I try\n
-Today is a lonely day\n
-I pretend that I really liked it this way\n
-Tomorrow will stay the same\n
-And I can't even remember your name\n
-You're around no more, no more\n
-Though this love of mine\n
-It just won't stop\n
-Nobody-body-body-body to support\n
-My heavy, heavy, heavy but empty shell\n
-But I'm not lazy, lazy, lazy, lazy anymore\n
-Oh darling can't you see\n
-I've grown so much more\n
-Maybe, maybe, maybe you've forgiven me\n
-Oh but darling, darling, darling you have to make sure\n
-To stab me, pierce me, hurt me, kill me thoroughly\n
-You see my heart won't die though I really tried\n
-"
+#@export var instruction_text: String = "Monday is a rainy day\n
+#And I stay inside, letting time pass away\n
+#Tuesday it is quite the same\n
+#So I daydream about moments of shame\n
+#Life goes around and 'round\n
+#I've stumbled and stopped moving on\n
+#Turn around and I realized\n
+#That I have been left behind\n
+#In a tiny tiny, tiny, tiny cubicle\n
+#There lives a whiny, whiny, whiny cowardly turtle\n
+#In 20, 30, 40, 50, 60 years\n
+#My heart won't die, no matter how hard I try\n
+#Today is a lonely day\n
+#I pretend that I really liked it this way\n
+#Tomorrow will stay the same\n
+#And I can't even remember your name\n
+#You're around no more, no more\n
+#Though this love of mine\n
+#It just won't stop\n
+#Nobody-body-body-body to support\n
+#My heavy, heavy, heavy but empty shell\n
+#But I'm not lazy, lazy, lazy, lazy anymore\n
+#Oh darling can't you see\n
+#I've grown so much more\n
+#Maybe, maybe, maybe you've forgiven me\n
+#Oh but darling, darling, darling you have to make sure\n
+#To stab me, pierce me, hurt me, kill me thoroughly\n
+#You see my heart won't die though I really tried\n
+#"
+
+@export var instruction_text : String = "An applicator block (the triangle thingy): \n  
+- takes a regular input A
+- a function (A -> B) 
+- and output a B"
 
 func _ready():
 	setup_instruction()
@@ -63,7 +68,7 @@ func setup_instruction():
 	var knowledge_details = RichTextLabel.new()
 	knowledge_details.name = "KnowledgeDetails"
 	knowledge_details.text = instruction_text
-	knowledge_details.add_theme_font_size_override("font_size", 23)
+	knowledge_details.add_theme_font_size_override("font_size", 36)
 	knowledge_details.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	knowledge_details.offset_left = 42
 	knowledge_details.offset_top = 130
