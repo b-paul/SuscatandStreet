@@ -66,6 +66,28 @@ func typeCheck():
 			block.falseConnector.value = null
 			block.typeConnector.value = null
 			block.resultConnector.value = null
+		elif block is AndElimBlock:
+			block.andConnector.value = null
+			block.andConnector.type = UnknownType.new()
+			block.typeConnector.value = null
+			block.resultConnector.value = null
+			block.resultConnector.type = UnknownType.new()
+			block.innerInputBlock1.connector.type = UnknownType.new()
+			block.innerInputBlock2.connector.type = UnknownType.new()
+			block.innerOutputBlock.connector.value = null
+			block.innerOutputBlock.connector.type = UnknownType.new()
+		elif block is OrElimBlock:
+			block.orConnector.value = null
+			block.orConnector.type = UnknownType.new()
+			block.typeConnector.value = null
+			block.resultConnector.value = null
+			block.resultConnector.type = UnknownType.new()
+			block.innerInputBlockl.connector.type = UnknownType.new()
+			block.innerInputBlockr.connector.type = UnknownType.new()
+			block.innerOutputBlockl.connector.value = null
+			block.innerOutputBlockl.connector.type = UnknownType.new()
+			block.innerOutputBlockr.connector.value = null
+			block.innerOutputBlockr.connector.type = UnknownType.new()
 	
 	# Assert: we don't ever have two different wires going into an input
 
@@ -270,6 +292,64 @@ func typeCheck():
 							stack.append(block.resultConnector)
 			else:
 				assert(false)
+		elif block is AndElimBlock:
+			if cur == block.andConnector:
+				if from.type is AndType:
+					cur.value = from.value
+					cur.type = from.type
+					block.innerInputBlock1.connector.type = from.type.type1
+					block.innerInputBlock2.connector.type = from.type.type2
+					if block.typeConnector.value != null:
+						assert(!(block.innerOutputBlock.type is UnknownType))
+						assert(!(block.resultConnector.type is UnknownType))
+						if block.andNamespace.typeCheck() and !checked.has(block.resultConnector):
+							block.resultConnector.value = true # can't return a type (no dependent types)
+							checked[block.resultConnector] = true
+							stack.append(block.resultConnector)
+			elif cur == block.typeConnector:
+				if from.type is TypeType:
+					cur.value = from.value
+					block.resultConnector.type = from.value
+					block.innerOutputBlock.connector.type = from.value
+					if block.andConnector.value != null:
+						assert(!(block.innerInputBlock1.type is UnknownType))
+						assert(!(block.innerInputBlock2.type is UnknownType))
+						if block.andNamespace.typeCheck() and !checked.has(block.resultConnector):
+							block.resultConnector.value = true # can't return a type (no dependent types)
+							checked[block.resultConnector] = true
+							stack.append(block.resultConnector)
+			else:
+				assert(false)
+		elif block is OrElimBlock:
+			if cur == block.orConnector:
+				if from.type is OrType:
+					cur.value = from.value
+					cur.type = from.type
+					block.innerInputBlockl.connector.type = from.type.type1
+					block.innerInputBlockr.connector.type = from.type.type2
+					if block.typeConnector.value != null:
+						assert(!(block.innerOutputBlockl.type is UnknownType))
+						assert(!(block.innerOutputBlockr.type is UnknownType))
+						assert(!(block.resultConnector.type is UnknownType))
+						if block.leftNamespace.typeCheck() and block.rightNamespace.typeCheck() and !checked.has(block.resultConnector):
+							block.resultConnector.value = true # can't return a type (no dependent types)
+							checked[block.resultConnector] = true
+							stack.append(block.resultConnector)
+			elif cur == block.typeConnector:
+				if from.type is TypeType:
+					cur.value = from.value
+					block.resultConnector.type = from.value
+					block.innerOutputBlockl.connector.type = from.value
+					block.innerOutputBlockr.connector.type = from.value
+					if block.orConnector.value != null:
+						assert(!(block.innerInputBlockl.type is UnknownType))
+						assert(!(block.innerInputBlockr.type is UnknownType))
+						if block.leftNamespace.typeCheck() and block.rightNamespace.typeCheck() and !checked.has(block.resultConnector):
+							block.resultConnector.value = true # can't return a type (no dependent types)
+							checked[block.resultConnector] = true
+							stack.append(block.resultConnector)
+			else:
+				assert(false)
 		else:
 			assert(false)
 
@@ -306,6 +386,12 @@ func typeCheck():
 				return false
 		elif block is NotElimBlock:
 			if block.falseConnector.value == null or block.typeConnector.value == null or block.resultConnector.value == null:
+				return false
+		elif block is AndElimBlock:
+			if block.andConnector.value == null or block.typeConnector.value == null or block.resultConnector.value == null:
+				return false
+		elif block is OrElimBlock:
+			if block.orConnector.value == null or block.typeConnector.value == null or block.resultConnector.value == null:
 				return false
 		else:
 			assert(false)

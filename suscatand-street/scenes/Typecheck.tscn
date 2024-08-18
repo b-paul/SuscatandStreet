@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dlnht27yr4rm7"]
+[gd_scene load_steps=25 format=3 uid="uid://dlnht27yr4rm7"]
 
 [ext_resource type="Script" path="res://scripts/types/typetype.gd" id="1_uhotq"]
 [ext_resource type="Script" path="res://scripts/types/prim_type.gd" id="2_3ycht"]
@@ -15,12 +15,14 @@
 [ext_resource type="Script" path="res://scripts/types/namespace.gd" id="12_6lvrv"]
 [ext_resource type="Script" path="res://scripts/types/function_block.gd" id="12_rkit3"]
 [ext_resource type="Script" path="res://scripts/types/lambda_block.gd" id="12_tycop"]
+[ext_resource type="Script" path="res://scripts/types/not_elim_block.gd" id="13_s4faj"]
 [ext_resource type="Script" path="res://scripts/types/and_block.gd" id="15_sbg3m"]
 [ext_resource type="Script" path="res://scripts/types/or_block.gd" id="16_n3xap"]
 [ext_resource type="Script" path="res://scripts/types/and_mk_block.gd" id="17_4ktn5"]
 [ext_resource type="Script" path="res://scripts/types/or_left_block.gd" id="18_boari"]
 [ext_resource type="Script" path="res://scripts/types/or_right_block.gd" id="19_cw1sa"]
-[ext_resource type="Script" path="res://scripts/types/not_elim_block.gd" id="13_s4faj"]
+[ext_resource type="Script" path="res://scripts/types/and_elim_block.gd" id="21_y5ha1"]
+[ext_resource type="Script" path="res://scripts/types/or_elim_block.gd" id="22_vdv5j"]
 
 [sub_resource type="GDScript" id="GDScript_ml3w8"]
 script/source = "extends Node
@@ -100,8 +102,15 @@ script = ExtResource("18_boari")
 
 [node name="OrRightBlock" type="Node" parent="Block"]
 script = ExtResource("19_cw1sa")
+
 [node name="NotElimBlock" type="Node" parent="Block"]
 script = ExtResource("13_s4faj")
+
+[node name="AndElimBlock" type="Node" parent="Block"]
+script = ExtResource("21_y5ha1")
+
+[node name="OrElimBlock" type="Node" parent="Block"]
+script = ExtResource("22_vdv5j")
 
 [node name="Namespace" type="Node" parent="."]
 script = ExtResource("12_6lvrv")
