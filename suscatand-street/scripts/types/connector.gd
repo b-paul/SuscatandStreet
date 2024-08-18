@@ -18,8 +18,16 @@ func _init(parentBlock_: Block, isInput_: bool, takesType_: bool, type_: Type):
 func make_connection(target: Connector):
 	if outConnections.has(target):
 		return 0
-	outConnections.append(target)
-	target.inConnections.append(self)
+	if (self.isInput and !target.isInput):
+		inConnections.append(target)
+		target.outConnections.append(self)
+	elif (!self.isInput and target.isInput):
+		outConnections.append(target)
+		target.inConnections.append(self)
+	else:
+		# do something random, it'll break
+		outConnections.append(target)
+		target.inConnections.append(self)
 
 	# IF CONNECTING TO LAMBDA/ETC UPDATE NAMESPACE INPUTS!!!
 	

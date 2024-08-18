@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bg2u1xmifmkjm" path="res://assets/bg_tile.png" id="1_1oakn"]
 [ext_resource type="PackedScene" uid="uid://uktmlq1bys4t" path="res://scenes/BackendCommunicator.tscn" id="2_bsvjo"]
 [ext_resource type="Script" path="res://scripts/connector_coordinator.gd" id="3_cu3bq"]
-[ext_resource type="Script" path="res://scripts/levels/input_output.gd" id="4_byslp"]
+[ext_resource type="Script" path="res://scripts/levels/basic_applicator.gd" id="4_8lgpi"]
 [ext_resource type="PackedScene" uid="uid://be63g32qmm8l1" path="res://scenes/WireCoordinator.tscn" id="5_g37oy"]
 
 [node name="TestPanel" type="CanvasLayer"]
@@ -20,13 +20,13 @@ stretch_mode = 1
 [node name="ConnectorCoordinator" type="Node2D" parent="BackendCommunicator"]
 script = ExtResource("3_cu3bq")
 
-[node name="Node2D" type="Node2D" parent="BackendCommunicator/ConnectorCoordinator"]
-script = ExtResource("4_byslp")
+[node name="WireCoordinator" parent="BackendCommunicator/ConnectorCoordinator" instance=ExtResource("5_g37oy")]
 
-[node name="Workspace" type="Control" parent="BackendCommunicator/ConnectorCoordinator/Node2D"]
+[node name="LevelBuilder" type="Node2D" parent="BackendCommunicator/ConnectorCoordinator"]
+script = ExtResource("4_8lgpi")
+
+[node name="Workspace" type="Control" parent="BackendCommunicator/ConnectorCoordinator/LevelBuilder"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 4000.0
 offset_bottom = 2000.0
-
-[node name="WireCoordinator" parent="BackendCommunicator/ConnectorCoordinator" instance=ExtResource("5_g37oy")]
