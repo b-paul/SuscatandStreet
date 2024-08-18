@@ -11,9 +11,9 @@ func _process(delta: float) -> void:
 	pass
 
 func make_happy() -> void:
-	get_parent().get_child(0).get_child(0).visible = false
-	get_parent().get_child(0).get_child(1).visible = true
+	get_node("../Box/Sad").visible = false
+	get_node("../Box/Happy").visible = true
 	
 func make_sad() -> void:
-	get_parent().get_child(0).get_child(0).visible = true
-	get_parent().get_child(0).get_child(1).visible = false
+	get_node("../Box/Sad").visible = true
+	get_node("../Box/Happy").visible = false
