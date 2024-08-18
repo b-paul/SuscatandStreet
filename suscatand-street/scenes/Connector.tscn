@@ -36,6 +36,7 @@ text = "A"
 script = ExtResource("4_lwcqb")
 
 [node name="ConnectorLight" type="ColorRect" parent="."]
+visible = false
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 mouse_filter = 1
