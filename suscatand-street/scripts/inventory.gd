@@ -10,6 +10,7 @@ extends VBoxContainer
 var drag_preview: Node = null
 var dragged_uid: String = ""
 var target: Node
+var dragging: bool = false
 
 func _ready():
 	setup_slots()
@@ -86,25 +87,13 @@ func _on_block_gui_input(event: InputEvent, uid: String):
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
 				# start drag
+				dragging = true
 				dragged_uid = uid
 				create_drag_preview(uid)
 			else:
 				# end drag
-				if dragged_uid != "":
-					if target and is_instance_valid(target) and target.get_global_rect().has_point(get_global_mouse_position()):
-						var id: int = ResourceUID.text_to_id(dragged_uid)
-						if ResourceUID.has_id(id):
-							var path = load(ResourceUID.get_id_path(id))
-							var new_block = path.instantiate()
-							print("Just created a block:")
-							print(new_block)
-							target.get_child(0).get_child(0).get_child(1).get_child(0).add_child(new_block)
-							target.get_child(0).get_child(0).init_connectors()
-							target.get_child(0).render_game_state()
-							new_block.global_position = get_global_mouse_position() - new_block.size / 2
-					
-					remove_drag_preview()
-					dragged_uid = ""
+				dragging = false
+				dragged_uid = ""
 
 func create_drag_preview(uid: String):
 	var id: int = ResourceUID.text_to_id(uid)
@@ -112,15 +101,12 @@ func create_drag_preview(uid: String):
 		var path = load(ResourceUID.get_id_path(id))
 		drag_preview = path.instantiate()
 		drag_preview.z_index = 69
-		target.add_child(drag_preview)
+		target.get_child(0).get_child(0).get_child(1).get_child(0).add_child(drag_preview)
+		target.get_child(0).get_child(0).init_connectors()
+		target.get_child(0).render_game_state()
 		drag_preview.global_position = get_global_mouse_position() - drag_preview.size / 2
-
-func remove_drag_preview():
-	if drag_preview:
-		drag_preview.queue_free()
-		drag_preview = null
 
 func _input(event: InputEvent):
 	if event is InputEventMouseMotion:
-		if drag_preview:
+		if drag_preview and dragging:
 			drag_preview.global_position = get_global_mouse_position() - drag_preview.size / 2
