@@ -2,8 +2,9 @@ extends VBoxContainer
 
 @export var slot_size: Vector2 = Vector2(200, 200)
 @export var slot_spacing: float = 69
-@export var block_UIDs: Array[String] = ["uid://dmcxo8mf0s5fr","uid://b2p2wnjkqxitw", "uid://c0uo6afj7i45f", "uid://bdjteonbibkwu"]  
-@export var num_slots: int = block_UIDs.size() + 1
+#@export var block_UIDs: Array[String] = ["uid://dmcxo8mf0s5fr","uid://b2p2wnjkqxitw", "uid://c0uo6afj7i45f", "uid://bdjteonbibkwu"]
+@export var block_UIDs: Array[String] = ["uid://b2p2wnjkqxitw"]  
+@export var num_slots: int = block_UIDs.size()
 @export var target_container: NodePath = "../../HSplitContainer/PanelContainer"
 
 var drag_preview: Node = null
@@ -92,7 +93,10 @@ func _on_block_gui_input(event: InputEvent, uid: String):
 						if ResourceUID.has_id(id):
 							var path = load(ResourceUID.get_id_path(id))
 							var new_block = path.instantiate()
-							target.add_child(new_block)
+							print("Just created a block:")
+							print(new_block)
+							target.get_child(0).get_child(0).get_child(1).get_child(0).add_child(new_block)
+							target.get_child(0).get_child(0).init_connectors()
 							new_block.global_position = get_global_mouse_position() - new_block.size / 2
 					
 					remove_drag_preview()

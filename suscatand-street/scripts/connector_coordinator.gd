@@ -22,6 +22,9 @@ func find_connectors(root_node: Node) -> Array[ConnectorNode]:
 	return nodes_of_type
 
 func _ready() -> void:
+	init_connectors()
+	
+func init_connectors() -> void:
 	connectors = find_connectors(get_node("."))
 	for c in connectors:
 		c.coordinator = self
