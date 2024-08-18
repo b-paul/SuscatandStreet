@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bgv3qn41l83pg" path="res://scenes/Connector.tscn" id="2_7xeo1"]
 [ext_resource type="Texture2D" uid="uid://edynuhv4vgw5" path="res://assets/box.svg" id="2_ki8eb"]
 
-[node name="GenericBlock2" instance=ExtResource("1_ohm51")]
+[node name="GenericBlock3" instance=ExtResource("1_ohm51")]
 offset_right = 96.0
 offset_bottom = 128.0
 block_type = "and"
