@@ -23,8 +23,7 @@ func _ready() -> void:
 	$ConnectorCircle.visible = not is_square
 	$ConnectorSquare.visible = is_square
 
-func set_type_name(new_type_name: String) -> void:
-	type_name = new_type_name
+func set_type_name(type_name: String) -> void:
 	$Control/Label.set_text(type_name)
 	$Control/Label.reposition()
 
