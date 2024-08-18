@@ -31,7 +31,8 @@ func _gui_input(event):
 				dragging = false
 				var landing_spot = find_landing_spot()
 				if landing_spot:
-					position = landing_spot.get_local_mouse_position() - size / 2
+					#position = landing_spot.get_local_mouse_position() - size / 2
+					global_position = get_global_mouse_position() - dragStartPos
 				else:
 					global_position = originalPos
 	elif event is InputEventMouseMotion and dragging:
@@ -43,15 +44,11 @@ func _process(_delta):
 
 func find_landing_spot() -> Node:
 	var mouse_pos = get_global_mouse_position()
-	var panel_container = get_node_or_null("../../../../../")
-	var graveyard = get_node_or_null("../../../../../../InventoryContainer/Graveyard")
+	var panel_container = get_tree().get_root().get_node("root/CanvasLayer/HBoxContainer/HSplitContainer/PanelContainer")
+	var graveyard = get_tree().get_root().get_node("root/CanvasLayer/HBoxContainer/InventoryContainer/Graveyard")
 	
 	#var panel_container = get_node_or_null("/root/CanvasLayer/HBoxContainer/HSplitContainer/PanelContainer")
 	#var graveyard = get_node_or_null("/root/CanvasLayer/HBoxContainer/InventoryContainer/Graveyard")
-	
-	print("checking")
-	print(panel_container)
-	print(graveyard)
 	
 	if panel_container and panel_container.get_global_rect().has_point(mouse_pos):
 		return panel_container

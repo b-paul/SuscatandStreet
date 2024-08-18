@@ -103,6 +103,8 @@ func check_game_state() -> bool:
 				reverseConnectorMappings[outConnector] = applicator.resultConnector
 				reverseConnectorMappings[funcConnector] = applicator.functionConnector
 				bigNameSpace.blocks.append(applicator)
+			"lambda":
+				pass
 			_:
 				assert(false)
 	for connector: ConnectorNode in reverseConnectorMappings.keys():
