@@ -2,8 +2,8 @@ extends VBoxContainer
 
 @export var slot_size: Vector2 = Vector2(200, 200)
 @export var slot_spacing: float = 69
-@export var block_UIDs: Array[String] = ["uid://dmcxo8mf0s5fr","uid://b2p2wnjkqxitw", "uid://c0uo6afj7i45f", "uid://bdjteonbibkwu", "uid://d0qpaelqhw304"]
-#@export var block_UIDs: Array[String] = ["uid://b2p2wnjkqxitw", "uid://d0qpaelqhw304"]  
+#@export var block_UIDs: Array[String] = ["uid://dmcxo8mf0s5fr","uid://b2p2wnjkqxitw", "uid://c0uo6afj7i45f", "uid://bdjteonbibkwu", "uid://d0qpaelqhw304"]
+@export var block_UIDs: Array[String] = ["uid://b2p2wnjkqxitw", "uid://d0qpaelqhw304"]  
 @export var num_slots: int = block_UIDs.size()
 @export var target_container: NodePath = "../../HSplitContainer/PanelContainer"
 
@@ -111,8 +111,8 @@ func create_drag_preview(uid: String):
 	if ResourceUID.has_id(id):
 		var path = load(ResourceUID.get_id_path(id))
 		drag_preview = path.instantiate()
-		drag_preview.modulate.a = 0.69
-		get_tree().root.add_child(drag_preview)
+		drag_preview.z_index = 69
+		target.add_child(drag_preview)
 		drag_preview.global_position = get_global_mouse_position() - drag_preview.size / 2
 
 func remove_drag_preview():
