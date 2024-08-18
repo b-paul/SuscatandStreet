@@ -7,18 +7,6 @@
 [node name="GenericBlock2" instance=ExtResource("1_oit4w")]
 block_type = "or"
 
-[node name="Box" type="NinePatchRect" parent="." index="0"]
-custom_minimum_size = Vector2(96, 128)
-layout_mode = 2
-texture = ExtResource("2_r2axm")
-region_rect = Rect2(0, 0, 96, 96)
-patch_margin_left = 10
-patch_margin_top = 10
-patch_margin_right = 10
-patch_margin_bottom = 10
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
-
 [node name="Input 1" parent="Connectors" index="0" instance=ExtResource("2_xy4vy")]
 layout_mode = 0
 offset_left = -72.0
@@ -45,6 +33,18 @@ offset_right = 72.0
 offset_bottom = 24.0
 is_square = true
 wire_normal = Vector2(1, 0)
+
+[node name="Box" type="NinePatchRect" parent="." index="1"]
+custom_minimum_size = Vector2(96, 128)
+layout_mode = 2
+texture = ExtResource("2_r2axm")
+region_rect = Rect2(0, 0, 96, 96)
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 
 [node name="Label" type="Label" parent="." index="2"]
 layout_mode = 2

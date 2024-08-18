@@ -13,7 +13,15 @@ block_type = "input"
 [node name="Namesetter" type="Node2D" parent="." index="0"]
 script = ExtResource("3_84fa4")
 
-[node name="Box" type="NinePatchRect" parent="." index="1"]
+[node name="Connector" parent="Connectors" index="0" instance=ExtResource("2_mog0f")]
+layout_mode = 2
+offset_left = 24.0
+offset_top = -24.0
+offset_right = 72.0
+offset_bottom = 24.0
+wire_normal = Vector2(1, 0)
+
+[node name="Box" type="NinePatchRect" parent="." index="2"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 texture = ExtResource("3_xj46p")
@@ -24,14 +32,6 @@ patch_margin_right = 10
 patch_margin_bottom = 10
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
-
-[node name="Connector" parent="Connectors" index="0" instance=ExtResource("2_mog0f")]
-layout_mode = 2
-offset_left = 24.0
-offset_top = -24.0
-offset_right = 72.0
-offset_bottom = 24.0
-wire_normal = Vector2(1, 0)
 
 [node name="Label" type="Label" parent="." index="3"]
 layout_mode = 2

@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b2p2wnjkqxitw"]
+[gd_scene load_steps=4 format=3 uid="uid://b2p2wnjkqxitw"]
 
 [ext_resource type="PackedScene" uid="uid://ow2gujx12ivf" path="res://scenes/blocks/GenericBlock.tscn" id="1_cc1oq"]
 [ext_resource type="Texture2D" uid="uid://c0ph7hxgycifh" path="res://assets/triangle.svg" id="2_vyy01"]
-[ext_resource type="Script" path="res://scripts/applicator_connectors.gd" id="3_m4jbf"]
 [ext_resource type="PackedScene" uid="uid://bgv3qn41l83pg" path="res://scenes/Connector.tscn" id="4_jh8ou"]
 
 [node name="GenericBlock2" instance=ExtResource("1_cc1oq")]
@@ -10,21 +9,13 @@ offset_right = 110.0
 offset_bottom = 96.0
 block_type = "applicator"
 
-[node name="Triangle" type="TextureRect" parent="." index="0"]
-texture_filter = 2
-layout_mode = 2
-mouse_filter = 2
-texture = ExtResource("2_vyy01")
-
-[node name="Connectors" parent="." index="1"]
-script = ExtResource("3_m4jbf")
-
 [node name="Input" parent="Connectors" index="0" instance=ExtResource("4_jh8ou")]
 layout_mode = 0
 offset_left = -61.0
 offset_top = -30.0
 offset_right = -13.0
 offset_bottom = 18.0
+wire_normal = Vector2(-0.894, -0.447)
 
 [node name="Output" parent="Connectors" index="1" instance=ExtResource("4_jh8ou")]
 layout_mode = 0
@@ -32,6 +23,7 @@ offset_left = 12.0
 offset_top = -30.0
 offset_right = 60.0
 offset_bottom = 18.0
+wire_normal = Vector2(0.894, -0.447)
 
 [node name="Function" parent="Connectors" index="2" instance=ExtResource("4_jh8ou")]
 layout_mode = 0
@@ -39,3 +31,10 @@ offset_left = -24.0
 offset_top = 40.0
 offset_right = 24.0
 offset_bottom = 88.0
+wire_normal = Vector2(0, 1)
+
+[node name="Triangle" type="TextureRect" parent="." index="1"]
+texture_filter = 2
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_vyy01")

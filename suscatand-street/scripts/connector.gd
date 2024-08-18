@@ -28,6 +28,10 @@ func _ready() -> void:
 	$ConnectorCircle.visible = not is_square
 	$ConnectorSquare.visible = is_square
 
+func set_type_name(type_name: String) -> void:
+	$Control/Label.set_text(type_name)
+	$Control/Label.reposition()
+
 func connect_node(node: ConnectorNode) -> void:
 	print("making a connection from" + self.to_string() + "to " + node.to_string())
 	connectedNodes.push_back(node)
