@@ -8,8 +8,8 @@ extends VBoxContainer
 @export var target_container: NodePath = "../../HSplitContainer/PanelContainer"
 
 var drag_preview: Node = null
-var dragged_uid: String = ""
 var target: Node
+var dragging: bool = false
 
 func _ready():
 	setup_slots()
@@ -29,16 +29,26 @@ func load_blocks(container):
 		if ResourceUID.has_id(id):
 			var path = load(ResourceUID.get_id_path(id))
 			var block = path.instantiate()
+			
 			disable_block_drag(block)		
 			container.add_child(block)
 			block.gui_input.connect(_on_block_gui_input.bind(UID))
-			print("Connected gui_input for block with UID:", UID)
 			
 func setup_slots():
+		
 	var scroll_container = ScrollContainer.new()
 	scroll_container.size_flags_horizontal = SIZE_EXPAND_FILL
 	scroll_container.size_flags_vertical = SIZE_EXPAND_FILL
 	add_child(scroll_container)
+	
+	var texture = TextureRect.new()
+	texture.name = "HintBlock"
+	texture.texture = load("texture")
+	texture.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	texture.expand = true
+	texture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	texture.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	scroll_container.add_child(texture)
 
 	var slot_container = VBoxContainer.new()
 	slot_container.size_flags_horizontal = SIZE_EXPAND_FILL
@@ -75,27 +85,20 @@ func create_slot(trans: bool) -> Panel:
 	
 	return slot
 
-func add_block_to_slot(block: Node, slot: Panel):
-	if slot.get_child_count() > 0:
-		slot.get_child(0).queue_free()
-	
-	slot.add_child(block)
-	block.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
-	block.size_flags_horizontal = SIZE_SHRINK_CENTER
-	#block.scale = Vector2.ONE * min(slot_size.x / block.size.x, slot_size.y / block.size.y)
 
 func disable_block_drag(block: Node):
 	block.dragging_enabled = false
 	block.dragging = false
 	block.dragStartPos = Vector2.ZERO
+	for c in block.get_child(0).get_children():
+		c.wire_enabled = false
 
 func _on_block_gui_input(event: InputEvent, uid: String):
-	print("_on_block_gui_input called with UID:", uid)
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
 				# start drag
-				dragged_uid = uid
+				dragging = true
 				create_drag_preview(uid)
 			else:
 				# end drag
@@ -125,16 +128,13 @@ func create_drag_preview(uid: String):
 	if ResourceUID.has_id(id):
 		var path = load(ResourceUID.get_id_path(id))
 		drag_preview = path.instantiate()
-		drag_preview.modulate.a = 0.69
-		get_tree().root.add_child(drag_preview)
+		drag_preview.z_index = 69
+		target.get_child(0).get_child(0).get_child(1).get_child(0).add_child(drag_preview)
+		target.get_child(0).get_child(0).init_connectors()
+		target.get_child(0).render_game_state()
 		drag_preview.global_position = get_global_mouse_position() - drag_preview.size / 2
-
-func remove_drag_preview():
-	if drag_preview:
-		drag_preview.queue_free()
-		drag_preview = null
 
 func _input(event: InputEvent):
 	if event is InputEventMouseMotion:
-		if drag_preview:
+		if drag_preview and dragging:
 			drag_preview.global_position = get_global_mouse_position() - drag_preview.size / 2

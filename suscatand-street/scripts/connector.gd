@@ -54,6 +54,8 @@ func _process(delta: float) -> void:
 func _gui_input(event):
 	#if coordinator.dragging_wire:
 		#return
+	if not wire_enabled:
+		return
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			var wire_scene = load("res://scenes/Wire.tscn")
