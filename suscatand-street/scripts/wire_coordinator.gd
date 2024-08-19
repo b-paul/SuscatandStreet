@@ -19,7 +19,7 @@ func draw_curve(connector: int, connection: int, start: Vector2, end: Vector2, s
 	curve.add_point(end, endNormal * control_distance)
 
 	baked_points[connector][connection] = curve
-	if hovering[connector].find(connection) != -1:
+	if hovering[connector] and (hovering[connector].find(connection) != -1):
 		draw_polyline(curve.get_baked_points(), hover_color, hover_width, true)
 	draw_polyline(curve.get_baked_points(), Color(0.117647, 0.564706, 1, 1), line_width, true)
 

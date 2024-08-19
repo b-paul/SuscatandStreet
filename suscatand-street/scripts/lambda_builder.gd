@@ -3,12 +3,12 @@ class_name LambdaHandler extends Node
 var lambda_namespace: Namespace
 var innerInputBlock: GenericBlock
 var innerOutputBlock: GenericBlock
+var inputScene = load("res://scenes/blocks/Input.tscn")
+var goalScene = load("res://scenes/blocks/Goal.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	lambda_namespace = Namespace.new()
-	var inputScene = load("res://scenes/blocks/Input.tscn")
-	var goalScene = load("res://scenes/blocks/Goal.tscn")
 	var input: GenericBlock = inputScene.instantiate()
 	var goal: GenericBlock = goalScene.instantiate()
 	innerInputBlock = input

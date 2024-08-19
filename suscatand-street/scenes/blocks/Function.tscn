@@ -1,0 +1,77 @@
+[gd_scene load_steps=6 format=3 uid="uid://d0yxwpmal0qkq"]
+
+[ext_resource type="PackedScene" uid="uid://ow2gujx12ivf" path="res://scenes/blocks/GenericBlock.tscn" id="1_7e5mi"]
+[ext_resource type="PackedScene" uid="uid://bgv3qn41l83pg" path="res://scenes/Connector.tscn" id="2_mefl1"]
+[ext_resource type="Script" path="res://scripts/input_block_namesetter.gd" id="2_uehdh"]
+[ext_resource type="Texture2D" uid="uid://edynuhv4vgw5" path="res://assets/box.svg" id="3_ryjft"]
+[ext_resource type="Texture2D" uid="uid://c30vvut7eyw27" path="res://assets/right-arrow.svg" id="5_wjqeq"]
+
+[node name="GenericBlock4" instance=ExtResource("1_7e5mi")]
+offset_right = 96.0
+offset_bottom = 128.0
+block_type = "function"
+
+[node name="Namesetter" type="Node2D" parent="." index="0"]
+script = ExtResource("2_uehdh")
+
+[node name="TypeIn" parent="Connectors" index="0" instance=ExtResource("2_mefl1")]
+layout_mode = 0
+offset_left = -87.0
+offset_top = 13.0
+offset_right = -39.0
+offset_bottom = 61.0
+is_square = true
+wire_normal = Vector2(-1, 0)
+
+[node name="TypeOut" parent="Connectors" index="1" instance=ExtResource("2_mefl1")]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 12.0
+offset_right = 87.0
+offset_bottom = 60.0
+is_square = true
+wire_normal = Vector2(1, 0)
+
+[node name="Output" parent="Connectors" index="2" instance=ExtResource("2_mefl1")]
+layout_mode = 0
+offset_left = -26.0
+offset_top = -88.0
+offset_right = 22.0
+offset_bottom = -40.0
+wire_normal = Vector2(0, -1)
+
+[node name="Box" type="NinePatchRect" parent="." index="2"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+mouse_filter = 1
+texture = ExtResource("3_ryjft")
+region_rect = Rect2(0, 0, 96, 96)
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="LabelControl" type="Control" parent="." index="3"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="LabelControl" index="0"]
+layout_mode = 2
+offset_left = -55.0
+offset_top = -65.0
+offset_right = 56.0
+offset_bottom = 18.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 60
+text = "f"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="." index="4"]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Control" index="0"]
+position = Vector2(0, 31)
+scale = Vector2(0.115, 0.115)
+texture = ExtResource("5_wjqeq")

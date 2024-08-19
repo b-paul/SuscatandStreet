@@ -45,9 +45,11 @@ func render_game_state() -> void:
 		if modelConnector.value == null:
 			#sad
 			connector.set_color(Color.RED)
+			connector.value = modelConnector.value
 		else:
 			#happy
 			connector.set_color(Color.BLUE)
+			connector.value = modelConnector.value
 	for block: GenericBlock in reverseBlockMappings.keys():
 		if block.block_type != "goal":
 			continue
@@ -112,6 +114,21 @@ func construct_model_namespace(node: Node, parentNamespace: Namespace) -> Namesp
 				reverseConnectorMappings[outConnector] = applicator.resultConnector
 				reverseConnectorMappings[funcConnector] = applicator.functionConnector
 				parentNamespace.blocks.append(applicator)
+			"function":
+				var inTypeConnector: ConnectorNode = block.connectors[0]
+				var outTypeConnector: ConnectorNode = block.connectors[1]
+				var outputConnector: ConnectorNode = block.connectors[2]
+				var modelBlock: FunctionBlock = FunctionBlock.new(parentNamespace)
+				
+				blockMappings[modelBlock] = block
+				reverseBlockMappings[block] = modelBlock
+				
+				connectorMappings[modelBlock.arg1Connector] = inTypeConnector
+				connectorMappings[modelBlock.arg2Connector] = outTypeConnector
+				connectorMappings[modelBlock.resultConnector] = outputConnector
+				reverseConnectorMappings[inTypeConnector] = modelBlock.arg1Connector
+				reverseConnectorMappings[outTypeConnector] = modelBlock.arg2Connector
+				reverseConnectorMappings[outputConnector] = modelBlock.resultConnector
 			"lambda":
 				var inTypeConnector: ConnectorNode = block.connectors[0]
 				var outTypeConnector: ConnectorNode = block.connectors[1]

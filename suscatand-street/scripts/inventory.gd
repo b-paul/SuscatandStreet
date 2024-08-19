@@ -2,7 +2,8 @@ extends VBoxContainer
 
 @export var slot_size: Vector2 = Vector2(200, 200)
 @export var slot_spacing: float = 69
-@export var block_paths: Array[String] = ["res://scenes/blocks/Applicator.tscn","res://scenes/blocks/Lambda.tscn"]  
+@export var block_paths: Array[String] = ["res://scenes/blocks/Applicator.tscn","res://scenes/blocks/Lambda.tscn", "res://scenes/blocks/Function.tscn"]
+var loaded_blocks = [preload("res://scenes/blocks/Applicator.tscn"),preload("res://scenes/blocks/Lambda.tscn"), preload("res://scenes/blocks/Function.tscn")]
 @export var num_slots: int = block_paths.size()
 @export var target_container: NodePath = "../../HSplitContainer/PanelContainer"
 
