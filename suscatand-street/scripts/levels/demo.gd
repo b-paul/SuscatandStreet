@@ -26,13 +26,21 @@ func _ready() -> void:
 	var output = goalScene.instantiate()
 	
 	workspace.add_child(input1)
+	input1.position = Vector2(200,200)
 	workspace.add_child(input2)
+	input2.position = Vector2(200,400)
 	workspace.add_child(input3)
+	input3.position = Vector2(200,600)
 	workspace.add_child(inputa)
+	inputa.position = Vector2(500,200)
 	workspace.add_child(inputb)
+	inputb.position = Vector2(500,400)
 	workspace.add_child(inputc)	
+	inputc.position = Vector2(500,600)
 	workspace.add_child(inputba)
+	inputba.position = Vector2(500,800)
 	workspace.add_child(output)
+	output.position = Vector2(800,800)
 	
 	input1.connectors[0].type = FunctionType.new(typeC, FunctionType.new(typeC, typeB))
 	input1.connectors[0].value = true
