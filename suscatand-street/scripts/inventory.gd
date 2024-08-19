@@ -2,15 +2,14 @@ extends VBoxContainer
 
 @export var slot_size: Vector2 = Vector2(200, 200)
 @export var slot_spacing: float = 69
-#@export var block_UIDs: Array[String] = ["uid://dmcxo8mf0s5fr","uid://b2p2wnjkqxitw", "uid://c0uo6afj7i45f", "uid://bdjteonbibkwu"]
-@export var block_UIDs: Array[String] = ["uid://b2p2wnjkqxitw", "uid://d0qpaelqhw304", "uid://c0uo6afj7i45f", "uid://bdjteonbibkwu"]  
-@export var num_slots: int = block_UIDs.size()
+@export var block_paths: Array[String] = ["res://scenes/blocks/Applicator.tscn","res://scenes/blocks/Lambda.tscn"]  
+@export var num_slots: int = block_paths.size()
 @export var target_container: NodePath = "../../HSplitContainer/PanelContainer"
 
 var drag_preview: Node = null
 var target: Node
 var dragging: bool = false
-var dragged_uid: String = ""
+var dragged_path: String = ""
 func _ready():
 	setup_slots()
 	setup_target()
@@ -24,15 +23,12 @@ func setup_target():
 			push_error("Target container not found.")
 
 func load_blocks(container):
-	for UID in block_UIDs:
-		var id: int = ResourceUID.text_to_id(UID)
-		if ResourceUID.has_id(id):
-			var path = load(ResourceUID.get_id_path(id))
-			var block = path.instantiate()
-			
-			disable_block_drag(block)		
-			container.add_child(block)
-			block.gui_input.connect(_on_block_gui_input.bind(UID))
+	for path in block_paths:
+		var scene = load(path)
+		var block = scene.instantiate()
+		disable_block_drag(block)		
+		container.add_child(block)
+		block.gui_input.connect(_on_block_gui_input.bind(path))
 			
 func setup_slots():
 		
@@ -48,7 +44,7 @@ func setup_slots():
 
 	load_blocks(slot_container)
 		
-	if num_slots > block_UIDs.size():
+	if num_slots > block_paths.size():
 		slot_container.add_child(create_slot(false))
 		
 
@@ -83,23 +79,20 @@ func disable_block_drag(block: Node):
 	for c in block.get_child(0).get_children():
 		c.wire_enabled = false
 
-func _on_block_gui_input(event: InputEvent, uid: String):
+func _on_block_gui_input(event: InputEvent, path: String):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
 				# start drag
 				dragging = true
-				dragged_uid = uid
-				#create_drag_preview(uid)
+				dragged_path = path
 			else:
 				dragging = false
 				# end drag
-				if dragged_uid != "":
+				if dragged_path != "":
 					if target and is_instance_valid(target) and target.get_global_rect().has_point(get_global_mouse_position()):
-						var id: int = ResourceUID.text_to_id(dragged_uid)
-						if ResourceUID.has_id(id):
-							var path = load(ResourceUID.get_id_path(id))
-							var new_block = path.instantiate()
+							var scene = load(dragged_path)
+							var new_block = scene.instantiate()
 							print("Just created a block:")
 							print(new_block)
 							var workspace = target.get_child(0).get_child(0).get_child(1).get_child(0)
@@ -113,18 +106,16 @@ func _on_block_gui_input(event: InputEvent, uid: String):
 							new_block.global_position = get_global_mouse_position() - new_block.size / 2
 					
 					#remove_drag_preview()
-					dragged_uid = ""
+					dragged_path = ""
 
-func create_drag_preview(uid: String):
-	var id: int = ResourceUID.text_to_id(uid)
-	if ResourceUID.has_id(id):
-		var path = load(ResourceUID.get_id_path(id))
-		drag_preview = path.instantiate()
-		drag_preview.z_index = 69
-		target.get_child(0).get_child(0).get_child(1).get_child(0).add_child(drag_preview)
-		target.get_child(0).get_child(0).init_connectors()
-		target.get_child(0).render_game_state()
-		drag_preview.global_position = get_global_mouse_position() - drag_preview.size / 2
+func create_drag_preview(path: String):
+	var scene = load(path)
+	drag_preview = scene.instantiate()
+	drag_preview.z_index = 69
+	target.get_child(0).get_child(0).get_child(1).get_child(0).add_child(drag_preview)
+	target.get_child(0).get_child(0).init_connectors()
+	target.get_child(0).render_game_state()
+	drag_preview.global_position = get_global_mouse_position() - drag_preview.size / 2
 
 func _input(event: InputEvent):
 	if event is InputEventMouseMotion:

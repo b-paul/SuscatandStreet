@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmcxo8mf0s5fr"]
+[gd_scene load_steps=5 format=3 uid="uid://cg4llmlwcg4cf"]
 
-[ext_resource type="PackedScene" uid="uid://db8xskyl380ep" path="res://scenes/blocks/GenericBlock.tscn" id="1_4y1te"]
+[ext_resource type="PackedScene" uid="uid://ow2gujx12ivf" path="res://scenes/blocks/GenericBlock.tscn" id="1_4y1te"]
 [ext_resource type="PackedScene" uid="uid://bgv3qn41l83pg" path="res://scenes/Connector.tscn" id="2_mog0f"]
 [ext_resource type="Script" path="res://scripts/input_block_namesetter.gd" id="3_84fa4"]
 [ext_resource type="Texture2D" uid="uid://edynuhv4vgw5" path="res://assets/box.svg" id="3_xj46p"]

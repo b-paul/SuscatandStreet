@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://d0qpaelqhw304"]
+[gd_scene load_steps=5 format=3 uid="uid://h0luygec5mwn"]
 
-[ext_resource type="PackedScene" uid="uid://db8xskyl380ep" path="res://scenes/blocks/GenericBlock.tscn" id="1_nfpxs"]
+[ext_resource type="PackedScene" uid="uid://ow2gujx12ivf" path="res://scenes/blocks/GenericBlock.tscn" id="1_nfpxs"]
 [ext_resource type="PackedScene" uid="uid://bgv3qn41l83pg" path="res://scenes/Connector.tscn" id="2_o5vwv"]
 [ext_resource type="Script" path="res://scripts/lambda_builder.gd" id="3_0c4ka"]
 [ext_resource type="Script" path="res://scripts/lambda_artist.gd" id="4_h8lex"]
