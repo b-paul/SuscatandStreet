@@ -7,9 +7,9 @@
 [ext_resource type="Script" path="res://scripts/knowledge.gd" id="3_i7gla"]
 [ext_resource type="Script" path="res://scripts/connector_coordinator.gd" id="5_ugrpo"]
 [ext_resource type="PackedScene" uid="uid://uktmlq1bys4t" path="res://scenes/BackendCommunicator.tscn" id="6_xdgnx"]
-[ext_resource type="PackedScene" uid="uid://cg4llmlwcg4cf" path="res://scenes/blocks/Input.tscn" id="7_exlit"]
-[ext_resource type="Script" path="res://scripts/levels/demo.gd" id="9_bygvk"]
-[ext_resource type="PackedScene" uid="uid://be63g32qmm8l1" path="res://scenes/WireCoordinator.tscn" id="13_1iif2"]
+[ext_resource type="PackedScene" uid="uid://dmcxo8mf0s5fr" path="res://scenes/blocks/Input.tscn" id="7_exlit"]
+[ext_resource type="Script" path="res://scripts/levels/basic_applicator.gd" id="9_vxxi1"]
+[ext_resource type="PackedScene" path="res://scenes/WireCoordinator.tscn" id="13_1iif2"]
 [ext_resource type="Script" path="res://scripts/inventory.gd" id="13_584x7"]
 
 [node name="root" type="Node"]
@@ -72,7 +72,7 @@ script = ExtResource("5_ugrpo")
 [node name="WireCoordinator" parent="CanvasLayer/HBoxContainer/HSplitContainer/PanelContainer/BackendCommunicator/ConnectorCoordinator" instance=ExtResource("13_1iif2")]
 
 [node name="LevelBuilder" type="Node2D" parent="CanvasLayer/HBoxContainer/HSplitContainer/PanelContainer/BackendCommunicator/ConnectorCoordinator"]
-script = ExtResource("9_bygvk")
+script = ExtResource("9_vxxi1")
 
 [node name="Workspace" type="Control" parent="CanvasLayer/HBoxContainer/HSplitContainer/PanelContainer/BackendCommunicator/ConnectorCoordinator/LevelBuilder"]
 layout_mode = 3
@@ -82,20 +82,15 @@ offset_bottom = 2000.0
 metadata/_edit_use_anchors_ = true
 
 [node name="InventoryContainer" type="TabContainer" parent="CanvasLayer/HBoxContainer"]
-custom_minimum_size = Vector2(500, 2.08165e-12)
+custom_minimum_size = Vector2(900, 2.08165e-12)
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
-current_tab = 0
 
 [node name="Inventory" type="VBoxContainer" parent="CanvasLayer/HBoxContainer/InventoryContainer"]
+custom_minimum_size = Vector2(850, 2.08165e-12)
 layout_mode = 2
 script = ExtResource("13_584x7")
 metadata/_tab_index = 0
-
-[node name="Graveyard" type="VBoxContainer" parent="CanvasLayer/HBoxContainer/InventoryContainer"]
-visible = false
-layout_mode = 2
-metadata/_tab_index = 1
 
 [node name="CanvasLayer_HBoxContainer_HSplitContainer_PanelContainer_ConnectorCoordinator#GenericBlock" parent="." instance=ExtResource("7_exlit")]
 offset_left = 434.0

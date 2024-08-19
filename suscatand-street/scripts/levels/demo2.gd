@@ -17,11 +17,15 @@ func _ready() -> void:
 	goal.position = Vector2(1200,600)
 	var typeA = PrimType.new("A")
 	var typeB = PrimType.new("B")
-	var typefAB = FunctionType.new(typeA, typeB)
-	var typeBigF = FunctionType.new(typeA,typefAB)
-	input1.connectors[0].type = typeA
+	input1.connectors[0].type = FunctionType.new(typeA, FunctionType.new(typeA, typeB))
+	input1.connectors[0].value = true
 	input1.connectors[0].display_type_name()
-	input2.connectors[0].type = typeBigF
+	input2.connectors[0].type = typeA
+	input2.connectors[0].value = true
 	input2.connectors[0].display_type_name()
 	goal.connectors[0].type = typeB
 	goal.connectors[0].display_type_name()
+	
+
+
+
