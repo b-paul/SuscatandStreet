@@ -26,6 +26,3 @@ func _ready() -> void:
 	goal.connectors[0].type = typeB
 	goal.connectors[0].display_type_name()
 	
-
-
-

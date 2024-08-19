@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cg4llmlwcg4cf" path="res://scenes/blocks/Input.tscn" id="7_exlit"]
 [ext_resource type="Script" path="res://scripts/levels/flip.gd" id="9_ii67u"]
 [ext_resource type="Script" path="res://scripts/inventory_artist.gd" id="10_6l5jb"]
-[ext_resource type="PackedScene" uid="uid://be63g32qmm8l1" path="res://scenes/WireCoordinator.tscn" id="13_1iif2"]
+[ext_resource type="PackedScene" path="res://scenes/WireCoordinator.tscn" id="13_1iif2"]
 [ext_resource type="Script" path="res://scripts/inventory.gd" id="13_584x7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_msvqm"]
