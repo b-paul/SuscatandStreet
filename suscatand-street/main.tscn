@@ -8,9 +8,9 @@
 [ext_resource type="Script" path="res://scripts/connector_coordinator.gd" id="5_ugrpo"]
 [ext_resource type="PackedScene" uid="uid://uktmlq1bys4t" path="res://scenes/BackendCommunicator.tscn" id="6_xdgnx"]
 [ext_resource type="PackedScene" uid="uid://cg4llmlwcg4cf" path="res://scenes/blocks/Input.tscn" id="7_exlit"]
-[ext_resource type="Script" path="res://scripts/levels/flip.gd" id="9_ii67u"]
+[ext_resource type="Script" path="res://scripts/levels/nested_namespace_test.gd" id="9_ysk6b"]
 [ext_resource type="Script" path="res://scripts/inventory_artist.gd" id="10_6l5jb"]
-[ext_resource type="PackedScene" path="res://scenes/WireCoordinator.tscn" id="13_1iif2"]
+[ext_resource type="PackedScene" uid="uid://be63g32qmm8l1" path="res://scenes/WireCoordinator.tscn" id="13_1iif2"]
 [ext_resource type="Script" path="res://scripts/inventory.gd" id="13_584x7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_msvqm"]
@@ -76,7 +76,7 @@ script = ExtResource("5_ugrpo")
 [node name="WireCoordinator" parent="CanvasLayer/HBoxContainer/HSplitContainer/PanelContainer/BackendCommunicator/ConnectorCoordinator" instance=ExtResource("13_1iif2")]
 
 [node name="LevelBuilder" type="Node2D" parent="CanvasLayer/HBoxContainer/HSplitContainer/PanelContainer/BackendCommunicator/ConnectorCoordinator"]
-script = ExtResource("9_ii67u")
+script = ExtResource("9_ysk6b")
 
 [node name="Workspace" type="Control" parent="CanvasLayer/HBoxContainer/HSplitContainer/PanelContainer/BackendCommunicator/ConnectorCoordinator/LevelBuilder"]
 layout_mode = 3
