@@ -28,4 +28,3 @@ func _init(parentNamespace_: Namespace):
 	andNamespace.blocks.append(innerInputBlock1)
 	andNamespace.blocks.append(innerInputBlock2)
 	andNamespace.blocks.append(innerOutputBlock)
-
