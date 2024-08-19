@@ -89,6 +89,7 @@ func _on_block_gui_input(event: InputEvent, path: String):
 				# start drag
 				dragging = true
 				dragged_path = path
+				create_drag_preview(path)
 			else:
 				dragging = false
 				# end drag
@@ -108,16 +109,15 @@ func _on_block_gui_input(event: InputEvent, path: String):
 							target.get_child(0).render_game_state()
 							new_block.global_position = get_global_mouse_position() - new_block.size / 2
 					
-					#remove_drag_preview()
+					drag_preview.queue_free()
+					drag_preview = null
 					dragged_path = ""
 
 func create_drag_preview(path: String):
 	var scene = load(path)
 	drag_preview = scene.instantiate()
 	drag_preview.z_index = 69
-	target.get_child(0).get_child(0).get_child(1).get_child(0).add_child(drag_preview)
-	target.get_child(0).get_child(0).init_connectors()
-	target.get_child(0).render_game_state()
+	target.get_child(1).add_child(drag_preview)
 	drag_preview.global_position = get_global_mouse_position() - drag_preview.size / 2
 
 func _input(event: InputEvent):

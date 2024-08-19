@@ -85,6 +85,11 @@ offset_right = 4000.0
 offset_bottom = 2000.0
 metadata/_edit_use_anchors_ = true
 
+[node name="DragPreview" type="Control" parent="CanvasLayer/HBoxContainer/HSplitContainer/PanelContainer"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="InventoryContainer" type="PanelContainer" parent="CanvasLayer/HBoxContainer"]
 custom_minimum_size = Vector2(850, 0)
 layout_mode = 2
