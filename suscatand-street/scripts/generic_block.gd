@@ -25,12 +25,15 @@ func _gui_input(event):
 		return
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
+			accept_event()
 			if event.pressed:
 				dragging = true
+				self.modulate = Color(0.95,0.95,0.95)
 				originalPos = global_position
 				dragStartPos = get_global_mouse_position() - global_position
 			else:
 				dragging = false
+				self.modulate = Color(1,1,1)
 				var landing_spot = find_landing_spot()
 				if landing_spot:
 					#position = landing_spot.get_local_mouse_position() - size / 2
@@ -38,6 +41,7 @@ func _gui_input(event):
 				else:
 					global_position = originalPos
 	elif event is InputEventMouseMotion and dragging:
+		accept_event()
 		global_position = get_global_mouse_position() - dragStartPos
 
 func _process(_delta):

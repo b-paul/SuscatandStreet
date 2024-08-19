@@ -124,7 +124,7 @@ func _on_block_gui_input(event: InputEvent, path: String, block: GenericBlock):
 func create_drag_preview(path: String):
 	var scene = load(path)
 	drag_preview = scene.instantiate()
-	#drag_preview.modulate = Color(0,0,0,0.1)
+	drag_preview.modulate = Color(0.95,0.95,0.95)
 	drag_preview.z_index = 69
 	target.get_child(1).add_child(drag_preview)
 	drag_preview.global_position = get_global_mouse_position() + dragStartPos
