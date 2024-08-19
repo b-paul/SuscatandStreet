@@ -10,6 +10,7 @@ var drag_preview: Node = null
 var target: Node
 var dragging: bool = false
 var dragged_path: String = ""
+var dragStartPos: Vector2
 func _ready():
 	setup_slots()
 	setup_target()
@@ -31,7 +32,7 @@ func load_blocks(container):
 		disable_block_drag(block)
 		container.add_child(blockHolder)
 		blockHolder.add_child(block)
-		block.gui_input.connect(_on_block_gui_input.bind(path))
+		block.gui_input.connect(_on_block_gui_input.bind(path,block))
 
 func setup_slots():
 		
@@ -82,13 +83,14 @@ func disable_block_drag(block: Node):
 	for c in block.get_child(0).get_children():
 		c.wire_enabled = false
 
-func _on_block_gui_input(event: InputEvent, path: String):
+func _on_block_gui_input(event: InputEvent, path: String, block: GenericBlock):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			if event.pressed:
+			if event.pressed and not dragging:
 				# start drag
 				dragging = true
 				dragged_path = path
+				dragStartPos = block.global_position - get_global_mouse_position()
 				create_drag_preview(path)
 			else:
 				dragging = false
@@ -107,7 +109,7 @@ func _on_block_gui_input(event: InputEvent, path: String):
 								workspace.add_child(new_block)
 							target.get_child(0).get_child(0).init_connectors()
 							target.get_child(0).render_game_state()
-							new_block.global_position = get_global_mouse_position() - new_block.size / 2
+							new_block.global_position = get_global_mouse_position() + dragStartPos
 					
 					drag_preview.queue_free()
 					drag_preview = null
@@ -118,9 +120,10 @@ func create_drag_preview(path: String):
 	drag_preview = scene.instantiate()
 	drag_preview.z_index = 69
 	target.get_child(1).add_child(drag_preview)
-	drag_preview.global_position = get_global_mouse_position() - drag_preview.size / 2
+	drag_preview.global_position = get_global_mouse_position() + dragStartPos
 
 func _input(event: InputEvent):
 	if event is InputEventMouseMotion:
 		if drag_preview:
-			drag_preview.global_position = get_global_mouse_position() - drag_preview.size / 2
+			print(dragStartPos)
+			drag_preview.global_position = get_global_mouse_position() + dragStartPos

@@ -41,9 +41,6 @@ func render_game_state() -> void:
 		#print(connector)
 		#print(modelConnector)
 		connector.type = modelConnector.type
-		print("About to display type:")
-		print(connector.get_parent().get_parent().block_type)
-		print(connector.type)
 		connector.display_type_name()
 		if modelConnector.value == null:
 			#sad

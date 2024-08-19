@@ -21,8 +21,6 @@ func display_type_name() -> void:
 
 func set_color(color: Color) -> void:
 	$ConnectorCircle.modulate = color
-	print("Setting color:")
-	print(color)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
