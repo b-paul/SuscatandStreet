@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://ciwcftiw8ej44" path="res://assets/expand.webp" id="6_lcgrm"]
 
 [node name="GenericBlock3" instance=ExtResource("1_nfpxs")]
+custom_minimum_size = Vector2(500, 250)
 offset_right = 500.0
 offset_bottom = 250.0
 block_type = "lambda"
@@ -38,14 +39,14 @@ offset_right = 277.0
 offset_bottom = 24.0
 wire_normal = Vector2(1, 0)
 
-[node name="Workspace" type="Control" parent="." index="1"]
+[node name="LambdaArtist" type="Node2D" parent="." index="1"]
+script = ExtResource("4_h8lex")
+
+[node name="Workspace" type="Control" parent="." index="2"]
 layout_mode = 2
 
-[node name="LambdaHandler" type="Node" parent="." index="2"]
+[node name="LambdaHandler" type="Node" parent="." index="3"]
 script = ExtResource("3_0c4ka")
-
-[node name="LambdaArtist" type="Node2D" parent="." index="3"]
-script = ExtResource("4_h8lex")
 
 [node name="DragContainer" type="Control" parent="." index="4"]
 layout_mode = 2

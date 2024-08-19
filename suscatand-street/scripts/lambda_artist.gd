@@ -22,6 +22,7 @@ func _draw():
 
 	# Draw the inner border (black rectangle around the transparent area)
 	draw_rect(Rect2(inner_rect_position, inner_rect_size), Color(0, 0, 0), false,10)
+	draw_rect(Rect2(inner_rect_position, inner_rect_size), Color(0, 0, 0,0.1), true)
 	
 func _process(delta):
 	queue_redraw()

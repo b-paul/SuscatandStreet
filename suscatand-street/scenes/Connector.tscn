@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://edynuhv4vgw5" path="res://assets/box.svg" id="4_xufq1"]
 
 [node name="Connector" type="CenterContainer"]
+offset_right = 48.0
+offset_bottom = 48.0
 script = ExtResource("1_rltil")
 
 [node name="ConnectorCircle" type="TextureRect" parent="."]

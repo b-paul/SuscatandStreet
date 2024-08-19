@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://bb7ds4i3kux0c"
+path="res://.godot/imported/triangle_bitmask.svg-e3368d1d910670a69f565bc77c77de45.res"
+
+[deps]
+
+source_file="res://assets/triangle_bitmask.svg"
+dest_files=["res://.godot/imported/triangle_bitmask.svg-e3368d1d910670a69f565bc77c77de45.res"]
+
+[params]
+
+create_from=1
+threshold=0.5
