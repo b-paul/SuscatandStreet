@@ -19,6 +19,7 @@ func update() -> void:
 		height = min_height
 	var lambda = get_parent().get_parent()
 	lambda.size = Vector2(width, height)
+	lambda.custom_minimum_size = Vector2(width, height)
 	lambda.get_node("LambdaArtist").outer_rect_size = Vector2(width, height)
 	self.position = Vector2(width/2 - 45, height/2 - 45)
 	lambda.get_node("Connectors/InType").position = Vector2(19-width/2, height/2 - 21)

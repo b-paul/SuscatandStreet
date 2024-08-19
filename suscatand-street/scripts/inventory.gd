@@ -25,11 +25,12 @@ func setup_target():
 func load_blocks(container):
 	for path in block_paths:
 		var scene = load(path)
-		var centerer = CenterContainer.new()
+		var blockHolder: Control = CenterContainer.new()
+		#blockHolder.size_flags_horizontal = SIZE_SHRINK_CENTER
 		var block = scene.instantiate()
 		disable_block_drag(block)
-		container.add_child(centerer)
-		centerer.add_child(block)
+		container.add_child(blockHolder)
+		blockHolder.add_child(block)
 		block.gui_input.connect(_on_block_gui_input.bind(path))
 
 func setup_slots():
@@ -45,7 +46,7 @@ func setup_slots():
 	scroll_container.add_child(slot_container)
 
 	load_blocks(slot_container)
-		
+	
 	if num_slots > block_paths.size():
 		slot_container.add_child(create_slot(false))
 		

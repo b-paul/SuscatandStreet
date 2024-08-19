@@ -25,3 +25,6 @@ func _draw():
 	
 func _process(delta):
 	queue_redraw()
+
+func _ready():
+	queue_redraw()

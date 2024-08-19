@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bkn80kuw0dqs6"]
+[gd_scene load_steps=14 format=3 uid="uid://bkn80kuw0dqs6"]
 
 [ext_resource type="Texture2D" uid="uid://bg2u1xmifmkjm" path="res://assets/bg_tile.png" id="1_agkpv"]
 [ext_resource type="Script" path="res://scripts/hintbox.gd" id="2_4dedc"]
@@ -9,8 +9,12 @@
 [ext_resource type="PackedScene" uid="uid://uktmlq1bys4t" path="res://scenes/BackendCommunicator.tscn" id="6_xdgnx"]
 [ext_resource type="PackedScene" uid="uid://cg4llmlwcg4cf" path="res://scenes/blocks/Input.tscn" id="7_exlit"]
 [ext_resource type="Script" path="res://scripts/levels/composition.gd" id="9_15rcm"]
+[ext_resource type="Script" path="res://scripts/inventory_artist.gd" id="10_6l5jb"]
 [ext_resource type="PackedScene" uid="uid://be63g32qmm8l1" path="res://scenes/WireCoordinator.tscn" id="13_1iif2"]
 [ext_resource type="Script" path="res://scripts/inventory.gd" id="13_584x7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_msvqm"]
+bg_color = Color(0.912289, 0.912289, 0.912289, 1)
 
 [node name="root" type="Node"]
 
@@ -81,18 +85,49 @@ offset_right = 4000.0
 offset_bottom = 2000.0
 metadata/_edit_use_anchors_ = true
 
-[node name="InventoryContainer" type="TabContainer" parent="CanvasLayer/HBoxContainer"]
-custom_minimum_size = Vector2(900, 2.08165e-12)
+[node name="InventoryContainer" type="PanelContainer" parent="CanvasLayer/HBoxContainer"]
+custom_minimum_size = Vector2(850, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 28
-current_tab = 0
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_msvqm")
 
-[node name="Inventory" type="VBoxContainer" parent="CanvasLayer/HBoxContainer/InventoryContainer"]
-custom_minimum_size = Vector2(850, 2.08165e-12)
+[node name="Control" type="Control" parent="CanvasLayer/HBoxContainer/InventoryContainer"]
 layout_mode = 2
+
+[node name="InventoryBG" type="Control" parent="CanvasLayer/HBoxContainer/InventoryContainer/Control"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 15.0
+offset_top = 10.0
+offset_right = 865.0
+offset_bottom = 1974.0
+script = ExtResource("10_6l5jb")
+
+[node name="NameContainer" type="MarginContainer" parent="CanvasLayer/HBoxContainer/InventoryContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 20
+
+[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer/InventoryContainer/NameContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 70
+text = "Inventory"
+
+[node name="Control2" type="Control" parent="CanvasLayer/HBoxContainer/InventoryContainer"]
+layout_mode = 2
+
+[node name="Inventory" type="VBoxContainer" parent="CanvasLayer/HBoxContainer/InventoryContainer/Control2"]
+custom_minimum_size = Vector2(850, 850)
+layout_mode = 2
+offset_top = 130.0
+offset_right = 850.0
+offset_bottom = 2094.0
 script = ExtResource("13_584x7")
 num_slots = 2
-metadata/_tab_index = 0
+target_container = NodePath("../../../HSplitContainer/PanelContainer")
 
 [node name="CanvasLayer_HBoxContainer_HSplitContainer_PanelContainer_ConnectorCoordinator#GenericBlock" parent="." instance=ExtResource("7_exlit")]
 offset_left = 434.0
