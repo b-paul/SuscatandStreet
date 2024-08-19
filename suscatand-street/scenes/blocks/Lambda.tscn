@@ -1,71 +1,64 @@
-[gd_scene load_steps=5 format=3 uid="uid://h0luygec5mwn"]
+[gd_scene load_steps=7 format=3 uid="uid://h0luygec5mwn"]
 
 [ext_resource type="PackedScene" uid="uid://ow2gujx12ivf" path="res://scenes/blocks/GenericBlock.tscn" id="1_nfpxs"]
 [ext_resource type="PackedScene" uid="uid://bgv3qn41l83pg" path="res://scenes/Connector.tscn" id="2_o5vwv"]
 [ext_resource type="Script" path="res://scripts/lambda_builder.gd" id="3_0c4ka"]
 [ext_resource type="Script" path="res://scripts/lambda_artist.gd" id="4_h8lex"]
+[ext_resource type="Script" path="res://scripts/lambda_drag_handle.gd" id="5_6brld"]
+[ext_resource type="Texture2D" uid="uid://ciwcftiw8ej44" path="res://assets/expand.webp" id="6_lcgrm"]
 
 [node name="GenericBlock3" instance=ExtResource("1_nfpxs")]
-custom_minimum_size = Vector2(1000, 500)
+offset_right = 500.0
+offset_bottom = 250.0
 block_type = "lambda"
 
 [node name="InType" parent="Connectors" index="0" instance=ExtResource("2_o5vwv")]
 layout_mode = 0
-offset_left = -481.0
-offset_top = 223.0
-offset_right = -433.0
-offset_bottom = 271.0
+offset_left = -231.0
+offset_top = 104.0
+offset_right = -183.0
+offset_bottom = 152.0
 is_square = true
 wire_normal = Vector2(0, 1)
 
 [node name="OutType" parent="Connectors" index="1" instance=ExtResource("2_o5vwv")]
 layout_mode = 0
-offset_left = -255.0
-offset_top = 222.0
-offset_right = -207.0
-offset_bottom = 270.0
+offset_left = -5.0
+offset_top = 104.0
+offset_right = 43.0
+offset_bottom = 152.0
 is_square = true
 wire_normal = Vector2(0, 1)
 
 [node name="OutFunction" parent="Connectors" index="2" instance=ExtResource("2_o5vwv")]
 layout_mode = 0
-offset_left = 474.0
-offset_right = 522.0
-offset_bottom = 48.0
+offset_left = 229.0
+offset_top = -24.0
+offset_right = 277.0
+offset_bottom = 24.0
 wire_normal = Vector2(1, 0)
 
-[node name="Border" type="ColorRect" parent="." index="1"]
-visible = false
-custom_minimum_size = Vector2(1000, 500)
-layout_mode = 2
-mouse_filter = 1
-color = Color(0, 0, 0, 1)
-
-[node name="Frame" type="ColorRect" parent="." index="2"]
-visible = false
-custom_minimum_size = Vector2(980, 480)
-layout_mode = 2
-mouse_filter = 1
-
-[node name="WorkspaceBorder" type="ColorRect" parent="." index="3"]
-visible = false
-custom_minimum_size = Vector2(900, 400)
-layout_mode = 2
-mouse_filter = 1
-color = Color(0, 0, 0, 1)
-
-[node name="WorkspaceBG" type="ColorRect" parent="." index="4"]
-visible = false
-custom_minimum_size = Vector2(880, 380)
-layout_mode = 2
-mouse_filter = 1
-color = Color(0.768729, 0.768729, 0.768729, 1)
-
-[node name="Workspace" type="Control" parent="." index="5"]
+[node name="Workspace" type="Control" parent="." index="1"]
 layout_mode = 2
 
-[node name="LambdaHandler" type="Node" parent="." index="6"]
+[node name="LambdaHandler" type="Node" parent="." index="2"]
 script = ExtResource("3_0c4ka")
 
-[node name="LambdaArtist" type="Node2D" parent="." index="7"]
+[node name="LambdaArtist" type="Node2D" parent="." index="3"]
 script = ExtResource("4_h8lex")
+
+[node name="DragContainer" type="Control" parent="." index="4"]
+layout_mode = 2
+
+[node name="DragHandle" type="CenterContainer" parent="DragContainer" index="0"]
+layout_mode = 0
+offset_left = 205.0
+offset_top = 80.0
+offset_right = 245.0
+offset_bottom = 120.0
+script = ExtResource("5_6brld")
+
+[node name="Sprite2D" type="Sprite2D" parent="DragContainer/DragHandle" index="0"]
+position = Vector2(20, 20)
+scale = Vector2(0.0517578, 0.0517578)
+texture = ExtResource("6_lcgrm")

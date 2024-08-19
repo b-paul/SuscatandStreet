@@ -25,11 +25,13 @@ func setup_target():
 func load_blocks(container):
 	for path in block_paths:
 		var scene = load(path)
+		var centerer = CenterContainer.new()
 		var block = scene.instantiate()
-		disable_block_drag(block)		
-		container.add_child(block)
+		disable_block_drag(block)
+		container.add_child(centerer)
+		centerer.add_child(block)
 		block.gui_input.connect(_on_block_gui_input.bind(path))
-			
+
 func setup_slots():
 		
 	var scroll_container = ScrollContainer.new()

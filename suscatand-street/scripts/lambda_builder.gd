@@ -15,9 +15,9 @@ func _ready() -> void:
 	innerOutputBlock = goal
 	var workspace: Control = get_parent().get_node("./Workspace")
 	workspace.add_child(input)
-	input.position += Vector2(-400,-40)
+	input.position += Vector2(-96-75,-48)
 	workspace.add_child(goal)
-	goal.position += Vector2(300,-40)
+	goal.position += Vector2(75,-48)
 	
 
 
