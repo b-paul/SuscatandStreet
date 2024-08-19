@@ -47,7 +47,7 @@ func _process(_delta):
 func find_landing_spot() -> Node:
 	var mouse_pos = get_global_mouse_position()
 	var panel_container = get_tree().get_root().get_node("root/CanvasLayer/HBoxContainer/HSplitContainer/PanelContainer")
-	var graveyard = get_tree().get_root().get_node("root/CanvasLayer/HBoxContainer/InventoryContainer/Inventory")
+	var graveyard = get_tree().get_root().get_node("root/CanvasLayer/HBoxContainer/InventoryContainer/Control2/Inventory")
 	var connector_coordinator = get_tree().get_root().get_node("root/CanvasLayer/HBoxContainer/HSplitContainer/PanelContainer/BackendCommunicator/ConnectorCoordinator")
 	#var panel_container = get_node_or_null("/root/CanvasLayer/HBoxContainer/HSplitContainer/PanelContainer")
 	#var graveyard = get_node_or_null("/root/CanvasLayer/HBoxContainer/InventoryContainer/Graveyard")

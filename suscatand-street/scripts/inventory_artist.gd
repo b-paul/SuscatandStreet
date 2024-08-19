@@ -15,4 +15,4 @@ func _process(delta: float) -> void:
 	queue_redraw()
 	
 func _draw():
-	draw_rect(Rect2(Vector2(0, 0), frame_size), Color(0, 0, 0), false,30)
+	draw_rect(Rect2(Vector2(0, 0), frame_size), Color(0, 0, 0,0.8), false,30)

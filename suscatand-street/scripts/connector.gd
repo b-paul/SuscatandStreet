@@ -69,6 +69,7 @@ func _gui_input(event):
 			#coordinator.dragging_wire = true
 			wire_end.originalZIndex = z_index + 1
 			wire_end.dragStartPos = Vector2(25,25)
+			accept_event()
 
 func find_connectors(root_node: Node) -> Array[ConnectorNode]:
 	var nodes_of_type: Array[ConnectorNode] = []

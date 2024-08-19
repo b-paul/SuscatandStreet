@@ -29,10 +29,10 @@ func load_blocks(container):
 		var blockHolder: Control = CenterContainer.new()
 		#blockHolder.size_flags_horizontal = SIZE_SHRINK_CENTER
 		var block = scene.instantiate()
-		disable_block_drag(block)
 		container.add_child(blockHolder)
 		blockHolder.add_child(block)
 		block.gui_input.connect(_on_block_gui_input.bind(path,block))
+		disable_block_drag(block)
 
 func setup_slots():
 		
@@ -76,12 +76,18 @@ func create_slot(trans: bool) -> Panel:
 	return slot
 
 
-func disable_block_drag(block: Node):
+func disable_block_drag(block: GenericBlock, disable_mouse: bool = false):
 	block.dragging_enabled = false
 	block.dragging = false
 	block.dragStartPos = Vector2.ZERO
-	for c in block.get_child(0).get_children():
+	if disable_mouse:
+		block.mouse_filter = Control.MOUSE_FILTER_PASS
+	for c in block.connectors:
 		c.wire_enabled = false
+		c.mouse_filter = Control.MOUSE_FILTER_PASS
+	if block.block_type == "lambda":
+		for b in block.get_node("Workspace").get_children():
+			disable_block_drag(b, true)
 
 func _on_block_gui_input(event: InputEvent, path: String, block: GenericBlock):
 	if event is InputEventMouseButton:
@@ -118,6 +124,7 @@ func _on_block_gui_input(event: InputEvent, path: String, block: GenericBlock):
 func create_drag_preview(path: String):
 	var scene = load(path)
 	drag_preview = scene.instantiate()
+	#drag_preview.modulate = Color(0,0,0,0.1)
 	drag_preview.z_index = 69
 	target.get_child(1).add_child(drag_preview)
 	drag_preview.global_position = get_global_mouse_position() + dragStartPos
@@ -125,5 +132,4 @@ func create_drag_preview(path: String):
 func _input(event: InputEvent):
 	if event is InputEventMouseMotion:
 		if drag_preview:
-			print(dragStartPos)
 			drag_preview.global_position = get_global_mouse_position() + dragStartPos
