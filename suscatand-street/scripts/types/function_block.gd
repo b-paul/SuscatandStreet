@@ -8,5 +8,5 @@ var resultConnector: Connector
 func _init(parentNamespace_: Namespace):
 	arg1Connector = Connector.new(self, true, true, TypeType.new())
 	arg2Connector = Connector.new(self, true, true, TypeType.new())
-	resultConnector = Connector.new(self, false, true, UnknownType.new())
+	resultConnector = Connector.new(self, false, true, TypeType.new())
 	parentNamespace = parentNamespace_

@@ -129,6 +129,7 @@ func construct_model_namespace(node: Node, parentNamespace: Namespace) -> Namesp
 				reverseConnectorMappings[inTypeConnector] = modelBlock.arg1Connector
 				reverseConnectorMappings[outTypeConnector] = modelBlock.arg2Connector
 				reverseConnectorMappings[outputConnector] = modelBlock.resultConnector
+				parentNamespace.blocks.append(modelBlock)
 			"lambda":
 				var inTypeConnector: ConnectorNode = block.connectors[0]
 				var outTypeConnector: ConnectorNode = block.connectors[1]
@@ -161,6 +162,7 @@ func construct_model_namespace(node: Node, parentNamespace: Namespace) -> Namesp
 				lambdaHandler.lambda_namespace = lambda_namespace
 				for child_node in block.get_node("Workspace").get_children():
 					construct_model_namespace(child_node,lambda_namespace)
+				parentNamespace.blocks.append(modelLambda)
 			"and":
 				var inConnecter1: ConnectorNode = block.connectors[0]
 				var inConnecter2: ConnectorNode = block.connectors[1]

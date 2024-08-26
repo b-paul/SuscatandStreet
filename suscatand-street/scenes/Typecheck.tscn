@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://scripts/types/namespace.gd" id="12_6lvrv"]
 [ext_resource type="Script" path="res://scripts/types/function_block.gd" id="12_rkit3"]
 [ext_resource type="Script" path="res://scripts/types/lambda_block.gd" id="12_tycop"]
+[ext_resource type="Script" path="res://scripts/types/applicator_block.gd" id="13_rf6tl"]
 [ext_resource type="Script" path="res://scripts/types/not_elim_block.gd" id="13_s4faj"]
 [ext_resource type="Script" path="res://scripts/types/and_block.gd" id="15_sbg3m"]
 [ext_resource type="Script" path="res://scripts/types/or_block.gd" id="16_n3xap"]
@@ -23,20 +24,6 @@
 [ext_resource type="Script" path="res://scripts/types/or_right_block.gd" id="19_cw1sa"]
 [ext_resource type="Script" path="res://scripts/types/and_elim_block.gd" id="21_y5ha1"]
 [ext_resource type="Script" path="res://scripts/types/or_elim_block.gd" id="22_vdv5j"]
-
-[sub_resource type="GDScript" id="GDScript_ml3w8"]
-script/source = "extends Node
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-"
 
 [node name="Typecheck" type="Node"]
 
@@ -80,7 +67,7 @@ script = ExtResource("9_gxowl")
 script = ExtResource("10_vx6j0")
 
 [node name="ApplicatorBlock" type="Node" parent="Block"]
-script = SubResource("GDScript_ml3w8")
+script = ExtResource("13_rf6tl")
 
 [node name="LambdaBlock" type="Node" parent="Block"]
 script = ExtResource("12_tycop")

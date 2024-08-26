@@ -34,4 +34,6 @@ func _init(parentNamespace_: Namespace):
 	rightNamespace.blocks.append(innerInputBlockr)
 	leftNamespace.blocks.append(innerOutputBlockl)
 	rightNamespace.blocks.append(innerOutputBlockr)
-
+	
+	subNamespaces.append(leftNamespace)
+	subNamespaces.append(rightNamespace)

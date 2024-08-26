@@ -14,6 +14,14 @@ func _init(parentBlock_: Block, isInput_: bool, takesType_: bool, type_: Type):
 	isInput = isInput_
 	takesType = takesType_
 	type = type_
+	if takesType:
+		parentBlock.typeConnectors.append(self)
+	if isInput:
+		parentBlock.inputConnectors.append(self)
+	else:
+		parentBlock.outputConnectors.append(self)
+	if type is UnknownType:
+		parentBlock.inferredConnectors.append(self)
 
 func make_connection(target: Connector):
 	if outConnections.has(target):
