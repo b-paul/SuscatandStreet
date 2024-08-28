@@ -308,7 +308,7 @@ func propagate_values():
 	while !ns_stack.is_empty():
 		var cur: Namespace = ns_stack.pop_back()
 		for block: Block in cur.blocks:
-			if block is InputBlock and !block.connector.type is TypeType:
+			if block is InputBlock and !block.connector.type is TypeType and !block.connector.type is UnknownType:
 				stack.push_back(block.connector)
 			for ns in block.subNamespaces:
 				ns_stack.push_back(ns)
@@ -350,15 +350,15 @@ func propagate_values():
 				assert(cur == block.connector)
 				var parentBlock = block.parentNamespace.parentBlock
 				if parentBlock is LambdaBlock:
-					if parentBlock.innerOutputBlock.connector.value != null:
+					if parentBlock.innerOutputBlock.connector.value != null and parentBlock.outputConnector.type.equalTo(FunctionType.new(parentBlock.innerInputBlock.connector.type, parentBlock.innerOutputBlock.connector.type)):
 						parentBlock.outputConnector.value = true
 						stack.push_back(parentBlock.outputConnector)
 				elif parentBlock is AndElimBlock:
-					if parentBlock.innerOutputBlock.connector.value != null:
+					if parentBlock.innerOutputBlock.connector.value != null and parentBlock.outputConnectors.type.equalTo(parentBlock.innerOutputBlock.connetor.type):
 						parentBlock.resultConnector.value = true
 						stack.push_back(parentBlock.resultConnector)
 				elif parentBlock is OrElimBlock:
-					if parentBlock.innerOutputBlockl.connector.value != null and parentBlock.innerOutputBlockr.connector.value != null:
+					if parentBlock.innerOutputBlockl.connector.value != null and parentBlock.innerOutputBlockr.connector.value != null and parentBlock.outputConnectors.type.equalTo(parentBlock.innerOutputBlockl.connetor.type) and parentBlock.outputConnectors.type.equalTo(parentBlock.innerOutputBlockr.connetor.type):
 						parentBlock.resultConnector.value = true
 						stack.push_back(parentBlock.resultConnector)
 				else:
